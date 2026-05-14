@@ -34,6 +34,11 @@ window.JCAuth = (() => {
     });
   }
 
+  async function updatePassword(newPassword) {
+    const SB = requireSB();
+    return SB.auth.updateUser({ password: newPassword });
+  }
+
   async function getUser() {
     if (!window.SB) return null;
     const { data } = await window.SB.auth.getUser();
@@ -86,7 +91,7 @@ window.JCAuth = (() => {
   }
 
   return {
-    signUp, signIn, signOut, resetPassword,
+    signUp, signIn, signOut, resetPassword, updatePassword,
     getUser, getProfile,
     requireAuth, requireAdmin, onAuthChange,
   };

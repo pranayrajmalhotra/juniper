@@ -49,7 +49,39 @@
       <p id="message" class="hidden text-sm py-3 px-4 rounded-lg"></p>
     </form>
 
-    <p class="mt-10 text-xs text-on-surface-variant text-center">Trouble signing in? <a href="mailto:concierge@juniper.club" class="text-primary border-b border-primary/30 hover:border-primary">Contact the concierge.</a></p>
+    <!-- Shown only after the user clicks a password-recovery link in their email.
+         Toggled by the script below when a Supabase recovery session is detected. -->
+    <div id="recovery-pane" class="hidden">
+      <span class="font-label uppercase tracking-[0.18em] text-[10px] font-bold text-secondary block mb-3">Set a new password</span>
+      <h2 class="font-headline text-4xl text-primary tracking-tight mb-2" id="recovery-heading">Choose your new password</h2>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-8">We've verified your reset link. Pick a new password — at least 8 characters — and you'll be signed in.</p>
+
+      <form id="recovery-form" class="space-y-5">
+        <div>
+          <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-2" for="new-password">New password</label>
+          <input id="new-password" name="new-password" type="password" required minlength="8" autocomplete="new-password"
+                 class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50 transition-colors"/>
+        </div>
+        <div>
+          <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-2" for="confirm-password">Confirm new password</label>
+          <input id="confirm-password" name="confirm-password" type="password" required minlength="8" autocomplete="new-password"
+                 class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50 transition-colors"/>
+        </div>
+
+        <button type="submit" id="recovery-submit"
+                class="w-full bg-primary text-white py-4 rounded font-label text-[11px] uppercase tracking-[0.18em] font-bold hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+          Save new password
+        </button>
+
+        <p id="recovery-message" class="hidden text-sm py-3 px-4 rounded-lg"></p>
+      </form>
+
+      <p class="mt-10 text-xs text-on-surface-variant text-center">
+        Wrong account? <button type="button" id="recovery-cancel" class="text-primary border-b border-primary/30 hover:border-primary">Cancel and sign in differently</button>
+      </p>
+    </div>
+
+    <p id="default-help" class="mt-10 text-xs text-on-surface-variant text-center">Trouble signing in? <a href="mailto:concierge@juniper.club" class="text-primary border-b border-primary/30 hover:border-primary">Contact the concierge.</a></p>
   </div>
 </main>
 
@@ -59,10 +91,51 @@
 <script src="js/auth.js"></script>
 <script>
 (() => {
-  const form = document.getElementById("login-form");
-  const msg  = document.getElementById("message");
-  const btn  = document.getElementById("submit");
+  const form  = document.getElementById("login-form");
+  const msg   = document.getElementById("message");
+  const btn   = document.getElementById("submit");
   const reset = document.getElementById("reset-link");
+
+  const recoveryPane   = document.getElementById("recovery-pane");
+  const recoveryForm   = document.getElementById("recovery-form");
+  const recoveryMsg    = document.getElementById("recovery-message");
+  const recoveryBtn    = document.getElementById("recovery-submit");
+  const recoveryCancel = document.getElementById("recovery-cancel");
+  const defaultHelp    = document.getElementById("default-help");
+  const headingEl      = document.querySelector("main h2");
+  const subheadEl      = document.querySelector("main h2 + p");
+  const eyebrowEl      = document.querySelector("main span.font-label");
+
+  // ── Detect a password-recovery redirect synchronously, BEFORE Supabase's
+  //    client finishes processing the URL hash and our auto-bounce kicks in.
+  //    Supabase appends "#type=recovery&access_token=…" to the redirect URL.
+  function isRecoveryRedirect() {
+    const hash = location.hash || "";
+    return /[#&]type=recovery(\b|&|$)/.test(hash);
+  }
+  let recoveryMode = isRecoveryRedirect();
+
+  function enterRecoveryMode() {
+    if (recoveryMode && recoveryPane && !recoveryPane.classList.contains("hidden")) return;
+    recoveryMode = true;
+    form.classList.add("hidden");
+    if (eyebrowEl)  eyebrowEl.classList.add("hidden");
+    if (headingEl)  headingEl.classList.add("hidden");
+    if (subheadEl)  subheadEl.classList.add("hidden");
+    if (defaultHelp) defaultHelp.classList.add("hidden");
+    recoveryPane.classList.remove("hidden");
+    // Tidy URL so a refresh during reset doesn't re-trigger anything weird.
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  }
+
+  // Also listen for the SDK event in case the redirect fragment is missing or
+  // arrives after our initial check (some flows route via /verify first).
+  function wireAuthEvent() {
+    if (!window.SB?.auth?.onAuthStateChange) return;
+    window.SB.auth.onAuthStateChange((event) => {
+      if (event === "PASSWORD_RECOVERY") enterRecoveryMode();
+    });
+  }
 
   function showMessage(text, kind) {
     msg.textContent = text;
@@ -70,18 +143,21 @@
       ? "bg-secondary/10 text-secondary" : "bg-error/10 text-error");
     msg.classList.remove("hidden");
   }
+  function showRecoveryMessage(text, kind) {
+    recoveryMsg.textContent = text;
+    recoveryMsg.className = "text-sm py-3 px-4 rounded-lg " + (kind === "ok"
+      ? "bg-secondary/10 text-secondary" : "bg-error/10 text-error");
+    recoveryMsg.classList.remove("hidden");
+  }
 
   function nextDest() {
     const next = new URL(location.href).searchParams.get("next");
     if (!next) return "index.html";
-    // Reject anything that could leave the site: protocol-relative (//evil.com),
-    // explicit scheme (http:, https:, javascript:, data:), or anything with a host.
     if (/^[a-z][a-z0-9+.-]*:/i.test(next) || next.startsWith("//")) return "index.html";
-    // Treat as a same-origin path. Strip leading slashes so it resolves relative
-    // to the current page even if the build is ever hosted under a subpath.
     return next.replace(/^\/+/, "") || "index.html";
   }
 
+  // ── Normal sign-in
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!window.SB) { showMessage("Site is not yet connected to its database.", "error"); return; }
@@ -92,7 +168,6 @@
       const password = document.getElementById("password").value;
       const { error } = await JCAuth.signIn({ email, password });
       if (error) throw error;
-      // Fetch profile to route admins to the admin panel by default
       const profile = await JCAuth.getProfile();
       const dest = profile?.is_admin ? "admin.html" : nextDest();
       location.href = dest;
@@ -102,6 +177,7 @@
     }
   });
 
+  // ── Forgot password — sends the reset email
   reset.addEventListener("click", async () => {
     const email = document.getElementById("email").value.trim();
     if (!email) { showMessage("Enter your email above first.", "error"); return; }
@@ -115,13 +191,49 @@
     }
   });
 
-  // If already signed-in, bounce them
-  (async () => {
-    const u = await JCAuth.getUser?.();
-    if (u) {
+  // ── Set new password (recovery flow)
+  recoveryForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!window.SB) { showRecoveryMessage("Site is not yet connected to its database.", "error"); return; }
+    const a = document.getElementById("new-password").value;
+    const b = document.getElementById("confirm-password").value;
+    if (a !== b)        { showRecoveryMessage("The two passwords don't match.", "error"); return; }
+    if (a.length < 8)   { showRecoveryMessage("Please choose at least 8 characters.", "error"); return; }
+    recoveryBtn.disabled = true; recoveryBtn.textContent = "Saving…";
+    recoveryMsg.classList.add("hidden");
+    try {
+      const { error } = await JCAuth.updatePassword(a);
+      if (error) throw error;
+      // The recovery session is now a real session — route them in.
       const profile = await JCAuth.getProfile();
-      location.replace(profile?.is_admin ? "admin.html" : nextDest());
+      const dest = profile?.is_admin ? "admin.html" : nextDest();
+      location.href = dest;
+    } catch (err) {
+      showRecoveryMessage(err?.message || "Could not save your new password. The reset link may have expired — request a fresh one.", "error");
+      recoveryBtn.disabled = false; recoveryBtn.textContent = "Save new password";
     }
+  });
+
+  // ── Cancel recovery: drop the recovery session and reset the UI
+  recoveryCancel.addEventListener("click", async () => {
+    try { await JCAuth.signOut(); } catch {}
+    location.replace("login.html");
+  });
+
+  // ── Page-load decisions
+  if (recoveryMode) enterRecoveryMode();
+  wireAuthEvent();
+
+  (async () => {
+    if (recoveryMode) return;       // never bounce out of a recovery flow
+    const u = await JCAuth.getUser?.();
+    if (!u) return;
+    // It's possible the SDK created a recovery session before we read the hash
+    // (Safari can be quick). Double-check the event hasn't flipped us into
+    // recovery mode before bouncing.
+    if (recoveryMode) return;
+    const profile = await JCAuth.getProfile();
+    location.replace(profile?.is_admin ? "admin.html" : nextDest());
   })();
 })();
 </script>
