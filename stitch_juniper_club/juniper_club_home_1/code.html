@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#2a1c00",
+              "on-error-container": "#93000a",
+              "inverse-surface": "#2e3131",
+              "on-tertiary-fixed": "#261900",
+              "on-primary-fixed-variant": "#1f4f3d",
+              "on-tertiary-container": "#bb9650",
+              "secondary-fixed": "#c5ebdc",
+              "inverse-primary": "#9fd1b9",
+              "surface-container-low": "#f2f4f3",
+              "primary": "#002418",
+              "secondary-container": "#c5ebdc",
+              "primary-container": "#063b2a",
+              "on-tertiary-fixed-variant": "#5d4201",
+              "surface-dim": "#d8dada",
+              "secondary": "#436559",
+              "on-primary-fixed": "#002115",
+              "outline-variant": "#c0c9c2",
+              "tertiary-fixed": "#ffdea5",
+              "on-secondary": "#ffffff",
+              "on-background": "#191c1c",
+              "surface-container": "#eceeed",
+              "on-surface": "#191c1c",
+              "surface-bright": "#f8faf9",
+              "primary-fixed": "#bbeed5",
+              "secondary-fixed-dim": "#a9cfc0",
+              "on-secondary-fixed": "#002018",
+              "on-error": "#ffffff",
+              "on-secondary-fixed-variant": "#2b4d42",
+              "outline": "#717974",
+              "surface-variant": "#e1e3e2",
+              "error-container": "#ffdad6",
+              "primary-fixed-dim": "#9fd1b9",
+              "on-surface-variant": "#414944",
+              "inverse-on-surface": "#eff1f0",
+              "tertiary-container": "#453000",
+              "error": "#ba1a1a",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "surface-tint": "#386754",
+              "surface-container-highest": "#e1e3e2",
+              "surface-container-high": "#e6e9e8",
+              "on-primary-container": "#75a68f",
+              "on-secondary-container": "#496b5f",
+              "background": "#f8faf9",
+              "tertiary-fixed-dim": "#e9c176",
+              "surface": "#f8faf9"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .no-border { border: none !important; }
+      .tonal-shift { background-color: rgba(236, 238, 237, 0.4); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-primary">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-emerald-950/80 backdrop-blur-xl shadow-sm shadow-emerald-900/5 flex justify-between items-center px-6 py-4 w-full h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-emerald-900 dark:text-emerald-50 cursor-pointer hover:opacity-80 transition-opacity">menu</span>
+<h1 class="font-serif italic font-bold text-emerald-900 dark:text-emerald-100 tracking-tighter text-2xl">JUNIPER CLUB</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8">
+<a class="text-emerald-900 dark:text-emerald-50 font-bold font-label uppercase tracking-[0.1rem] text-[10px]" href="#">Home</a>
+<a class="text-emerald-700/50 dark:text-emerald-300/50 font-label uppercase tracking-[0.1rem] text-[10px] hover:opacity-80" href="#">Directory</a>
+<a class="text-emerald-700/50 dark:text-emerald-300/50 font-label uppercase tracking-[0.1rem] text-[10px] hover:opacity-80" href="#">Offers</a>
+</nav>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant/15">
+<img class="w-full h-full object-cover" data-alt="Member Profile Photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfxag6Q_0bDxtTDqdpI5QPeMut5n-_cPSQsA_tT_WBED8mpMn8i1_hd4theu1LPXJ9m4r1LQh95KWb9hWII-FIBbv3vODr0evQdh3X2ODOibeVhqSaF-_UaQI5SRRw5kB3sfLIGY015CS2qHuLacgcSRHfYEsxOEqCHbnf3liPEusFpMjgu47I503cwd6F9aPJ0LLa1V8m7FjGLGdFsGUGq9egVVvyrKRt-00-sC-a4DLO60qDESCGJL8ZAdwFbppsSH0ZEHFfU70"/>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-32">
+<!-- Hero Section: Tie-up of the Month -->
+<section class="relative w-full h-[751px] overflow-hidden">
+<div class="absolute inset-0">
+<img class="w-full h-full object-cover scale-105" data-alt="Atmospheric moody bar interior with emerald lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGqzuw86hk0I0-9qZoOmafeBtxgUFU4YXTWlGg4ySfrWk9wio-c3wgUUNVxQkiMr8c6nKpkvHjbSVWTWaCWoE7OohxDCQOPpI6XRJDEKNK0MfrMJjZaNITKUVJYkwA7tYACz5zJ6UsHm4odYQTh7gJMNX7BkRbO9uCWSBCmejS_GibC8Qmaifq7EO6eRZvnx4GvRqmSc2mUt_OYxe12JkmUs7l1hdeUt7uPt7uU-AvQgUJoTSdjTuQbosN1wT9NxRhHJNze0uqgT4"/>
+<div class="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/20 to-primary"></div>
+</div>
+<div class="relative h-full flex flex-col justify-end px-6 md:px-16 pb-20 max-w-7xl mx-auto">
+<div class="space-y-4 max-w-2xl">
+<p class="font-label text-tertiary-fixed uppercase tracking-[0.2rem] text-xs font-bold">Tie-up of the Month</p>
+<h2 class="font-headline text-5xl md:text-7xl text-white leading-[1.1] tracking-tight -ml-1">The Velvet <br/>Botanist</h2>
+<p class="text-primary-fixed/80 text-lg md:text-xl font-body max-w-lg pt-2">An exclusive sanctuary of rare gin infusions and bespoke mixology in the heart of the district.</p>
+<div class="pt-8 flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 text-xs font-bold uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all">
+                            View Offer
+                        </button>
+<button class="backdrop-blur-md bg-white/10 text-white border border-white/20 px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-white/20 active:scale-95 transition-all">
+                            Book Table
+                        </button>
+</div>
+</div>
+</div>
+<!-- Overlapping Float Badge -->
+<div class="absolute bottom-10 right-10 hidden md:block">
+<div class="bg-tertiary-fixed text-on-tertiary-fixed p-6 rounded-xl shadow-2xl max-w-[200px]">
+<span class="font-label text-[10px] font-bold uppercase tracking-wider block mb-2">Member Exclusive</span>
+<p class="font-headline text-xl leading-tight">Complimentary <br/>Signature <br/>Gin Flight</p>
+</div>
+</div>
+</section>
+<!-- Asymmetric Bento Grid: New Partners -->
+<section class="mt-24 px-6 md:px-16 max-w-7xl mx-auto">
+<div class="mb-12 flex justify-between items-end">
+<div>
+<h3 class="font-label text-primary uppercase tracking-[0.1rem] text-xs font-bold mb-2">New Partnerships</h3>
+<h4 class="font-headline text-4xl text-on-surface">Curated Additions</h4>
+</div>
+<a class="text-outline hover:text-primary transition-colors font-label text-[10px] uppercase tracking-widest font-bold border-b border-outline-variant/30 pb-1" href="#">Explore Directory</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+<!-- Large Card -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Minimalist cafe interior with white marble" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpUiFIIBwG-Yabevn71yRhE8j039p2XVyg1kwjUtjWy3QMpbarS15l502nypVZ5Ub54wCG7s--fuDWRIr-Fy_Mv3xH2YsTBEN-kEkuuDlmGhNwH7GNkzxVEBWZ0Q8jGNOaWUQTtchPFpPYz3F6pB-I1Wmf0slTSx6flaIcP9_epnXvykiop2TSjln4dgZXNFxcu0ZQfMQ1m1Uv-OIzcNf1cGgTxLBMf6Ve2lmw8cYtRN2l5r_TMZO5LlH8N3vQenxX30zmzdFAbZM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 text-white">
+<span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest mb-4">New Partner</span>
+<h5 class="font-headline text-3xl mb-2">Marble &amp; Moss</h5>
+<p class="text-white/70 text-sm max-w-sm mb-6">Daytime retreat featuring artisanal roasts and organic brunch menus for members.</p>
+<p class="font-label text-xs uppercase tracking-widest font-bold">Offer: 20% off all brunch items</p>
+</div>
+</div>
+<!-- Two Small Cards Stacked -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<div class="h-1/2 group relative overflow-hidden rounded-xl bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Luxury rooftop lounge pool" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKO6-WGA7W1186_Eek1vrYN_QYRAO9jHSbNDKGLAon2MhdSDWTk7-n6tt_1DJTR4eYG7vC-LcSPqTYei_oVIHoOr4jdp2ZXXCTM9F2Vp8NfRuFQkOGlJND3GuG3As3KgHhhxa_cBQAt4Jej9A6pXnmkRyQsTbo6I-iC6PZ0kj-cPCFN_gqiYAhIPawOH_9BJZS-PD196Bt6R0VTc01bGz8b52uGfF6EkWHgWQ8Fyp3Xw7uYdX3dMb6LjMHGkLA_eZwrW7agiSO3u4"/>
+<div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
+<div class="absolute inset-0 p-6 flex flex-col justify-end text-white">
+<h5 class="font-headline text-xl mb-1">Apex Lounge</h5>
+<p class="font-label text-[10px] uppercase tracking-widest font-bold text-tertiary-fixed">15% off Cocktails</p>
+</div>
+</div>
+<div class="h-1/2 group relative overflow-hidden rounded-xl bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Gourmet dessert arrangement" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDasICGgTKW2eAbRRXuJdDHoMrucPW06rbyb66hFR315Pl7M-S6fzRL2WvUQBPzkvxYG5cy17u_KTE8Q9iLyoo3xzIRxvIDypP8ze7ilVz_tssDeK4sYMEKFsWb_rF5mdIcWzGENrhPOCM4EsNDxf_vLoly2KzebiDTpM4pqW3nDXqtKfesm1T2No91nzJIhruJHEET2y8KXpNpUudsL3ig3v18qlUfPSEkk76Ft812ByhN8jYZmKY73sp5tuQtNCGuzWmZ_QSL2AI"/>
+<div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
+<div class="absolute inset-0 p-6 flex flex-col justify-end text-white">
+<h5 class="font-headline text-xl mb-1">Cacao Archive</h5>
+<p class="font-label text-[10px] uppercase tracking-widest font-bold text-tertiary-fixed">Complimentary Appetizer</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial List: Existing Partners -->
+<section class="mt-24 px-6 md:px-16 max-w-7xl mx-auto">
+<h3 class="font-label text-primary uppercase tracking-[0.1rem] text-xs font-bold mb-8">Member Favorites</h3>
+<div class="space-y-4">
+<!-- List Item 1 -->
+<div class="flex flex-col md:flex-row items-center gap-8 p-6 bg-surface-container hover:bg-surface-container-high transition-colors group">
+<div class="w-full md:w-32 h-24 overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover" data-alt="Cozy jazz club interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVGF1xpoC4Sm_LGykEACbzE8m3kvxNEa_taHO-YsH3hK4fkeSWVKzumqcLwN-PrUkCbj_RPrz5oodDcvKB2wIxs8RQGFNKn32g_kqoIr4KX_0W9wchWqrKY5QLTz9ISqHWiqE_LKK8km8dSzaJcGeeAHZmp8D1a7JuxTsWfpItI0_3MKF60cwdXp7pH8d1OaH7ZDlwfV0oTIINlwlNWZJH9NyNMkaXp3itaM3n5lSNC6_ngJN8EuUfBtGCqPOPwBPqU3hYlKkL6ZQ"/>
+</div>
+<div class="flex-grow">
+<h5 class="font-headline text-2xl text-on-surface">Blue Note Tavern</h5>
+<p class="text-on-surface-variant text-sm font-body mt-1">Authentic jazz experiences with a vintage cocktail program.</p>
+</div>
+<div class="w-full md:w-auto text-left md:text-right">
+<p class="font-label text-[10px] text-primary uppercase tracking-[0.1rem] font-bold">Active Benefit</p>
+<p class="font-headline text-lg text-secondary mt-1">Priority Booking &amp; 1st Drink Free</p>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="flex flex-col md:flex-row items-center gap-8 p-6 bg-surface-container-low hover:bg-surface-container-high transition-colors group">
+<div class="w-full md:w-32 h-24 overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover" data-alt="High-end fine dining table setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1sPtjBh01dMwVrb-3xpiB_sT3xUDi9attjVwVAqIta7f_7olSdsDihEMQtXh_jKxRwGvk8AuGFSXa7hKgcVUFznEaNxWLRBHt1ABVUiBVBAwb6uSWSY4X1RBPNAZPV3Pmi4U1CIJxNv-okWsrmz9q9ojBC6ngLb6JBSFmbqvcZbMOp73KJuMCeuBqJdxgHih4OfvFWv1wdykcDTO7igqKVFfDKYhTKtoWPLvaALirRIZQ_orjK8MiXlfBY7x2AE0LjNGBMtrnWno"/>
+</div>
+<div class="flex-grow">
+<h5 class="font-headline text-2xl text-on-surface">The Gilded Fork</h5>
+<p class="text-on-surface-variant text-sm font-body mt-1">Modern culinary artistry meeting traditional French techniques.</p>
+</div>
+<div class="w-full md:w-auto text-left md:text-right">
+<p class="font-label text-[10px] text-primary uppercase tracking-[0.1rem] font-bold">Active Benefit</p>
+<p class="font-headline text-lg text-secondary mt-1">20% Off Tasting Menu</p>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="flex flex-col md:flex-row items-center gap-8 p-6 bg-surface-container hover:bg-surface-container-high transition-colors group">
+<div class="w-full md:w-32 h-24 overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover" data-alt="Modern fitness studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1RE34Y2qdPUG7iRa1APNGsSCxKR5mhAXuYhSUCd-CuSgGUQzCkoxKCQ8Thqvb4_K9HkXCkHEZyuT5whvgCxujeqQ4N-DjR1dMn3EwnaoKrrL9aj5WckWSu9YWcMTx_wBRSsadP8yAa6TOqZl5wHvLr-2boHmSgTm29abz_IBxbza1zlc6jeG-gavcP0hzZ12dX6RJ-jDlv4c8_8iWYdx4FJFm3rofLFlMc_o9Nkewpy0apT6FBiqN5wh8axkEtSvs-nxBMJYhTVk"/>
+</div>
+<div class="flex-grow">
+<h5 class="font-headline text-2xl text-on-surface">Zenith Performance</h5>
+<p class="text-on-surface-variant text-sm font-body mt-1">Elite wellness and private training suites for the urban professional.</p>
+</div>
+<div class="w-full md:w-auto text-left md:text-right">
+<p class="font-label text-[10px] text-primary uppercase tracking-[0.1rem] font-bold">Active Benefit</p>
+<p class="font-headline text-lg text-secondary mt-1">Waived Membership Fees</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Membership CTA -->
+<section class="mt-32 px-6 md:px-16 max-w-7xl mx-auto mb-16">
+<div class="bg-primary-container p-12 md:p-20 relative overflow-hidden text-center md:text-left">
+<div class="relative z-10">
+<h2 class="font-headline text-white text-4xl md:text-6xl mb-6">Host your own <br/>private event.</h2>
+<p class="text-on-primary-container text-lg max-w-xl mb-10">Members enjoy exclusive access to partner venues for private gatherings, complete with bespoke concierge planning.</p>
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-10 py-5 text-xs font-bold uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all">
+                        Inquire Now
+                    </button>
+</div>
+<!-- Abstract Gradient Circle -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-primary rounded-full blur-[100px] opacity-50"></div>
+</div>
+</section>
+</main>
+<!-- NavigationDrawer Logic - Simulated hidden side nav -->
+<aside class="fixed left-0 top-0 h-full w-80 bg-emerald-50 dark:bg-emerald-950 shadow-2xl z-[60] -translate-x-full transition-transform duration-400">
+<div class="flex flex-col h-full p-6">
+<div class="flex items-center gap-4 mb-10">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img data-alt="Member Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrXaI7XclUi8fT2kih7EiR8imAxXMqMVDnJie73PZDyK4Xq1bDe280XnVam6u9mcqy4_XbmIoGQmmPtro53lweDAmc463L_B4vcsi2NxMdhADIzbx-cGFC8F1sz9XpmsIaU8nLmBa5oHHm-TW2l6olEtXX_kZlzzW5eqslm5RFB5mKTy1BA45g-Q2y91tRkuouJI9hXLazn8zvJPs0C1jUV4qOffvSD6MLeitjGZlE2PATMYQBaJ109XLy7BYA8RUnsF0IWP-Dm3Y"/>
+</div>
+<div>
+<h6 class="font-headline text-emerald-900 dark:text-emerald-50 text-lg">Julian Walters</h6>
+<p class="font-label text-[10px] text-emerald-700/60 uppercase">Platinum Member</p>
+</div>
+</div>
+<nav class="space-y-2">
+<a class="flex items-center gap-4 p-4 rounded-xl bg-emerald-100 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-50 font-semibold transition-all" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-sans text-sm tracking-wide">Member Benefits</span>
+</a>
+<a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="#">
+<span class="material-symbols-outlined">corporate_fare</span>
+<span class="font-sans text-sm tracking-wide">Partner Portals</span>
+</a>
+<a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="#">
+<span class="material-symbols-outlined">card_membership</span>
+<span class="font-sans text-sm tracking-wide">Subscription</span>
+</a>
+<a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="#">
+<span class="material-symbols-outlined">event_seat</span>
+<span class="font-sans text-sm tracking-wide">Private Events</span>
+</a>
+<a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-sans text-sm tracking-wide">Support</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- BottomNavBar Shell -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-8 pb-8 pt-4 bg-white/90 dark:bg-emerald-950/90 backdrop-blur-2xl shadow-[0_-4px_24px_rgba(0,36,24,0.06)] no-border tonal-shift">
+<a class="flex flex-col items-center justify-center text-emerald-900 dark:text-gold-400 font-bold scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">style</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-800/40 dark:text-emerald-200/40 hover:text-emerald-600 dark:hover:text-gold-200 transition-all" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium">Directory</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-800/40 dark:text-emerald-200/40 hover:text-emerald-600 dark:hover:text-gold-200 transition-all" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium">Offers</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-800/40 dark:text-emerald-200/40 hover:text-emerald-600 dark:hover:text-gold-200 transition-all" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-page="signup">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Join · Juniper Club</title>
+<meta name="description" content="Apply to join Juniper Club — a private concierge for the city's most refined venues."/>
+<link rel="icon" type="image/png" href="assets/logo.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/tailwind.css"/>
+</head>
+<body class="bg-surface text-on-surface font-body">
+
+<header class="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4">
+  <a href="index.html" class="flex items-center gap-3">
+    <img src="assets/logo.png" alt="Juniper Club" class="h-8 w-8 rounded-full"/>
+    <span class="font-serif italic font-bold text-emerald-900 tracking-tighter text-xl">JUNIPER CLUB</span>
+  </a>
+  <a href="login.html" class="font-label text-[10px] uppercase tracking-[0.18em] font-bold text-on-surface-variant hover:text-primary transition-colors">Already a member? Sign in</a>
+</header>
+
+<main class="min-h-dvh grid md:grid-cols-2">
+  <section class="hidden md:flex flex-col justify-end relative overflow-hidden bg-primary text-white p-16">
+    <div class="absolute inset-0 opacity-30">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGqzuw86hk0I0-9qZoOmafeBtxgUFU4YXTWlGg4ySfrWk9wio-c3wgUUNVxQkiMr8c6nKpkvHjbSVWTWaCWoE7OohxDCQOPpI6XRJDEKNK0MfrMJjZaNITKUVJYkwA7tYACz5zJ6UsHm4odYQTh7gJMNX7BkRbO9uCWSBCmejS_GibC8Qmaifq7EO6eRZvnx4GvRqmSc2mUt_OYxe12JkmUs7l1hdeUt7uPt7uU-AvQgUJoTSdjTuQbosN1wT9NxRhHJNze0uqgT4" alt="Atmospheric bar interior" class="w-full h-full object-cover"/>
+      <div class="absolute inset-0 bg-gradient-to-tr from-primary via-primary/80 to-transparent"></div>
+    </div>
+    <div class="relative z-10 max-w-md">
+      <span class="font-label text-[10px] uppercase tracking-[0.24em] font-bold text-tertiary-fixed">An Invitation</span>
+      <h1 class="font-headline text-5xl mt-3 mb-4 leading-[1.05]">A modern concierge for the curated city.</h1>
+      <p class="text-white/80 text-base font-light leading-relaxed">Membership unlocks priority access, member-only programming, and bespoke perks at the most considered venues across Delhi & NCR.</p>
+    </div>
+  </section>
+
+  <section class="flex items-center justify-center p-8 md:p-16">
+    <div class="w-full max-w-md">
+      <span class="font-label uppercase tracking-[0.18em] text-[10px] font-bold text-secondary">Membership Application</span>
+      <h2 class="font-headline text-4xl text-primary tracking-tight mt-3 mb-2">Join Juniper Club</h2>
+      <p class="text-on-surface-variant text-sm leading-relaxed">A free founding membership while we curate the directory. Email verification required.</p>
+
+      <form id="signup-form" class="mt-10 space-y-5">
+        <div>
+          <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-2" for="name">Full name</label>
+          <input id="name" name="name" type="text" required autocomplete="name"
+                 class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50 transition-colors"/>
+        </div>
+        <div>
+          <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-2" for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email"
+                 class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50 transition-colors"/>
+        </div>
+        <div>
+          <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-2" for="password">Password <span class="font-normal text-outline-variant lowercase tracking-normal">(min 8 characters)</span></label>
+          <input id="password" name="password" type="password" required minlength="8" autocomplete="new-password"
+                 class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50 transition-colors"/>
+        </div>
+
+        <button type="submit" id="submit"
+                class="w-full bg-primary text-white py-4 rounded font-label text-[11px] uppercase tracking-[0.18em] font-bold hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+          Apply for Membership
+        </button>
+
+        <p id="message" class="hidden text-sm py-3 px-4 rounded-lg"></p>
+      </form>
+
+      <p class="mt-8 text-xs text-on-surface-variant">By joining, you agree to receive a verification email and occasional member updates. We never share your details.</p>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script>
+(() => {
+  const form = document.getElementById("signup-form");
+  const msg = document.getElementById("message");
+  const btn = document.getElementById("submit");
+
+  function showMessage(text, kind /* "ok" | "error" */) {
+    msg.textContent = text;
+    msg.className = "text-sm py-3 px-4 rounded-lg " + (kind === "ok"
+      ? "bg-secondary/10 text-secondary"
+      : "bg-error/10 text-error");
+    msg.classList.remove("hidden");
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!window.SB) { showMessage("Site is not yet connected to its database. Try again shortly.", "error"); return; }
+    btn.disabled = true; btn.textContent = "Submitting…";
+    msg.classList.add("hidden");
+    try {
+      const fullName = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const { error } = await JCAuth.signUp({ email, password, fullName });
+      if (error) throw error;
+      showMessage("Almost there — check your inbox for a verification link from Juniper Club. Click it to activate your membership.", "ok");
+      form.reset();
+    } catch (err) {
+      showMessage(err?.message || "Could not create your account. Please try again.", "error");
+    } finally {
+      btn.disabled = false; btn.textContent = "Apply for Membership";
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

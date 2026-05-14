@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-page="profile">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Member Profile · Juniper Club</title>
+<meta name="description" content="Manage your Juniper Club membership — subscription, partner benefits, private events and concierge support."/>
+<link rel="icon" type="image/png" href="assets/logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,30..100,0..1;1,9..144,300..900,30..100,0..1&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/tailwind.css"/>
+
+</head>
+<body class="bg-surface text-on-surface font-body">
+<div class="jc-grain" aria-hidden="true"></div>
+<div class="jc-masthead" aria-hidden="true"><div class="jc-masthead-track"><span>Juniper Club <em>·</em> Volume XII <em>·</em> Members Only <em>·</em> Reservations after dusk <em>·</em> Established <span data-jc-year>2025</span></span></div></div>
+<!-- TopAppBar -->
+<header class="jc-topbar fixed left-0 right-0 z-50 bg-surface/85 backdrop-blur-xl flex justify-between items-center px-6 md:px-10 h-16 border-b border-primary/10" style="top: 28px;">
+<div class="flex items-center gap-5">
+<button class="md:hidden material-symbols-outlined text-primary hover:opacity-80 transition-opacity bg-transparent border-0 p-0 cursor-pointer" data-drawer-open aria-label="Open menu" aria-controls="jc-drawer" aria-expanded="false">menu</button>
+<a href="index.html" aria-label="Juniper Club home" class="flex items-center">
+<img src="assets/logo.png" alt="Juniper Club" class="h-10 w-10 rounded-full bg-primary/5"/>
+</a>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex gap-10 items-center" aria-label="Primary">
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="index.html">Home</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="directory.html">Directory</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="offers.html">Offers</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="events.html">Events</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="drift.html">Drift</a>
+</nav>
+<div class="hidden md:flex items-center gap-5 pl-6 ml-2 border-l border-primary/15">
+<a id="nav-signin" class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold text-primary/55 hover:text-primary transition-colors" href="login.html">Sign in</a>
+<a id="nav-apply" class="jc-btn jc-btn--ghost text-primary !py-2 !px-4 !text-[9px]" href="signup.html"><span>Apply</span></a>
+<a id="nav-account" hidden class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold text-primary hover:text-primary/70 transition-colors" href="profile.html"><span id="nav-account-name">Account</span></a>
+<a id="nav-signout" hidden href="#" class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold text-primary/55 hover:text-primary transition-colors">Sign out</a>
+</div>
+<a id="nav-avatar" href="profile.html" aria-label="View member profile" hidden class="w-10 h-10 rounded-full overflow-hidden bg-surface-container ring-1 ring-primary/15 hover:ring-primary/40 transition-all block">
+<img class="jc-topbar-avatar w-full h-full object-cover" alt="Member avatar" src="assets/logo.png"/>
+</a>
+</div>
+</header>
+<main class="pt-24 pb-24 overflow-x-clip">
+
+  <!-- ════ Dateline ════ -->
+  <section class="px-6 md:px-12 max-w-[1400px] mx-auto pt-6 md:pt-10">
+    <div class="flex justify-between items-start jc-reveal">
+      <span class="jc-caption text-primary/60">No. 06 <span class="jc-caption-serif text-primary/80 ml-2">— Member Account</span></span>
+      <span data-bind="email" class="jc-caption text-primary/60 hidden md:inline"></span>
+    </div>
+  </section>
+
+  <!-- ════ Profile Hero ════ -->
+  <section class="px-6 md:px-12 max-w-[1400px] mx-auto mt-10 md:mt-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-12 items-end">
+      <div class="lg:col-span-8 jc-reveal">
+        <p class="jc-caption text-secondary mb-6">Member Account</p>
+        <h1 data-bind="full_name" class="font-display text-primary tracking-tight leading-[0.92]" style="font-size: clamp(3rem, 8vw, 7rem);">Member</h1>
+        <div class="flex items-center gap-5 mt-8 flex-wrap">
+          <span data-bind="tier_label" class="bg-tertiary-fixed text-on-tertiary-fixed jc-caption px-3 py-1.5" aria-label="Member tier">Member</span>
+          <span data-bind="joined" class="jc-caption-serif text-primary/70">Member</span>
+        </div>
+        <div class="mt-10">
+          <button id="open-editor" type="button" class="jc-btn"><span class="material-symbols-outlined !text-base">edit</span><span>Edit Profile</span></button>
+        </div>
+      </div>
+      <figure class="lg:col-span-4 jc-figure jc-reveal" style="transition-delay: 160ms;">
+        <div class="jc-card-img aspect-square overflow-hidden rounded-full bg-surface-container">
+          <img data-bind="avatar_hero" class="w-full h-full object-cover" alt="Member avatar" src="assets/logo.png"/>
+        </div>
+        <figcaption class="text-center md:text-right"><em>Portrait —</em> your member avatar</figcaption>
+      </figure>
+    </div>
+    <hr class="jc-rule mt-12 md:mt-16"/>
+  </section>
+
+  <!-- ════ Edit Panel (hidden) ════ -->
+  <section id="edit-panel" hidden class="px-6 md:px-12 max-w-[1400px] mx-auto mt-12">
+    <div class="bg-bone-soft border border-primary/15 p-6 md:p-10">
+      <div class="flex items-start justify-between mb-8">
+        <div>
+          <p class="jc-caption text-secondary mb-2">Edit your details</p>
+          <h2 class="font-display text-primary text-3xl md:text-4xl tracking-tight">Profile</h2>
+        </div>
+        <button id="edit-cancel" type="button" class="p-2 hover:bg-surface-container transition-colors" aria-label="Close editor">
+          <span class="material-symbols-outlined text-on-surface-variant">close</span>
+        </button>
+      </div>
+
+      <form id="edit-form" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-1 flex flex-col items-center md:items-start gap-4">
+          <label class="jc-caption text-primary/55">Profile photo</label>
+          <div class="relative">
+            <img id="edit-avatar-preview" class="w-32 h-32 object-cover rounded-full bg-surface-container border border-primary/15" alt="Avatar preview" src="assets/logo.png"/>
+            <label for="edit-avatar" class="absolute bottom-0 right-0 bg-primary text-on-primary p-2 cursor-pointer hover:opacity-90 active:scale-95 transition-all" aria-label="Choose photo">
+              <span class="material-symbols-outlined !text-base">photo_camera</span>
+            </label>
+            <input id="edit-avatar" name="avatar" type="file" accept="image/*" class="sr-only"/>
+          </div>
+          <p class="text-on-surface-variant text-[11px] font-light max-w-[14rem] text-center md:text-left">JPG or PNG, up to 5 MB. Square images look best.</p>
+        </div>
+
+        <div class="md:col-span-2 flex flex-col gap-6">
+          <div>
+            <label for="edit-name" class="block jc-caption text-primary/55 mb-2">Full name</label>
+            <input id="edit-name" name="full_name" type="text" autocomplete="name" maxlength="120"
+                   class="w-full bg-surface border border-primary/20 px-4 py-3 font-body text-base focus:outline-none focus:border-primary transition-colors"
+                   placeholder="Your name"/>
+          </div>
+
+          <p id="edit-status" class="hidden jc-caption-serif text-sm"></p>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <button id="edit-save" type="submit" class="jc-btn"><span>Save</span></button>
+            <button id="edit-cancel-2" type="button" class="jc-caption text-primary/60 hover:text-primary transition-colors">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ════ Bento ════ -->
+  <section class="px-6 md:px-12 max-w-[1400px] mx-auto mt-16 md:mt-20">
+    <p class="jc-caption text-secondary mb-8 jc-reveal">No. 01 — Subscription &amp; Benefits</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Subscription Status -->
+      <div class="md:col-span-2 bg-bone-soft border border-primary/15 p-8 md:p-10 jc-reveal">
+        <div class="flex flex-col h-full">
+          <div class="flex justify-between items-start mb-10 gap-4">
+            <div>
+              <p class="jc-caption text-secondary mb-3">Subscription</p>
+              <h3 class="font-display text-primary text-2xl md:text-3xl tracking-tight mb-2">Subscription Details</h3>
+              <p data-bind="status_until" class="text-on-surface-variant text-sm font-light">Your membership status will appear here.</p>
+            </div>
+            <div data-bind="status_chip" class="shrink-0 flex items-center gap-2 px-4 py-2" style="background-color: rgba(113,121,116,0.12);">
+              <span data-bind="status_icon" class="material-symbols-outlined !text-base" style="font-variation-settings: 'FILL' 1;">help</span>
+              <span data-bind="status_label" class="jc-caption">—</span>
+            </div>
+          </div>
+          <div class="mt-auto grid grid-cols-2 gap-8 pt-8 border-t border-primary/15">
+            <div>
+              <p class="jc-caption text-primary/55 mb-2">Next Billing</p>
+              <p class="font-display text-primary text-2xl md:text-3xl tracking-tight">
+                <span data-bind="renewal">—</span>
+                <span class="text-xs font-body text-on-surface-variant italic font-light ml-1">annually</span>
+              </p>
+            </div>
+            <div>
+              <p class="jc-caption text-primary/55 mb-2">Payment Method</p>
+              <p class="font-display-sm text-primary text-base flex items-center gap-2 leading-snug">
+                <span class="material-symbols-outlined !text-base">credit_card</span>
+                On file with concierge
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Renewal warning -->
+      <div data-bind="renewal_card" hidden class="md:col-span-1 bg-tertiary-fixed/20 border border-tertiary-fixed/30 p-8 flex flex-col justify-between jc-reveal" style="transition-delay: 80ms;">
+        <div>
+          <span class="material-symbols-outlined text-on-tertiary-fixed mb-6 !text-2xl block">priority_high</span>
+          <p class="jc-caption text-primary/55 mb-3">Renewal looming</p>
+          <h3 class="font-display text-primary text-2xl tracking-tight mb-3">In <span data-bind="renewal_days" class="italic" style="font-variation-settings: 'opsz' 144, 'slnt' -10;">—</span> days</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed font-light">Lock in current rates by renewing now.</p>
+        </div>
+        <a href="support.html" class="jc-btn mt-8 justify-center"><span>Renew Now</span></a>
+      </div>
+
+      <!-- Member Benefits -->
+      <a href="directory.html" class="jc-card group md:col-span-1 bg-surface-container border border-primary/10 p-8 flex flex-col hover:bg-surface-container-high transition-colors jc-reveal" style="transition-delay: 80ms;">
+        <span class="material-symbols-outlined text-primary !text-2xl mb-6 block">workspace_premium</span>
+        <p class="jc-caption text-primary/55 mb-3">No. 02</p>
+        <h3 class="font-display text-primary text-2xl tracking-tight mb-2">Member Benefits</h3>
+        <p class="text-on-surface-variant text-sm font-light">Explore tier perks and partner portals.</p>
+        <span class="mt-auto pt-6 jc-caption text-primary inline-flex items-center gap-2">View directory <span class="material-symbols-outlined !text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span></span>
+      </a>
+
+      <!-- Private Events -->
+      <a href="events.html" class="jc-card group md:col-span-1 bg-primary text-on-primary p-8 flex flex-col relative overflow-hidden jc-reveal" style="transition-delay: 160ms;">
+        <span aria-hidden="true" class="absolute -right-6 -bottom-12 jc-numeral text-tertiary-fixed/30" style="font-size: 12rem;">III</span>
+        <div class="relative z-10 flex flex-col h-full">
+          <span class="material-symbols-outlined text-tertiary-fixed !text-2xl mb-6 block">event_seat</span>
+          <p class="jc-caption text-tertiary-fixed mb-3">No. 03</p>
+          <h3 class="font-display text-2xl tracking-tight mb-2">Private Events</h3>
+          <p class="text-on-primary/70 text-sm font-light">Priority booking for the Winter Equinox Gala.</p>
+          <span class="mt-auto pt-6 jc-caption text-tertiary-fixed inline-flex items-center gap-2">Request invite <span class="material-symbols-outlined !text-sm">north_east</span></span>
+        </div>
+      </a>
+
+      <!-- Concierge -->
+      <div class="md:col-span-1 bg-surface-container-low border border-primary/10 p-8 jc-reveal" style="transition-delay: 240ms;">
+        <span class="material-symbols-outlined text-primary !text-2xl mb-6 block">help_outline</span>
+        <p class="jc-caption text-primary/55 mb-3">No. 04</p>
+        <h3 class="font-display text-primary text-2xl tracking-tight mb-3">Concierge</h3>
+        <div class="space-y-2 mt-5">
+          <a class="flex items-center justify-between p-3 bg-surface hover:bg-bone-soft transition-colors" href="support.html">
+            <span class="jc-caption-serif text-primary text-sm">Chat with concierge</span>
+            <span class="material-symbols-outlined !text-base text-outline">chevron_right</span>
+          </a>
+          <a class="flex items-center justify-between p-3 bg-surface hover:bg-bone-soft transition-colors" href="support.html">
+            <span class="jc-caption-serif text-primary text-sm">Help Center</span>
+            <span class="material-symbols-outlined !text-base text-outline">open_in_new</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ Sign out ════ -->
+  <div class="mt-20 md:mt-24 flex justify-center px-6 jc-reveal">
+    <button id="profile-signout" type="button" class="inline-flex items-center gap-2 text-on-surface-variant hover:text-error transition-colors jc-caption">
+      <span class="material-symbols-outlined !text-base">logout</span>
+      Sign Out of Juniper Club
+    </button>
+  </div>
+</main>
+<!-- Drawer overlay -->
+<div class="jc-drawer-overlay fixed inset-0 z-[55] bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+<!-- Drawer -->
+<aside id="jc-drawer" class="jc-drawer fixed left-0 top-0 h-full w-80 max-w-[85vw] bg-emerald-50 dark:bg-emerald-950 shadow-2xl z-[60] -translate-x-full transition-transform duration-300 ease-out">
+  <div class="flex flex-col h-full p-6">
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="Juniper Club" class="h-8 w-8 rounded-full bg-emerald-100"/>
+        <span class="font-serif italic font-bold text-emerald-900 dark:text-emerald-100 tracking-tighter text-lg">JUNIPER CLUB</span>
+      </div>
+      <button class="jc-drawer-close p-2 rounded-full hover:bg-emerald-100 dark:hover:bg-emerald-900 transition-colors" aria-label="Close menu">
+        <span class="material-symbols-outlined text-emerald-900 dark:text-emerald-100">close</span>
+      </button>
+    </div>
+    <nav class="space-y-2" aria-label="Drawer">
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="index.html">
+        <span class="material-symbols-outlined">style</span>
+        <span class="font-sans text-sm tracking-wide">Home</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="directory.html">
+        <span class="material-symbols-outlined">corporate_fare</span>
+        <span class="font-sans text-sm tracking-wide">Partner Portals</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="offers.html">
+        <span class="material-symbols-outlined">confirmation_number</span>
+        <span class="font-sans text-sm tracking-wide">Member Offers</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl bg-emerald-100 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-50 font-semibold transition-all" aria-current="page" href="profile.html">
+        <span class="material-symbols-outlined">card_membership</span>
+        <span class="font-sans text-sm tracking-wide">Member Account</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="events.html">
+        <span class="material-symbols-outlined">event_seat</span>
+        <span class="font-sans text-sm tracking-wide">Private Events</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="drift.html">
+        <span class="material-symbols-outlined">graphic_eq</span>
+        <span class="font-sans text-sm tracking-wide">Drift · After Dark</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="support.html">
+        <span class="material-symbols-outlined">help_outline</span>
+        <span class="font-sans text-sm tracking-wide">Support</span>
+      </a>
+    </nav>
+    <div class="mt-auto pt-6 text-[10px] uppercase tracking-[0.18em] text-emerald-800/40 dark:text-emerald-200/40 font-medium">
+      © Juniper Club
+    </div>
+  </div>
+</aside>
+<!-- BottomNavBar (floating pill, mobile-only) -->
+<nav class="jc-bottomnav md:hidden" aria-label="Bottom navigation">
+  <a href="index.html">
+    <span class="material-symbols-outlined">style</span>
+    <span>Home</span>
+  </a>
+  <a href="directory.html">
+    <span class="material-symbols-outlined">explore</span>
+    <span>Directory</span>
+  </a>
+  <a href="offers.html">
+    <span class="material-symbols-outlined">confirmation_number</span>
+    <span>Offers</span>
+  </a>
+  <a aria-current="page" href="profile.html">
+    <span class="material-symbols-outlined">account_circle</span>
+    <span>Profile</span>
+  </a>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/topnav.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/shell-drawer.js"></script>
+<script src="js/site-fx.js"></script>
+<script src="js/cms-render.js"></script>
+<script>
+/* jc-auth-handler */
+(() => {
+  const btn = document.getElementById("profile-signout");
+  if (btn) btn.addEventListener("click", async () => {
+    if (!confirm("Sign out of Juniper Club?")) return;
+    try { await window.JCAuth?.signOut(); } catch {}
+    location.href = "login.html";
+  });
+})();
+</script>
+</body>
+</html>

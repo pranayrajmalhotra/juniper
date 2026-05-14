@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" data-page="home">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Juniper Club — A Modern Concierge</title>
+<meta name="description" content="Juniper Club is a private concierge for the city's most refined venues — exclusive offers, curated partners and bespoke private events."/>
+<link rel="icon" type="image/png" href="assets/logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,30..100,0..1;1,9..144,300..900,30..100,0..1&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/tailwind.css"/>
+
+</head>
+<body class="bg-surface text-on-surface font-body">
+<div class="jc-grain" aria-hidden="true"></div>
+<div class="jc-masthead" aria-hidden="true"><div class="jc-masthead-track"><span>Juniper Club <em>·</em> Volume XII <em>·</em> Members Only <em>·</em> Reservations after dusk <em>·</em> Established <span data-jc-year>2025</span></span></div></div>
+<!-- TopAppBar -->
+<header class="jc-topbar fixed left-0 right-0 z-50 bg-surface/85 backdrop-blur-xl flex justify-between items-center px-6 md:px-10 h-16 border-b border-primary/10" style="top: 28px;">
+<div class="flex items-center gap-5">
+<button class="md:hidden material-symbols-outlined text-primary hover:opacity-80 transition-opacity bg-transparent border-0 p-0 cursor-pointer" data-drawer-open aria-label="Open menu" aria-controls="jc-drawer" aria-expanded="false">menu</button>
+<a href="index.html" aria-label="Juniper Club home" class="flex items-center">
+<img src="assets/logo.png" alt="Juniper Club" class="h-10 w-10 rounded-full bg-primary/5"/>
+</a>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex gap-10 items-center" aria-label="Primary">
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary" aria-current="page" href="index.html">Home</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="directory.html">Directory</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="offers.html">Offers</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="events.html">Events</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="drift.html">Drift</a>
+</nav>
+<div class="hidden md:flex items-center gap-5 pl-6 ml-2 border-l border-primary/15">
+<a id="nav-signin" class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold text-primary/55 hover:text-primary transition-colors" href="login.html">Sign in</a>
+<a id="nav-apply" class="jc-btn jc-btn--ghost text-primary !py-2 !px-4 !text-[9px]" href="signup.html"><span>Apply</span></a>
+<a id="nav-account" hidden class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold text-primary hover:text-primary/70 transition-colors" href="profile.html"><span id="nav-account-name">Account</span></a>
+<a id="nav-signout" hidden href="#" class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold text-primary/55 hover:text-primary transition-colors">Sign out</a>
+</div>
+<a id="nav-avatar" href="profile.html" aria-label="View member profile" hidden class="w-10 h-10 rounded-full overflow-hidden bg-surface-container ring-1 ring-primary/15 hover:ring-primary/40 transition-all block">
+<img class="jc-topbar-avatar w-full h-full object-cover" alt="Member avatar" src="assets/logo.png"/>
+</a>
+</div>
+</header>
+<main class="pt-24 pb-24 overflow-x-clip">
+
+  <!-- ════ HERO — Editorial cover ════ -->
+  <section class="relative min-h-[88vh] md:min-h-[92vh] flex flex-col">
+    <!-- Dateline bar -->
+    <div class="px-6 md:px-12 pt-6 md:pt-10 flex justify-between items-start jc-reveal">
+      <span class="jc-caption text-primary/60">No. 01 <span class="jc-caption-serif text-primary/80 ml-2">— Featured Tie-up</span></span>
+      <span class="jc-caption text-primary/60 hidden md:inline">The Velvet Botanist <span class="jc-caption-serif text-primary/80 ml-2">— Mayfair</span></span>
+    </div>
+
+    <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-12 px-6 md:px-12 mt-10 md:mt-16 items-end relative">
+
+      <!-- Floating sculptural numeral (right side, desktop) -->
+      <div aria-hidden="true" class="hidden lg:block absolute right-2 top-0 select-none jc-reveal" style="transition-delay: 200ms;">
+        <span class="jc-numeral text-primary/30 block leading-none" style="font-size: clamp(18rem, 26vw, 32rem);">I</span>
+      </div>
+
+      <!-- Hero text -->
+      <div class="lg:col-span-8 relative z-10 jc-reveal" style="transition-delay: 80ms;">
+        <p class="jc-caption text-secondary mb-6">Tonight in the city</p>
+        <h1 class="font-display text-primary tracking-tight leading-[0.92]" style="font-size: clamp(3.5rem, 9vw, 8.5rem);">
+          <span class="block">An evening,</span>
+          <span class="italic block" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">unhurried.</span>
+        </h1>
+
+        <p class="mt-10 max-w-xl text-on-surface-variant text-lg md:text-xl leading-relaxed font-light">
+          A quiet list of the city's most considered tables, bars, and ateliers — curated for a small membership that prefers the door <em class="font-display italic" style="font-variation-settings: 'opsz' 24, 'slnt' -10;">held open</em>, not announced.
+        </p>
+
+        <div class="mt-12 flex flex-wrap gap-4 items-center">
+          <a href="offers.html" class="jc-btn"><span>View Tonight's Offer</span><span class="material-symbols-outlined !text-sm">arrow_outward</span></a>
+          <a href="signup.html" class="jc-btn jc-btn--ghost text-primary"><span>Apply for Membership</span></a>
+        </div>
+
+        <!-- Tiny tonight ribbon -->
+        <div class="mt-16 flex items-center gap-4 text-primary/50">
+          <span class="block w-12 h-px bg-primary/30"></span>
+          <span class="jc-caption-serif text-primary/70">Tonight</span>
+          <span class="jc-caption">Complimentary signature gin flight · Tasting menu open from 7 PM</span>
+        </div>
+      </div>
+
+      <!-- Hero figure (portrait, right column on desktop / below on mobile) -->
+      <figure class="lg:col-span-4 jc-figure jc-reveal" style="transition-delay: 200ms;">
+        <div class="jc-card-img aspect-[4/5] overflow-hidden">
+          <img class="w-full h-full object-cover" alt="An atmospheric corner of The Velvet Botanist"
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGqzuw86hk0I0-9qZoOmafeBtxgUFU4YXTWlGg4ySfrWk9wio-c3wgUUNVxQkiMr8c6nKpkvHjbSVWTWaCWoE7OohxDCQOPpI6XRJDEKNK0MfrMJjZaNITKUVJYkwA7tYACz5zJ6UsHm4odYQTh7gJMNX7BkRbO9uCWSBCmejS_GibC8Qmaifq7EO6eRZvnx4GvRqmSc2mUt_OYxe12JkmUs7l1hdeUt7uPt7uU-AvQgUJoTSdjTuQbosN1wT9NxRhHJNze0uqgT4"/>
+        </div>
+        <figcaption><em>Photograph —</em> the back bar at the Velvet Botanist, Mayfair. Member access, all evenings.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ════ PARTNER LOGOS — marquee strip ════ -->
+  <section class="mt-20 md:mt-32 jc-reveal">
+    <p class="jc-caption text-primary/55 text-center mb-6">In quiet company with —</p>
+    <div class="jc-ribbon jc-ribbon--logos">
+      <div class="jc-ribbon-track" data-bind-logos aria-label="Partner venues">
+        <span class="jc-logo jc-logo--serif"><span class="jc-mark">✦</span>The Velvet Botanist</span>
+        <span class="jc-logo jc-logo--caps">Marble<span class="jc-mark mx-1">&amp;</span>Moss</span>
+        <span class="jc-logo jc-logo--display">Obsidian.</span>
+        <span class="jc-logo jc-logo--minimal">APEX<span class="jc-sub">— Lounge —</span></span>
+        <span class="jc-logo jc-logo--smallcaps">Cacao Archive</span>
+        <span class="jc-logo jc-logo--bracket">Vellum</span>
+        <span class="jc-logo jc-logo--serif"><span class="jc-mark">❋</span>The Gilded Cask</span>
+        <span class="jc-logo jc-logo--heavy">Zenith</span>
+        <span class="jc-logo jc-logo--caps">Ether<span class="jc-mark mx-1">◆</span>Café</span>
+        <span class="jc-logo jc-logo--smallcaps">Blue Note Tavern</span>
+        <span class="jc-logo jc-logo--display">Juniper<span class="jc-mark">·</span>Kitchen</span>
+        <span class="jc-logo jc-logo--minimal">SAVOIR<span class="jc-sub">— Atelier —</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ EDITORIAL BENTO ════ -->
+  <section class="mt-24 md:mt-32 px-6 md:px-12 max-w-[1400px] mx-auto">
+    <header class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 jc-reveal">
+      <div>
+        <p class="jc-caption text-secondary mb-3">No. 02 — New Partnerships</p>
+        <h2 class="font-display text-primary leading-[0.95] tracking-tight" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem);">
+          Curated additions, <span class="italic" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">this season.</span>
+        </h2>
+      </div>
+      <a href="directory.html" class="jc-caption text-primary border-b border-primary/30 hover:border-primary pb-1 self-start md:self-end transition-colors">Explore the directory →</a>
+    </header>
+    <hr class="jc-rule mb-12"/>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+
+      <!-- Feature 01 -->
+      <a href="directory.html" class="jc-card md:col-span-8 group jc-reveal block">
+        <figure class="jc-figure">
+          <div class="jc-card-img aspect-[16/10] relative">
+            <img class="w-full h-full object-cover" alt="Marble & Moss interior"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpUiFIIBwG-Yabevn71yRhE8j039p2XVyg1kwjUtjWy3QMpbarS15l502nypVZ5Ub54wCG7s--fuDWRIr-Fy_Mv3xH2YsTBEN-kEkuuDlmGhNwH7GNkzxVEBWZ0Q8jGNOaWUQTtchPFpPYz3F6pB-I1Wmf0slTSx6flaIcP9_epnXvykiop2TSjln4dgZXNFxcu0ZQfMQ1m1Uv-OIzcNf1cGgTxLBMf6Ve2lmw8cYtRN2l5r_TMZO5LlH8N3vQenxX30zmzdFAbZM"/>
+            <span class="absolute top-5 left-5 bg-bone text-primary jc-caption px-3 py-1">New Partner</span>
+          </div>
+          <figcaption class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2"><em>Feature 01 —</em> <span class="grow md:grow-0">Marble &amp; Moss · Daytime · Brunch &amp; Roasts</span> <span class="text-primary jc-caption-serif">20% off — all brunch items</span></figcaption>
+          <h3 class="font-display text-primary mt-3 leading-tight tracking-tight" style="font-size: clamp(2rem, 3.2vw, 3rem);">Marble &amp; Moss</h3>
+        </figure>
+      </a>
+
+      <!-- Feature 02 + 03 stacked -->
+      <div class="md:col-span-4 grid grid-rows-2 gap-6 md:gap-8">
+        <a href="directory.html" class="jc-card group jc-reveal block" style="transition-delay: 80ms;">
+          <figure class="jc-figure">
+            <div class="jc-card-img aspect-[5/4]">
+              <img class="w-full h-full object-cover" alt="Apex Lounge"
+                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKO6-WGA7W1186_Eek1vrYN_QYRAO9jHSbNDKGLAon2MhdSDWTk7-n6tt_1DJTR4eYG7vC-LcSPqTYei_oVIHoOr4jdp2ZXXCTM9F2Vp8NfRuFQkOGlJND3GuG3As3KgHhhxa_cBQAt4Jej9A6pXnmkRyQsTbo6I-iC6PZ0kj-cPCFN_gqiYAhIPawOH_9BJZS-PD196Bt6R0VTc01bGz8b52uGfF6EkWHgWQ8Fyp3Xw7uYdX3dMb6LjMHGkLA_eZwrW7agiSO3u4"/>
+            </div>
+            <figcaption class="flex items-baseline justify-between gap-4"><em>Feature 02 —</em> <span>Apex Lounge · After hours</span></figcaption>
+            <div class="flex items-baseline justify-between gap-4 mt-1">
+              <h3 class="font-display text-primary leading-tight tracking-tight text-2xl md:text-3xl">Apex Lounge</h3>
+              <span class="jc-caption-serif text-secondary">15% off cocktails</span>
+            </div>
+          </figure>
+        </a>
+        <a href="directory.html" class="jc-card group jc-reveal block" style="transition-delay: 160ms;">
+          <figure class="jc-figure">
+            <div class="jc-card-img aspect-[5/4]">
+              <img class="w-full h-full object-cover" alt="Cacao Archive"
+                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDasICGgTKW2eAbRRXuJdDHoMrucPW06rbyb66hFR315Pl7M-S6fzRL2WvUQBPzkvxYG5cy17u_KTE8Q9iLyoo3xzIRxvIDypP8ze7ilVz_tssDeK4sYMEKFsWb_rF5mdIcWzGENrhPOCM4EsNDxf_vLoly2KzebiDTpM4pqW3nDXqtKfesm1T2No91nzJIhruJHEET2y8KXpNpUudsL3ig3v18qlUfPSEkk76Ft812ByhN8jYZmKY73sp5tuQtNCGuzWmZ_QSL2AI"/>
+            </div>
+            <figcaption class="flex items-baseline justify-between gap-4"><em>Feature 03 —</em> <span>Cacao Archive · Patisserie</span></figcaption>
+            <div class="flex items-baseline justify-between gap-4 mt-1">
+              <h3 class="font-display text-primary leading-tight tracking-tight text-2xl md:text-3xl">Cacao Archive</h3>
+              <span class="jc-caption-serif text-secondary">Complimentary appetiser</span>
+            </div>
+          </figure>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ MEMBER FAVOURITES — editorial list ════ -->
+  <section class="mt-24 md:mt-32 px-6 md:px-12 max-w-[1400px] mx-auto">
+    <header class="mb-12 jc-reveal">
+      <p class="jc-caption text-secondary mb-3">No. 03 — Member Favourites</p>
+      <h2 class="font-display text-primary leading-[0.95] tracking-tight" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem);">
+        Quietly, <span class="italic" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">enduringly</span>, ours.
+      </h2>
+    </header>
+
+    <ul class="border-t border-primary/15" data-bind-favourites>
+      <li class="jc-reveal">
+        <a href="directory.html" class="group grid grid-cols-12 gap-4 md:gap-8 items-center py-6 md:py-8 border-b border-primary/15 transition-colors hover:bg-bone-soft">
+          <span class="col-span-1 md:col-span-1 font-display italic text-primary/30 text-xl md:text-3xl" style="font-variation-settings: 'opsz' 36, 'slnt' -10;">i.</span>
+          <div class="col-span-11 md:col-span-3">
+            <p class="jc-caption text-primary/60 mb-1">Jazz · Old fashioneds</p>
+            <h3 class="font-display text-primary text-2xl md:text-4xl leading-tight tracking-tight">Blue Note Tavern</h3>
+          </div>
+          <p class="hidden md:block md:col-span-5 text-on-surface-variant text-base font-light">Authentic jazz programming and a vintage cocktail catalogue, run by a former Mayfair bar manager.</p>
+          <p class="col-span-12 md:col-span-3 md:text-right">
+            <span class="jc-caption text-primary/50 block">Active Benefit</span>
+            <span class="font-display italic text-secondary text-lg md:text-xl" style="font-variation-settings: 'opsz' 24, 'slnt' -10;">Priority booking + first drink</span>
+          </p>
+        </a>
+      </li>
+      <li class="jc-reveal" style="transition-delay: 60ms;">
+        <a href="directory.html" class="group grid grid-cols-12 gap-4 md:gap-8 items-center py-6 md:py-8 border-b border-primary/15 transition-colors hover:bg-bone-soft">
+          <span class="col-span-1 md:col-span-1 font-display italic text-primary/30 text-xl md:text-3xl" style="font-variation-settings: 'opsz' 36, 'slnt' -10;">ii.</span>
+          <div class="col-span-11 md:col-span-3">
+            <p class="jc-caption text-primary/60 mb-1">Tasting menu · French</p>
+            <h3 class="font-display text-primary text-2xl md:text-4xl leading-tight tracking-tight">The Gilded Fork</h3>
+          </div>
+          <p class="hidden md:block md:col-span-5 text-on-surface-variant text-base font-light">Modern culinary artistry, classically trained technique. Chef's table available on request to members.</p>
+          <p class="col-span-12 md:col-span-3 md:text-right">
+            <span class="jc-caption text-primary/50 block">Active Benefit</span>
+            <span class="font-display italic text-secondary text-lg md:text-xl" style="font-variation-settings: 'opsz' 24, 'slnt' -10;">20% off tasting menu</span>
+          </p>
+        </a>
+      </li>
+      <li class="jc-reveal" style="transition-delay: 120ms;">
+        <a href="directory.html" class="group grid grid-cols-12 gap-4 md:gap-8 items-center py-6 md:py-8 border-b border-primary/15 transition-colors hover:bg-bone-soft">
+          <span class="col-span-1 md:col-span-1 font-display italic text-primary/30 text-xl md:text-3xl" style="font-variation-settings: 'opsz' 36, 'slnt' -10;">iii.</span>
+          <div class="col-span-11 md:col-span-3">
+            <p class="jc-caption text-primary/60 mb-1">Wellness · Private training</p>
+            <h3 class="font-display text-primary text-2xl md:text-4xl leading-tight tracking-tight">Zenith Performance</h3>
+          </div>
+          <p class="hidden md:block md:col-span-5 text-on-surface-variant text-base font-light">Elite wellness facility with private training suites and recovery rooms reserved for members.</p>
+          <p class="col-span-12 md:col-span-3 md:text-right">
+            <span class="jc-caption text-primary/50 block">Active Benefit</span>
+            <span class="font-display italic text-secondary text-lg md:text-xl" style="font-variation-settings: 'opsz' 24, 'slnt' -10;">Waived membership fees</span>
+          </p>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ════ MEMBERSHIP CTA ════ -->
+  <section class="mt-32 md:mt-40 px-6 md:px-12 max-w-[1400px] mx-auto">
+    <div class="relative bg-primary text-on-primary px-8 md:px-20 py-20 md:py-28 overflow-hidden">
+      <!-- decorative numeral -->
+      <span aria-hidden="true" class="absolute -right-10 -top-10 jc-numeral text-tertiary-fixed/30 leading-none" style="font-size: clamp(20rem, 30vw, 40rem); -webkit-text-stroke-width: 2px;">IV</span>
+
+      <div class="relative z-10 jc-reveal">
+        <p class="jc-caption text-tertiary-fixed mb-6">No. 04 — Apply</p>
+        <h2 class="font-display leading-[0.95] tracking-tight" style="font-size: clamp(2.5rem, 6.5vw, 6rem);">
+          Host your own,<br/>
+          <span class="italic" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">private evening.</span>
+        </h2>
+        <p class="mt-10 max-w-xl text-on-primary/70 text-lg font-light leading-relaxed">
+          Members may take over partner venues for gatherings of twelve to a hundred, with a dedicated concierge planning each detail from cellar to soundtrack.
+        </p>
+        <div class="mt-12 flex flex-wrap gap-4">
+          <a href="events.html" class="jc-btn jc-btn--bone"><span>Inquire about an event</span><span class="material-symbols-outlined !text-sm">arrow_outward</span></a>
+          <a href="signup.html" class="jc-btn jc-btn--ghost text-bone"><span>Apply for membership</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- Drawer overlay -->
+<div class="jc-drawer-overlay fixed inset-0 z-[55] bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+<!-- Drawer -->
+<aside id="jc-drawer" class="jc-drawer fixed left-0 top-0 h-full w-80 max-w-[85vw] bg-emerald-50 dark:bg-emerald-950 shadow-2xl z-[60] -translate-x-full transition-transform duration-300 ease-out">
+  <div class="flex flex-col h-full p-6">
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="Juniper Club" class="h-8 w-8 rounded-full bg-emerald-100"/>
+        <span class="font-serif italic font-bold text-emerald-900 dark:text-emerald-100 tracking-tighter text-lg">JUNIPER CLUB</span>
+      </div>
+      <button class="jc-drawer-close p-2 rounded-full hover:bg-emerald-100 dark:hover:bg-emerald-900 transition-colors" aria-label="Close menu">
+        <span class="material-symbols-outlined text-emerald-900 dark:text-emerald-100">close</span>
+      </button>
+    </div>
+    <nav class="space-y-2" aria-label="Drawer">
+      <a class="flex items-center gap-4 p-4 rounded-xl bg-emerald-100 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-50 font-semibold transition-all" aria-current="page" href="index.html">
+        <span class="material-symbols-outlined">style</span>
+        <span class="font-sans text-sm tracking-wide">Home</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="directory.html">
+        <span class="material-symbols-outlined">corporate_fare</span>
+        <span class="font-sans text-sm tracking-wide">Partner Portals</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="offers.html">
+        <span class="material-symbols-outlined">confirmation_number</span>
+        <span class="font-sans text-sm tracking-wide">Member Offers</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="profile.html">
+        <span class="material-symbols-outlined">card_membership</span>
+        <span class="font-sans text-sm tracking-wide">Member Account</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="events.html">
+        <span class="material-symbols-outlined">event_seat</span>
+        <span class="font-sans text-sm tracking-wide">Private Events</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="drift.html">
+        <span class="material-symbols-outlined">graphic_eq</span>
+        <span class="font-sans text-sm tracking-wide">Drift · After Dark</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="support.html">
+        <span class="material-symbols-outlined">help_outline</span>
+        <span class="font-sans text-sm tracking-wide">Support</span>
+      </a>
+    </nav>
+    <div class="mt-auto pt-6 text-[10px] uppercase tracking-[0.18em] text-emerald-800/40 dark:text-emerald-200/40 font-medium">
+      © Juniper Club
+    </div>
+  </div>
+</aside>
+<!-- BottomNavBar (floating pill, mobile-only) -->
+<nav class="jc-bottomnav md:hidden" aria-label="Bottom navigation">
+  <a aria-current="page" href="index.html">
+    <span class="material-symbols-outlined">style</span>
+    <span>Home</span>
+  </a>
+  <a href="directory.html">
+    <span class="material-symbols-outlined">explore</span>
+    <span>Directory</span>
+  </a>
+  <a href="offers.html">
+    <span class="material-symbols-outlined">confirmation_number</span>
+    <span>Offers</span>
+  </a>
+  <a href="profile.html">
+    <span class="material-symbols-outlined">account_circle</span>
+    <span>Profile</span>
+  </a>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/topnav.js"></script>
+<script src="js/home.js"></script>
+<script src="js/shell-drawer.js"></script>
+<script src="js/site-fx.js"></script>
+<script src="js/cms-render.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-page="login">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Sign in · Juniper Club</title>
+<meta name="description" content="Sign in to your Juniper Club account."/>
+<link rel="icon" type="image/png" href="assets/logo.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/tailwind.css"/>
+</head>
+<body class="bg-surface text-on-surface font-body">
+
+<header class="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4">
+  <a href="index.html" class="flex items-center gap-3">
+    <img src="assets/logo.png" alt="Juniper Club" class="h-8 w-8 rounded-full"/>
+    <span class="font-serif italic font-bold text-emerald-900 tracking-tighter text-xl">JUNIPER CLUB</span>
+  </a>
+  <a href="signup.html" class="font-label text-[10px] uppercase tracking-[0.18em] font-bold text-on-surface-variant hover:text-primary transition-colors">New here? Apply</a>
+</header>
+
+<main class="min-h-dvh flex items-center justify-center px-6">
+  <div class="w-full max-w-md">
+    <span class="font-label uppercase tracking-[0.18em] text-[10px] font-bold text-secondary">Member Sign-in</span>
+    <h2 class="font-headline text-4xl text-primary tracking-tight mt-3 mb-2">Welcome back</h2>
+    <p class="text-on-surface-variant text-sm leading-relaxed">Use your registered email and password to access the directory.</p>
+
+    <form id="login-form" class="mt-10 space-y-5">
+      <div>
+        <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-2" for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email"
+               class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50 transition-colors"/>
+      </div>
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant" for="password">Password</label>
+          <button type="button" id="reset-link" class="font-label text-[10px] uppercase tracking-[0.14em] text-secondary hover:text-primary transition-colors">Forgot?</button>
+        </div>
+        <input id="password" name="password" type="password" required autocomplete="current-password"
+               class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50 transition-colors"/>
+      </div>
+
+      <button type="submit" id="submit"
+              class="w-full bg-primary text-white py-4 rounded font-label text-[11px] uppercase tracking-[0.18em] font-bold hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+        Sign in
+      </button>
+
+      <p id="message" class="hidden text-sm py-3 px-4 rounded-lg"></p>
+    </form>
+
+    <p class="mt-10 text-xs text-on-surface-variant text-center">Trouble signing in? <a href="mailto:concierge@juniper.club" class="text-primary border-b border-primary/30 hover:border-primary">Contact the concierge.</a></p>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script>
+(() => {
+  const form = document.getElementById("login-form");
+  const msg  = document.getElementById("message");
+  const btn  = document.getElementById("submit");
+  const reset = document.getElementById("reset-link");
+
+  function showMessage(text, kind) {
+    msg.textContent = text;
+    msg.className = "text-sm py-3 px-4 rounded-lg " + (kind === "ok"
+      ? "bg-secondary/10 text-secondary" : "bg-error/10 text-error");
+    msg.classList.remove("hidden");
+  }
+
+  function nextDest() {
+    const next = new URL(location.href).searchParams.get("next");
+    if (!next) return "index.html";
+    // Reject anything that could leave the site: protocol-relative (//evil.com),
+    // explicit scheme (http:, https:, javascript:, data:), or anything with a host.
+    if (/^[a-z][a-z0-9+.-]*:/i.test(next) || next.startsWith("//")) return "index.html";
+    // Treat as a same-origin path. Strip leading slashes so it resolves relative
+    // to the current page even if the build is ever hosted under a subpath.
+    return next.replace(/^\/+/, "") || "index.html";
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!window.SB) { showMessage("Site is not yet connected to its database.", "error"); return; }
+    btn.disabled = true; btn.textContent = "Signing in…";
+    msg.classList.add("hidden");
+    try {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const { error } = await JCAuth.signIn({ email, password });
+      if (error) throw error;
+      // Fetch profile to route admins to the admin panel by default
+      const profile = await JCAuth.getProfile();
+      const dest = profile?.is_admin ? "admin.html" : nextDest();
+      location.href = dest;
+    } catch (err) {
+      showMessage(err?.message || "Sign-in failed. Please check your credentials.", "error");
+      btn.disabled = false; btn.textContent = "Sign in";
+    }
+  });
+
+  reset.addEventListener("click", async () => {
+    const email = document.getElementById("email").value.trim();
+    if (!email) { showMessage("Enter your email above first.", "error"); return; }
+    if (!window.SB) { showMessage("Site is not yet connected to its database.", "error"); return; }
+    try {
+      const { error } = await JCAuth.resetPassword(email);
+      if (error) throw error;
+      showMessage("Password reset link sent — check your inbox.", "ok");
+    } catch (err) {
+      showMessage(err?.message || "Could not send reset email.", "error");
+    }
+  });
+
+  // If already signed-in, bounce them
+  (async () => {
+    const u = await JCAuth.getUser?.();
+    if (u) {
+      const profile = await JCAuth.getProfile();
+      location.replace(profile?.is_admin ? "admin.html" : nextDest());
+    }
+  })();
+})();
+</script>
+
+</body>
+</html>

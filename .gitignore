@@ -1,0 +1,16 @@
+node_modules/
+*.log
+
+# Build archives produced for Hostinger deploys
+build_*.zip
+
+# Local dev / editor / OS
+.claude/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local secrets (if you ever add an env file)
+.env
+.env.local

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-page="verify">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Verify Email · Juniper Club</title>
+<link rel="icon" type="image/png" href="assets/logo.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/tailwind.css"/>
+</head>
+<body class="bg-surface text-on-surface font-body">
+
+<main class="min-h-dvh flex items-center justify-center px-6">
+  <div class="w-full max-w-lg text-center">
+    <a href="index.html" class="inline-block mb-12">
+      <img src="assets/logo.png" alt="Juniper Club" class="h-10 w-10 mx-auto rounded-full"/>
+      <span class="block font-serif italic font-bold text-emerald-900 tracking-tighter text-xl mt-2">JUNIPER CLUB</span>
+    </a>
+
+    <span class="font-label uppercase tracking-[0.22em] text-[10px] font-bold text-secondary">Verification</span>
+    <h1 id="title" class="font-headline text-4xl md:text-5xl text-primary tracking-tight mt-3 mb-4">Confirming your email</h1>
+    <p id="message" class="text-on-surface-variant text-base font-light leading-relaxed">Please wait a moment…</p>
+
+    <div id="cta" class="mt-10 hidden">
+      <a href="login.html" class="inline-block bg-primary text-white px-10 py-4 rounded font-label text-[11px] uppercase tracking-[0.18em] font-bold hover:opacity-90 transition-opacity">Sign in</a>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script>
+(async () => {
+  const titleEl = document.getElementById("title");
+  const msgEl = document.getElementById("message");
+  const ctaEl = document.getElementById("cta");
+
+  function done(title, msg) { titleEl.textContent = title; msgEl.textContent = msg; ctaEl.classList.remove("hidden"); }
+
+  if (!window.SB) {
+    done("Email link received", "We received your verification, but the database isn't connected yet. Please try signing in.");
+    return;
+  }
+
+  // Supabase auto-handles the verification token in the URL when detectSessionInUrl is on.
+  // Give it a beat to settle, then check session.
+  setTimeout(async () => {
+    const { data } = await window.SB.auth.getSession();
+    if (data?.session?.user) {
+      done("You're verified", "Welcome to Juniper Club. Use the button below to sign in and explore the directory.");
+    } else {
+      done("Email confirmed", "Your email has been confirmed. Sign in below to access your member area.");
+    }
+  }, 800);
+})();
+</script>
+
+</body>
+</html>

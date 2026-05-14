@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Member Profile &amp; Subscription | JUNIPER CLUB</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary": "#2a1c00",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#2e3131",
+                        "on-tertiary-fixed": "#261900",
+                        "on-primary-fixed-variant": "#1f4f3d",
+                        "on-tertiary-container": "#bb9650",
+                        "secondary-fixed": "#c5ebdc",
+                        "inverse-primary": "#9fd1b9",
+                        "surface-container-low": "#f2f4f3",
+                        "primary": "#002418",
+                        "secondary-container": "#c5ebdc",
+                        "primary-container": "#063b2a",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "surface-dim": "#d8dada",
+                        "secondary": "#436559",
+                        "on-primary-fixed": "#002115",
+                        "outline-variant": "#c0c9c2",
+                        "tertiary-fixed": "#ffdea5",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#191c1c",
+                        "surface-container": "#eceeed",
+                        "on-surface": "#191c1c",
+                        "surface-bright": "#f8faf9",
+                        "primary-fixed": "#bbeed5",
+                        "secondary-fixed-dim": "#a9cfc0",
+                        "on-secondary-fixed": "#002018",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#2b4d42",
+                        "outline": "#717974",
+                        "surface-variant": "#e1e3e2",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#9fd1b9",
+                        "on-surface-variant": "#414944",
+                        "inverse-on-surface": "#eff1f0",
+                        "tertiary-container": "#453000",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#386754",
+                        "surface-container-highest": "#e1e3e2",
+                        "surface-container-high": "#e6e9e8",
+                        "on-primary-container": "#75a68f",
+                        "on-secondary-container": "#496b5f",
+                        "background": "#f8faf9",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "surface": "#f8faf9"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 24px 48px -12px rgba(0, 36, 24, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-primary">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-emerald-950/80 backdrop-blur-xl shadow-sm shadow-emerald-900/5 flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-emerald-900 dark:text-emerald-50 cursor-pointer hover:opacity-80 transition-opacity" style="">menu</span>
+<h1 class="font-serif italic font-bold text-emerald-900 dark:text-emerald-100 tracking-tighter text-2xl" style="">JUNIPER CLUB</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/15">
+<img class="w-full h-full object-cover" data-alt="Professional male member profile portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhX064fYRhBK3OMWWLzCuRZzaJ5LochMzfXRH0U48hLvhMlUUUIPJIg_6pyYkW7iC-URQ1PX_zNVxvg9GEOla8np6UPGY7mEQzLSS_nlrN6dC7rnxWoDcSeU5bcPc_GQYU02nMsge2YsuC0Wu8oVmPx1WXpr6s4XlLiUX3E9A6MOY6yIggb_1dFlfq4D0NSQrmPiJ-1i9UqgLkJP74lf_47kCorZ1dtqGeNnF5H79c6VnF8K8h7ib-ig5zj6UxFcjr-0xgg_zFyXg" style="">
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-5xl mx-auto">
+<!-- Profile Hero Section -->
+<section class="relative mb-16">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+<div class="md:col-span-8">
+<p class="font-label uppercase tracking-[0.2rem] text-[10px] font-bold text-on-surface-variant mb-4" style="">Member Account</p>
+<h2 class="font-headline text-5xl md:text-7xl text-primary tracking-tight mb-2" style="">Julian Walters</h2>
+<div class="flex items-center gap-3">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest" style="">Platinum Member</span>
+<span class="text-on-surface-variant font-label text-xs tracking-wide" style="">Since 2022</span>
+</div>
+</div>
+<div class="md:col-span-4 flex justify-start md:justify-end">
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/5 rounded-full scale-95 group-hover:scale-105 transition-transform duration-500"></div>
+<img class="w-32 h-32 md:w-48 md:h-48 object-cover rounded-full relative z-10 editorial-shadow" data-alt="High-end editorial portrait of club member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA-YiRnlW_9DAd5RkKk8a1ft3rqZDJB4eOUoBGwU8ejElk0mgxDcdtMoqrkD7nYL-ygVPLUz6NMnFsqxt_9GDcSxKRdGCpU1ApzYejEA5j83uyeySy5r1EuJfi94OIrzI8qI3102kZERhHW76J1gnyoeos14PWXHtB2rT78NCRDvQSri8D4wszs23oDNGHP_Y7mQT3C6LFgsS8_BdaxlPoLWQ4F3rI_TZkHSd0V4OfjffVl6RiM11PWAQnAcBCRg8Pjqq3cMDuIsA" style="">
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Subscription Status Card -->
+<div class="md:col-span-2 bg-surface-container-lowest rounded-xl p-8 editorial-shadow border border-outline-variant/10">
+<div class="flex flex-col h-full">
+<div class="flex justify-between items-start mb-12">
+<div>
+<h3 class="font-headline text-2xl text-primary mb-1" style="">Subscription Details</h3>
+<p class="text-on-surface-variant text-sm font-light" style="">Your membership remains active until March 2025.</p>
+</div>
+<div class="flex items-center gap-2 bg-secondary-container/30 px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="text-secondary font-label text-[10px] font-bold uppercase tracking-widest" style="">Subscription Valid</span>
+</div>
+</div>
+<div class="mt-auto grid grid-cols-2 gap-8 pt-8 border-t border-outline-variant/10">
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1" style="">Next Billing</p>
+<p class="font-headline text-xl text-primary" style=""><span style="color: rgb(31, 31, 31); font-family: &quot;Google Sans&quot;, Arial, sans-serif; font-size: 48px; text-wrap-mode: nowrap;">₹</span>1,200 <span class="text-xs font-sans text-on-surface-variant italic" style="">Annually</span></p>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1" style="">Payment Method</p>
+<p class="font-body text-sm text-primary flex items-center gap-2" style="">
+<span class="material-symbols-outlined text-sm" style="">credit_card</span>
+                                Visa ending in 4242
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Due Warning Card (Conditional Style Example) -->
+<div class="md:col-span-1 bg-tertiary-fixed/20 rounded-xl p-8 border border-tertiary-fixed/30 flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 bg-tertiary-fixed rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-tertiary-fixed" style="">priority_high</span>
+</div>
+<h3 class="font-headline text-xl text-primary mb-2" style="">Renewal Looming</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6" style="">Your exclusive access to the Vineyard Suite expires in 45 days. Renew now to lock in current rates.</p>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 px-6 rounded font-label text-[10px] font-extrabold uppercase tracking-[0.2rem] hover:opacity-90 transition-opacity active:scale-95 duration-200" style="">
+                    Renew Now
+                </button>
+</div>
+<!-- Member Benefits Card -->
+<div class="md:col-span-1 bg-surface-container rounded-xl p-8 flex flex-col group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="mb-8">
+<span class="material-symbols-outlined text-primary mb-4" style="font-variation-settings: &quot;wght&quot; 200;">workspace_premium</span>
+<h3 class="font-headline text-xl text-primary mb-2" style="">Member Benefits</h3>
+<p class="text-on-surface-variant text-xs" style="">Explore your platinum-tier perks and partner portals.</p>
+</div>
+<div class="mt-auto flex items-center gap-2 text-primary font-label text-[10px] font-bold uppercase tracking-widest" style="">
+                    View Benefits
+                    <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" style="">arrow_forward</span>
+</div>
+</div>
+<!-- Private Events Card -->
+<div class="md:col-span-1 bg-primary text-on-primary rounded-xl p-8 flex flex-col relative overflow-hidden group">
+<div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="Elegant social gathering in a dark ambient room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWmJ1hL1CUz5c6qe-D-BePGwpWbchjJqOKrhx5oRhtVHrufatD-WwbfxiEMDEnDal2kO3OlHezR5SCSYtOpImPBZ7eTwvD1krhkrmn2ojaZYcl9WBtFfRkbndRz5zdzmoe4EDXKr9DmLOZ5RctP-JclWA3Ju1L1yONaY2zI5wXTJDkOnSMFucBOyg_cTsmr4npZDBbMvbHQBJKOONFYsJIQjxdiqxP8g1vilsYqlSvGHolRemYhuGgcsfYeSmoE0uag5ThxLGI_wQ" style="">
+</div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-tertiary-fixed mb-4" style="font-variation-settings: &quot;wght&quot; 200;">event_seat</span>
+<h3 class="font-headline text-xl mb-2" style="">Private Events</h3>
+<p class="text-on-primary/70 text-xs" style="">Priority booking for the Winter Equinox Gala.</p>
+</div>
+<div class="mt-auto relative z-10 flex items-center gap-2 font-label text-[10px] font-bold uppercase tracking-widest text-tertiary-fixed" style="">
+                    Request Invite
+                    <span class="material-symbols-outlined text-sm" style="">north_east</span>
+</div>
+</div>
+<!-- Support & Concierge Card -->
+<div class="md:col-span-1 bg-surface-container-low rounded-xl p-8 border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary mb-4" style="font-variation-settings: &quot;wght&quot; 200;">help_outline</span>
+<h3 class="font-headline text-xl text-primary mb-2" style="">Concierge Support</h3>
+<p class="text-on-surface-variant text-xs mb-6" style="">Direct access to your dedicated account manager for any inquiries.</p>
+<div class="space-y-3">
+<a class="flex items-center justify-between p-3 bg-white/50 rounded-lg hover:bg-white transition-colors" href="#" style="">
+<span class="text-xs font-medium text-primary" style="">Chat with Julian</span>
+<span class="material-symbols-outlined text-sm text-outline" style="">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-3 bg-white/50 rounded-lg hover:bg-white transition-colors" href="#" style="">
+<span class="text-xs font-medium text-primary" style="">Help Center</span>
+<span class="material-symbols-outlined text-sm text-outline" style="">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Logout / Safety Zone -->
+<div class="mt-16 flex justify-center">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-error transition-colors font-label text-[10px] font-bold uppercase tracking-widest" style="">
+<span class="material-symbols-outlined text-sm" style="">logout</span>
+                Sign Out of Juniper Club
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-8 pb-8 pt-4 bg-white/90 dark:bg-emerald-950/90 backdrop-blur-2xl shadow-[0_-4px_24px_rgba(0,36,24,0.06)] rounded-t-3xl">
+<a class="flex flex-col items-center justify-center text-emerald-800/40 dark:text-emerald-200/40 hover:text-emerald-600 dark:hover:text-gold-200 transition-all duration-300 ease-in-out" href="#" style="">
+<span class="material-symbols-outlined mb-1" style="">style</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium" style="">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-800/40 dark:text-emerald-200/40 hover:text-emerald-600 dark:hover:text-gold-200 transition-all duration-300 ease-in-out" href="#" style="">
+<span class="material-symbols-outlined mb-1" style="">explore</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium" style="">Directory</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-800/40 dark:text-emerald-200/40 hover:text-emerald-600 dark:hover:text-gold-200 transition-all duration-300 ease-in-out" href="#" style="">
+<span class="material-symbols-outlined mb-1" style="">confirmation_number</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium" style="">Offers</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-900 dark:text-gold-400 font-bold scale-110 transition-transform" href="#" style="">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: &quot;FILL&quot; 1;">account_circle</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium" style="">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#2a1c00",
+              "on-error-container": "#93000a",
+              "inverse-surface": "#2e3131",
+              "on-tertiary-fixed": "#261900",
+              "on-primary-fixed-variant": "#1f4f3d",
+              "on-tertiary-container": "#bb9650",
+              "secondary-fixed": "#c5ebdc",
+              "inverse-primary": "#9fd1b9",
+              "surface-container-low": "#f2f4f3",
+              "primary": "#002418",
+              "secondary-container": "#c5ebdc",
+              "primary-container": "#063b2a",
+              "on-tertiary-fixed-variant": "#5d4201",
+              "surface-dim": "#d8dada",
+              "secondary": "#436559",
+              "on-primary-fixed": "#002115",
+              "outline-variant": "#c0c9c2",
+              "tertiary-fixed": "#ffdea5",
+              "on-secondary": "#ffffff",
+              "on-background": "#191c1c",
+              "surface-container": "#eceeed",
+              "on-surface": "#191c1c",
+              "surface-bright": "#f8faf9",
+              "primary-fixed": "#bbeed5",
+              "secondary-fixed-dim": "#a9cfc0",
+              "on-secondary-fixed": "#002018",
+              "on-error": "#ffffff",
+              "on-secondary-fixed-variant": "#2b4d42",
+              "outline": "#717974",
+              "surface-variant": "#e1e3e2",
+              "error-container": "#ffdad6",
+              "primary-fixed-dim": "#9fd1b9",
+              "on-surface-variant": "#414944",
+              "inverse-on-surface": "#eff1f0",
+              "tertiary-container": "#453000",
+              "error": "#ba1a1a",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "surface-tint": "#386754",
+              "surface-container-highest": "#e1e3e2",
+              "surface-container-high": "#e6e9e8",
+              "on-primary-container": "#75a68f",
+              "on-secondary-container": "#496b5f",
+              "background": "#f8faf9",
+              "tertiary-fixed-dim": "#e9c176",
+              "surface": "#f8faf9"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 24px 48px -12px rgba(0, 36, 24, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-fixed-dim selection:text-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-emerald-950/80 backdrop-blur-xl shadow-sm shadow-emerald-900/5 flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-200 text-emerald-900">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<img alt="JUNIPER CLUB" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ugbQxEpba9TcNRUfyJlewFXHk_T9zPHiU4B0ZQgLMqjuS5D6OmreG6ckckobaSuwzc_6m7p0nNsFoB37K9J06cAwXRCCRE7Tq2re1xPgbuzu_4VxRL5tj4mYcNK4LKJ2BalregweLqCaJhXyICxmE7ZPS5R9Kc186lr7hZXX-Rfl118UnIpcuWt29JJnmbRCey1FiVEQAN9RN5oO8IfYR6D0VZVwmJ6SytYPY_pD5DAg2aA55El5GL15NgcFGQ-vZ1XHIbLjZxsBQ"/>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Member Profile Photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkKA0FNwtIesE7N22N2B7f-Anm0nYSec00H9RJ16xVPWEfjZAejDtRq9I1zawweeLgBNUCrLiE1hYH_Ty6mlwMvuBshnCSSOKN1c6Pfb4o84pJ_XghOo8BwqgpgpDFq_GXDiPXfRCZp0gM-7psxk_ur7HpjWV-gIP6XkFNgIi7HyS9koMcY7fmIbEnbiXHGwdsgvOKHe5gk1Jfw1BmNm9khsvwR5bKeuOGn0c6Kt6TDUmPmEtti6hCsAoShZML5YvTW2qbwGL3_10"/>
+</div>
+</header>
+<main class="pt-20 pb-32">
+<!-- Hero Gallery Section -->
+<section class="px-6 space-y-4">
+<div class="grid grid-cols-12 gap-3 h-[500px]">
+<div class="col-span-8 relative overflow-hidden rounded-xl group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Luxury rooftop bar with city view at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn956yk-SJek4YSXnNqXhWcaH0QiGebBtkyHdsQZeN2Yrym_RD-bWuvPcHjcWo56LlLOmUMLUhDNGQB_hTCJoF30Sm-A6ipJ5OQz1okumDvtCPNxcZRwIMQbb_XO0aQPvE5heTqbg0cVOd89HIExXghNMf6AwlE5Yso4uD_KL6bL4N73u2NrcEmG3LQk36pTbWHeEkRqmqRNmgHYl-TgEhilyDOvDbd9Qid2HFi-z5WpLTzOvPpwUREUgYmMHXb-KKnAweT7QF1l0"/>
+<div class="absolute top-6 right-6">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label text-[10px] uppercase tracking-[0.1rem] px-3 py-1.5 rounded-full font-bold shadow-lg">Exclusive Member Access</span>
+</div>
+</div>
+<div class="col-span-4 flex flex-col gap-3">
+<div class="h-1/2 overflow-hidden rounded-xl">
+<img class="w-full h-full object-cover" data-alt="Premium cocktail with botanical garnish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-vLuobeNw4NOicCI5UK_XECxSr1wBDzw2NuH_kAs-PrZZYGSIz4SDvptcBS40_h1OFU_uyLItEbAMDKchW4ANmVcCjtfSFNy-Go0WZOMgqWpVKOiTKFwif95gLnWFwN2jBG-6raLTZ-wbkvpBqn_isU99t8T8xKIk2ITQ7U7MlcxXMyCgNkrAp7tosYeSUjIKvqvawrtg9JJfK7TB5ylpCbLZwo2KAeUe5-yeMXyoYBUZqW6iqzjPDXJE5t9p6oKikz_iZASrcqI"/>
+</div>
+<div class="h-1/2 overflow-hidden rounded-xl relative group">
+<img class="w-full h-full object-cover" data-alt="Elegant lounge seating with velvet textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6e-uWLLqySzBFr4jenp7mmuuTjW4iILAaMxGZhlaZhhs3FZwLBhzLt79Kfg15X0WQ0mshstp6LUSn92GtINTgm4BYAYLr2aZclcq1NrN25WqCh4VMXxN5BP0vRHu0PyAal9ONeIcpdiAHZYfbbEEd1fraiq7EXVGXXb-KDYt29IYo8-2w5PjuQK4jD2rhlUPC8-40G44jbIzItcY29XgpJG4kKMpaRvscoNoJTnz_bOQhGBnPO2Vm73ygXP_akRTNyJMvnmqwqlg"/>
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-sm flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-white font-label text-xs uppercase tracking-widest font-bold">View Gallery (12)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Offer Heading -->
+<section class="mt-12 px-6 grid grid-cols-1 md:grid-cols-12 gap-12">
+<div class="md:col-span-8">
+<p class="font-label text-primary uppercase tracking-[0.2rem] text-xs font-bold mb-4">Partner Venue • London</p>
+<h2 class="font-headline text-5xl md:text-6xl text-on-surface tracking-tight leading-none mb-8">The Obsidian Lounge</h2>
+<div class="flex flex-wrap gap-8 py-8 mb-8 border-y border-outline-variant/15">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="local_bar">local_bar</span>
+<div class="flex flex-col">
+<span class="text-[10px] font-label uppercase tracking-wider text-outline">Benefit</span>
+<span class="font-medium text-sm">Complimentary Signature Cocktail</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="event_seat">event_seat</span>
+<div class="flex flex-col">
+<span class="text-[10px] font-label uppercase tracking-wider text-outline">Priority</span>
+<span class="font-medium text-sm">Window Table Guarantee</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="percent">percent</span>
+<div class="flex flex-col">
+<span class="text-[10px] font-label uppercase tracking-wider text-outline">Savings</span>
+<span class="font-medium text-sm">20% Off Evening Menu</span>
+</div>
+</div>
+</div>
+<div class="prose prose-emerald">
+<p class="text-lg text-on-surface-variant leading-relaxed font-light first-letter:text-5xl first-letter:font-headline first-letter:mr-3 first-letter:float-left first-letter:text-primary">
+                        Perched atop the city's architectural peak, The Obsidian Lounge offers an unparalleled sensory journey. As a Juniper Club member, your presence is honored with immediate elevation to our priority circle. The lounge features a rotation of rare botanicals and hand-carved ice programs that mirror our own commitment to refinement.
+                    </p>
+<p class="mt-6 text-on-surface-variant leading-relaxed font-light">
+                        Enjoy the sunset from our west-facing terrace, where the skyline becomes your private backdrop. The offer includes a bespoke cocktail pairing curated monthly by head mixologist Elena Vance, exclusively for our club members.
+                    </p>
+</div>
+<!-- Location Bento -->
+<div class="mt-16 bg-surface-container-low rounded-xl overflow-hidden p-8">
+<h3 class="font-headline text-2xl mb-6">Location Details</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<p class="text-sm leading-relaxed">Level 42, The Pinnacle Building<br/>12 Bishopsgate, London EC2N 4AJ</p>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+<p class="text-sm">Tue – Sat: 17:00 — 02:00<br/>Sun – Mon: Closed for Private Events</p>
+</div>
+<div class="pt-4">
+<button class="flex items-center gap-2 text-primary font-label text-xs uppercase tracking-widest font-bold border-b border-primary/20 pb-1 hover:border-primary transition-colors">
+                                    Open in Maps <span class="material-symbols-outlined text-[14px]" data-icon="north_east">north_east</span>
+</button>
+</div>
+</div>
+<div class="h-48 rounded-lg overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover grayscale opacity-50" data-alt="Stylized map of London financial district" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAURB5uZjRZwRpgSdzAgXhxjfz3hrcezeoCLpcEUxkGfNeWdFbyB7wQNtTGpKKEbtuSRk6xszX6wzW0Q0fBbxeOIzM0dQE65BSqBoTdgZpHSub5NDQcMkHPa-rK5GtM_L0f3xK0qliaiONU17WrUs5Jz_XZWbq_QOZMNDPzlShy4B7EC1epzj2bPGEbIcEft-kC4JvjaQ6ySIFTVSGj6fesZEUvevHpoKAUGaKJ8Uiy6SsFY_eBiYr1KT7McPUThwNNcK656Egwb8U"/>
+</div>
+</div>
+</div>
+</div>
+<aside class="md:col-span-4 space-y-8">
+<!-- Redemption Card -->
+<div class="bg-primary text-on-primary p-8 rounded-xl editorial-shadow sticky top-28">
+<span class="font-label text-[10px] uppercase tracking-[0.2rem] opacity-60">Redemption Status</span>
+<h4 class="font-headline text-2xl mt-2 mb-6">Active Offer</h4>
+<ul class="space-y-4 mb-8">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim mt-0.5 text-sm" data-icon="check_circle">check_circle</span>
+<span class="text-xs font-light opacity-90">Valid for 1 member + 3 guests</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim mt-0.5 text-sm" data-icon="check_circle">check_circle</span>
+<span class="text-xs font-light opacity-90">One redemption per 24 hours</span>
+</li>
+</ul>
+<button class="w-full bg-tertiary-fixed text-on-tertiary-fixed py-4 rounded-DEFAULT font-label font-bold uppercase tracking-widest text-xs hover:scale-[0.98] transition-transform flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" data-icon="qr_code">qr_code</span>
+                        Redeem Offer
+                    </button>
+<p class="text-[10px] text-center mt-6 opacity-40 font-label tracking-tighter">
+                        PRESENT DIGITAL CARD TO STAFF UPON ARRIVAL
+                    </p>
+</div>
+<!-- Terms & Conditions -->
+<div class="p-6 border border-outline-variant/15 rounded-xl">
+<h5 class="font-label text-xs uppercase tracking-widest font-bold mb-4">Terms &amp; Conditions</h5>
+<ul class="space-y-3 text-[11px] text-on-surface-variant leading-relaxed font-light">
+<li>• Advance booking recommended via the Juniper Club Concierge.</li>
+<li>• Offer not valid in conjunction with other seasonal promotions.</li>
+<li>• Membership verification required via live digital ID.</li>
+<li>• Smart-elegant dress code strictly enforced by the venue.</li>
+</ul>
+</div>
+</aside>
+</section>
+</main>
+<!-- BottomNavBar (Hidden on desktop as per Shell Visibility rules) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-8 pb-8 pt-4 bg-white/90 dark:bg-emerald-950/90 backdrop-blur-2xl shadow-[0_-4px_24px_rgba(0,36,24,0.06)] rounded-t-3xl">
+<div class="flex flex-col items-center justify-center text-emerald-800/40 dark:text-emerald-200/40 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="style">style</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-emerald-800/40 dark:text-emerald-200/40 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium mt-1">Directory</span>
+</div>
+<!-- Active Tab: Offers -->
+<div class="flex flex-col items-center justify-center text-emerald-900 dark:text-gold-400 font-bold scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="Confirmation_Number" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium mt-1">Offers</span>
+</div>
+<div class="flex flex-col items-center justify-center text-emerald-800/40 dark:text-emerald-200/40 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-sans uppercase tracking-[0.1rem] text-[10px] font-medium mt-1">Profile</span>
+</div>
+</nav>
+<!-- FAB (Suppressed on Details screen as per Contextual FAB Suppression rule) -->
+</body></html>

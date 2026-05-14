@@ -1,0 +1,282 @@
+<main class="pt-24 pb-32 overflow-x-clip bg-ink text-bone">
+
+  <!-- ════ HERO ════ -->
+  <section class="relative">
+    <div class="px-6 md:px-12 pt-6 md:pt-10 flex justify-between items-start jc-reveal">
+      <span class="jc-caption text-gold-400">No. 07 <span class="jc-caption-serif text-bone/85 ml-2">— Drift, after dusk</span></span>
+      <span class="jc-caption text-bone/55 hidden md:inline">A Juniper Club series <span class="jc-caption-serif text-gold-400 ml-2">— Sound</span></span>
+    </div>
+
+    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-12 px-6 md:px-12 mt-12 md:mt-20 items-start">
+      <div aria-hidden="true" class="hidden lg:block absolute right-2 -top-6 select-none jc-reveal pointer-events-none" style="transition-delay: 200ms;">
+        <span class="jc-numeral text-gold-400/25 block leading-none" style="font-size: clamp(14rem, 22vw, 26rem);">VII</span>
+      </div>
+
+      <div class="lg:col-span-9 relative z-10 jc-reveal" style="transition-delay: 80ms;">
+        <p class="jc-caption text-gold-400 mb-6">An after-hours residency</p>
+        <h1 class="font-display tracking-tight leading-[0.86]" style="font-size: clamp(4rem, 13vw, 12rem);">
+          <span class="block text-bone">DRIFT</span>
+          <span class="italic block text-gold-400" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10; font-size: clamp(1.75rem, 5vw, 4.5rem); margin-top:0.25em;">— the room shifts</span>
+        </h1>
+
+        <p class="mt-10 max-w-2xl text-bone/70 text-lg md:text-xl leading-relaxed font-light">
+          When the kitchens have closed and the candles burn lower, the floor opens. <em class="font-display italic text-bone" style="font-variation-settings: 'opsz' 24, 'slnt' -10;">Drift</em> is Juniper Club's late-night sound programme — a small, selectively-booked rotation of DJs across our partner rooms.
+        </p>
+
+        <div class="mt-12 flex flex-wrap gap-4 items-center">
+          <a href="#upcoming" class="jc-btn"><span>See Upcoming</span><span class="material-symbols-outlined !text-base">arrow_outward</span></a>
+          <a href="#residents" class="jc-btn jc-btn--ghost text-bone"><span>Meet the Residents</span></a>
+        </div>
+
+        <div class="mt-12 md:mt-16 flex flex-wrap items-center gap-4 text-bone/55">
+          <span class="block w-12 h-px bg-gold-400/40"></span>
+          <span class="jc-caption-serif text-gold-400/90">From midnight</span>
+          <span class="jc-caption">Members admitted first · Plus-one on the door</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="jc-rule jc-rule--gold mt-16 md:mt-24 mx-6 md:mx-12"/>
+  </section>
+
+  <!-- ════ TICKER — RESIDENT NAMES MARCH ════ -->
+  <section class="mt-12 jc-reveal">
+    <div class="jc-ribbon jc-ribbon--dark" data-bind-drift-marquee>
+      <div class="jc-ribbon-track">
+        <span>Selectors only</span><span class="jc-bullet">●</span>
+        <span>House &amp; downtempo</span><span class="jc-bullet">●</span>
+        <span>From midnight</span><span class="jc-bullet">●</span>
+        <span>The floor, opened</span><span class="jc-bullet">●</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ UPCOMING ════ -->
+  <section id="upcoming" class="mt-24 md:mt-32 px-6 md:px-12 max-w-[1400px] mx-auto scroll-mt-32">
+    <header class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 jc-reveal">
+      <div>
+        <p class="jc-caption text-gold-400 mb-3">No. 01 — Upcoming nights</p>
+        <h2 class="font-display leading-[0.95] tracking-tight text-bone" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem);">
+          On the calendar, <span class="italic text-gold-400" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">unannounced.</span>
+        </h2>
+      </div>
+      <a href="mailto:concierge@juniper.club?subject=DRIFT%20%E2%80%94%20guest%20list" class="jc-caption text-bone border-b border-gold-400/40 hover:border-gold-400 pb-1 self-start md:self-end transition-colors">Request the guest list →</a>
+    </header>
+    <hr class="jc-rule jc-rule--gold mb-12"/>
+
+    <ol class="space-y-6 md:space-y-8" data-bind-drift-upcoming>
+      <!-- Static fallback — replaced when DB returns drift_events rows -->
+      <li class="jc-reveal">
+        <article class="jc-drift-card group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-stretch">
+          <div class="md:col-span-5 jc-card-img aspect-[4/3] md:aspect-auto overflow-hidden relative">
+            <img class="w-full h-full object-cover"
+                 alt="Atmospheric bar interior at night — Drift evening preview"
+                 src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1200&q=80"
+                 loading="lazy"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent"></div>
+            <span class="absolute top-5 left-5 bg-gold-400 text-ink jc-caption px-3 py-1">Sample night</span>
+          </div>
+          <div class="md:col-span-7 flex flex-col justify-between py-2">
+            <div>
+              <div class="flex items-center gap-6 mb-4">
+                <div class="jc-drift-date">
+                  <span class="jc-drift-day">SAT</span>
+                  <span class="jc-drift-num">14</span>
+                  <span class="jc-drift-mon">JUN</span>
+                </div>
+                <div class="border-l border-gold-400/30 pl-6">
+                  <p class="jc-caption text-gold-400/85">From 23:00 till late</p>
+                  <p class="jc-caption-serif text-bone/70 mt-1">A partner venue · TBA</p>
+                </div>
+              </div>
+              <h3 class="font-display text-bone leading-tight tracking-tight mt-6" style="font-size: clamp(2rem, 4vw, 3.25rem);">
+                Velvet Hours <span class="italic text-gold-400" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">— a preview</span>
+              </h3>
+              <p class="text-bone/65 text-base font-light leading-relaxed mt-4 max-w-xl">A look at what a Drift night reads like in this slot — late-set rotation, low light, and the back bar held for members.</p>
+              <p class="jc-caption text-gold-400/70 mt-3">Real dates appear here once added from the console.</p>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="jc-pill">Selector One</span>
+                <span class="jc-pill">Selector Two</span>
+                <span class="jc-pill jc-pill--gold">b2b Resident</span>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-3 mt-8 pt-5 border-t border-bone/10">
+              <a href="mailto:concierge@juniper.club?subject=DRIFT%20%E2%80%94%20guest%20list" class="jc-btn jc-btn--bone"><span class="material-symbols-outlined !text-base">mail</span><span>Join the guest list</span></a>
+              <a href="#residents" class="jc-btn jc-btn--ghost text-bone"><span>Meet the residents</span></a>
+            </div>
+          </div>
+        </article>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ════ RIBBON ════ -->
+  <section class="mt-24 jc-reveal">
+    <div class="jc-ribbon jc-ribbon--dark">
+      <div class="jc-ribbon-track">
+        <span>Hold the room</span><span class="jc-bullet">●</span>
+        <span>Lower the lights</span><span class="jc-bullet">●</span>
+        <span>Let it drift</span><span class="jc-bullet">●</span>
+        <span>Stay later</span><span class="jc-bullet">●</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ RESIDENTS ════ -->
+  <section id="residents" class="mt-24 md:mt-32 px-6 md:px-12 max-w-[1400px] mx-auto scroll-mt-32">
+    <header class="mb-14 jc-reveal">
+      <p class="jc-caption text-gold-400 mb-3">No. 02 — The selectors</p>
+      <h2 class="font-display leading-[0.95] tracking-tight text-bone" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem);">
+        Drift residents, <span class="italic text-gold-400" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">on rotation.</span>
+      </h2>
+      <p class="mt-5 max-w-xl text-bone/65 font-light">A small house — chosen for taste, restraint and a feel for the room. Bookings sit at three sets a month, no more.</p>
+    </header>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14" data-bind-drift-djs>
+      <!-- Static fallback DJs — replaced when DB returns drift_djs rows -->
+      <article class="jc-dj-card jc-reveal group">
+        <figure class="jc-card-img aspect-[3/4] overflow-hidden relative">
+          <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+               alt="DJ behind the booth, low light"
+               src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=900&q=80"
+               loading="lazy"/>
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink to-transparent h-2/5"></div>
+          <span class="absolute bottom-5 left-5 jc-caption text-gold-400">Resident · I</span>
+        </figure>
+        <div class="mt-5">
+          <p class="jc-caption text-bone/55">Selector · House &amp; downtempo</p>
+          <h3 class="font-display text-bone mt-2 leading-tight tracking-tight text-3xl md:text-4xl">Ananya Sen</h3>
+          <p class="jc-caption-serif text-gold-400 mt-1 italic">— under the alias Soft Static</p>
+          <p class="text-bone/70 text-sm font-light leading-relaxed mt-4">Resident at Boiler Room Delhi (2022, 2024). Sets at Magnetic Fields, Sunburn Afterglow, Berlin's Sameheads.</p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="jc-pill">House</span>
+            <span class="jc-pill">Downtempo</span>
+            <span class="jc-pill">Acid</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="jc-dj-card jc-reveal group" style="transition-delay:80ms;">
+        <figure class="jc-card-img aspect-[3/4] overflow-hidden relative">
+          <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+               alt="DJ at work in a dim venue"
+               src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=900&q=80"
+               loading="lazy"/>
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink to-transparent h-2/5"></div>
+          <span class="absolute bottom-5 left-5 jc-caption text-gold-400">Resident · II</span>
+        </figure>
+        <div class="mt-5">
+          <p class="jc-caption text-bone/55">Selector · Deep &amp; dub</p>
+          <h3 class="font-display text-bone mt-2 leading-tight tracking-tight text-3xl md:text-4xl">Kabir Joshi</h3>
+          <p class="jc-caption-serif text-gold-400 mt-1 italic">— under the alias Maitri</p>
+          <p class="text-bone/70 text-sm font-light leading-relaxed mt-4">Boiler Room Mumbai (2023). Long-time resident at Auro Kitchen &amp; Bar. Spins long arcs of dub-house on vinyl.</p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="jc-pill">Deep House</span>
+            <span class="jc-pill">Dub</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="jc-dj-card jc-reveal group" style="transition-delay:160ms;">
+        <figure class="jc-card-img aspect-[3/4] overflow-hidden relative">
+          <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+               alt="DJ silhouetted against a crowd"
+               src="https://images.unsplash.com/photo-1493676304819-0d7a8d026dcf?auto=format&fit=crop&w=900&q=80"
+               loading="lazy"/>
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink to-transparent h-2/5"></div>
+          <span class="absolute bottom-5 left-5 jc-caption text-gold-400">Resident · III</span>
+        </figure>
+        <div class="mt-5">
+          <p class="jc-caption text-bone/55">Selector · Italo &amp; cosmic</p>
+          <h3 class="font-display text-bone mt-2 leading-tight tracking-tight text-3xl md:text-4xl">Maya R.</h3>
+          <p class="jc-caption-serif text-gold-400 mt-1 italic">— Italo, cosmic, and the seven-minute edit</p>
+          <p class="text-bone/70 text-sm font-light leading-relaxed mt-4">Played alongside DJ Harvey at Auro. Monthly resident at SAGA, Mumbai. NTS mix series.</p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="jc-pill">Italo</span>
+            <span class="jc-pill">Cosmic Disco</span>
+            <span class="jc-pill">Edits</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ════ SOUND PHILOSOPHY ════ -->
+  <section class="mt-28 md:mt-32 px-6 md:px-12 max-w-[1400px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-16 items-start">
+      <div class="lg:col-span-5 jc-reveal">
+        <p class="jc-caption text-gold-400 mb-3">No. 03 — Programming</p>
+        <h2 class="font-display leading-[0.95] tracking-tight text-bone" style="font-size: clamp(2rem, 4.5vw, 3.5rem);">
+          A sound for <span class="italic text-gold-400" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">the small hours.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+        <div class="border-t border-gold-400/30 pt-5 jc-reveal">
+          <p class="jc-caption text-gold-400 mb-3">Selectors</p>
+          <p class="font-display-sm text-bone text-lg leading-snug">Booked for restraint and feel. No headliners. Sets sit between ninety minutes and three hours.</p>
+        </div>
+        <div class="border-t border-gold-400/30 pt-5 jc-reveal" style="transition-delay:80ms;">
+          <p class="jc-caption text-gold-400 mb-3">The room</p>
+          <p class="font-display-sm text-bone text-lg leading-snug">Always small. Never advertised. The capacity matches the venue's late-night seating, not its dancefloor.</p>
+        </div>
+        <div class="border-t border-gold-400/30 pt-5 jc-reveal" style="transition-delay:160ms;">
+          <p class="jc-caption text-gold-400 mb-3">The door</p>
+          <p class="font-display-sm text-bone text-lg leading-snug">Members enter first. Plus-ones are welcome but counted. The list closes when the room is full.</p>
+        </div>
+        <div class="border-t border-gold-400/30 pt-5 jc-reveal" style="transition-delay:240ms;">
+          <p class="jc-caption text-gold-400 mb-3">The hour</p>
+          <p class="font-display-sm text-bone text-lg leading-snug">From eleven, sometimes ten. Until the venue's licence sleeps — and occasionally a little later.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ ARCHIVE — PAST NIGHTS ════ -->
+  <section id="archive" class="mt-28 md:mt-32 px-6 md:px-12 max-w-[1400px] mx-auto scroll-mt-32">
+    <header class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 jc-reveal">
+      <div>
+        <p class="jc-caption text-gold-400 mb-3">No. 04 — Archive</p>
+        <h2 class="font-display leading-[0.95] tracking-tight text-bone" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem);">
+          Drift, <span class="italic text-gold-400" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">in retrospect.</span>
+        </h2>
+      </div>
+      <span class="jc-caption text-bone/55 self-start md:self-end">Sixteen nights · Eight rooms · Twenty-two selectors</span>
+    </header>
+    <hr class="jc-rule jc-rule--gold mb-8"/>
+
+    <ul class="grid grid-cols-1" data-bind-drift-past>
+      <li class="jc-reveal">
+        <article class="grid grid-cols-12 gap-4 md:gap-8 items-center py-6 md:py-7 border-b border-bone/10 group">
+          <span class="col-span-3 md:col-span-1 font-display italic text-gold-400/60 text-xl md:text-3xl" style="font-variation-settings: 'opsz' 36, 'slnt' -10;">i.</span>
+          <div class="col-span-9 md:col-span-3">
+            <p class="jc-caption text-gold-400/85 mb-1">28 Sep 2025</p>
+            <p class="font-display text-bone text-xl md:text-2xl leading-tight">Obsidian Hours · Vol. II</p>
+          </div>
+          <p class="col-span-12 md:col-span-4 text-bone/65 text-sm font-light">Obsidian, Bandra — a cellar set, condensation on the glass, four hours.</p>
+          <p class="col-span-12 md:col-span-4 md:text-right">
+            <span class="jc-caption text-bone/50 block">Selectors</span>
+            <span class="font-display italic text-bone text-base md:text-lg" style="font-variation-settings: 'opsz' 24, 'slnt' -10;">Maya R. · Kabir Joshi</span>
+          </p>
+        </article>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ════ BOOK / INQUIRE ════ -->
+  <section class="mt-28 md:mt-32 px-6 md:px-12 max-w-[1400px] mx-auto">
+    <div class="relative bg-gold-400 text-ink px-8 md:px-20 py-16 md:py-24 overflow-hidden">
+      <span aria-hidden="true" class="absolute -right-12 -top-12 jc-numeral text-ink/20 leading-none" style="font-size: clamp(14rem, 22vw, 28rem);">VIII</span>
+      <div class="relative z-10 jc-reveal max-w-2xl">
+        <p class="jc-caption text-ink/70 mb-5">No. 05 — Two ways in</p>
+        <h2 class="font-display text-ink leading-[0.95] tracking-tight" style="font-size: clamp(2.25rem, 5.5vw, 4.5rem);">
+          For the floor, or <span class="italic" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">the booth.</span>
+        </h2>
+        <p class="mt-6 text-ink/70 max-w-lg text-base font-light leading-relaxed">Members on the guest list, selectors on the booking list. Tell us which one — and bring something to listen to.</p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="mailto:concierge@juniper.club?subject=DRIFT%20%E2%80%94%20guest%20list&amp;body=Date%3A%20%0AParty%20size%3A%20%0ANotes%3A%20" class="jc-btn"><span class="material-symbols-outlined !text-base">mail</span><span>Join the guest list</span></a>
+          <a href="mailto:bookings@juniper.club?subject=DRIFT%20%E2%80%94%20selector%20submission&amp;body=Name%3A%20%0AAlias%3A%20%0AMix%20link%3A%20%0AGenres%3A%20%0ANotes%3A%20" class="jc-btn jc-btn--ghost text-ink"><span class="material-symbols-outlined !text-base">graphic_eq</span><span>Submit a mix</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
