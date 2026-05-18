@@ -18,10 +18,12 @@ Once you complete the steps below, sign-up, login, the admin panel and the venue
 
 1. In the Supabase dashboard, open the project → left sidebar → **SQL Editor**.
 2. Click **New query** and paste the entire contents of `db/001_schema.sql` from this build, then **Run**.
-3. Open another **New query**, paste `db/002_seed_venues.sql`, then **Run**.
+3. Repeat with a **New query** for each remaining migration, **in order**:
+   `db/002_seed_venues.sql` → `db/003_avatars.sql` → `db/004_lock_profile_self_update.sql` → `db/005_cms.sql` → `db/006_drift.sql`.
 
-You should now have two tables: `profiles` and `venues` (with 10 rows).
-Verify in the **Table Editor** sidebar.
+You should now have these tables: `profiles`, `venues` (10 rows), `client_logos`,
+`member_favourites`, `drift_djs` and `drift_events`. Verify in the **Table Editor** sidebar.
+Every migration is idempotent — safe to re-run if you are unsure whether it applied.
 
 ## 3. Configure auth settings
 
@@ -81,4 +83,4 @@ You can now: review members, toggle subscription status/tier, and add/edit/featu
 - Custom domain (e.g. `juniper.club`)
 - Phase out the Stitch CDN images on the home/profile/offers pages
 
-> **Migrations:** run `db/001_schema.sql` → `db/002_seed_venues.sql` → `db/003_avatars.sql` → `db/004_lock_profile_self_update.sql`. The 004 migration is required — without it a signed-in member can self-promote their subscription tier/status via the public API.
+> **Migrations:** run `db/001_schema.sql` → `db/002_seed_venues.sql` → `db/003_avatars.sql` → `db/004_lock_profile_self_update.sql` → `db/005_cms.sql` → `db/006_drift.sql`. The 004 migration is required — without it a signed-in member can self-promote their subscription tier/status via the public API. 005 and 006 add the editable content tables (partner logos, member favourites, DRIFT DJs and events); without them the admin console's Logos / Favourites / Drift tabs fail with "Could not find the table … in the schema cache".

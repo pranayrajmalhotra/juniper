@@ -3,6 +3,7 @@ node_modules/
 
 # Build archives produced for Hostinger deploys
 build_*.zip
+juniper-site-*.zip
 
 # Local dev / editor / OS
 .claude/

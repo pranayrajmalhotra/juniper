@@ -1,5 +1,5 @@
-// /offers.html — flatten every venue's perks into individual offer cards.
-// One card per (venue, perk) pair. Filter by category, free-text search.
+// /offers.html — one card per venue, each highlighting that venue's headline offer.
+// Cards link through to venue.html?slug=<slug>. Filter by category, free-text search.
 (() => {
   const $  = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
@@ -9,78 +9,68 @@
   }[c]));
 
   const CATEGORY_LABELS = {
-    cocktail:  "Cocktail",
+    cocktail:  "Cocktail Bar",
     speakeasy: "Speakeasy",
     lounge:    "Lounge",
-    wine:      "Wine",
+    wine:      "Wine Bar",
     gastropub: "Gastropub",
     cafe:      "Café",
     wellness:  "Wellness",
   };
   const titleCase = s => CATEGORY_LABELS[s] || (s ? s.charAt(0).toUpperCase() + s.slice(1) : "");
 
-  // Pick a Material Symbols icon based on the perk text or venue category.
+  // Pick a Material Symbols icon for the headline perk.
   function iconFor(perkText, category) {
     const t = (perkText || "").toLowerCase();
-    if (/(complimentary|free|on the house|welcome)/.test(t)) return "redeem";
-    if (/(% off|discount|half[- ]off|tab credit)/.test(t)) return "percent";
-    if (/(priority|reserved|table|booking|seat)/.test(t)) return "event_seat";
-    if (/(guest|pass|entry|access)/.test(t)) return "key";
-    if (/(flight|tasting|sommelier|wine)/.test(t)) return "wine_bar";
-    if (/(cocktail|bartender|whisky|gin)/.test(t)) return "local_bar";
-    if (/(menu|dessert|kitchen|banchan)/.test(t)) return "restaurant";
+    if (/(complimentary|free|on the house|welcome|amuse|champagne)/.test(t)) return "redeem";
+    if (/(% off|discount|half[- ]off|credit|waived)/.test(t)) return "percent";
+    if (/(priority|reserved|table|booking|seat|terrace)/.test(t)) return "event_seat";
+    if (/(guest|pass|entry|access|member-only|member only)/.test(t)) return "key";
+    if (/(flight|tasting|sommelier|wine|pairing)/.test(t)) return "wine_bar";
+    if (/(cocktail|bartender|whisky|gin|negroni|cigar)/.test(t)) return "local_bar";
+    if (/(menu|dessert|kitchen|tapas|food)/.test(t)) return "restaurant";
+    if (/(tour|garden|music|band)/.test(t)) return "interests";
     if (category === "wellness") return "spa";
     return "confirmation_number";
   }
 
-  let allOffers = [];
-  let allCats   = [];
+  const perksOf = v => (Array.isArray(v.perks) ? v.perks : [])
+    .map(p => String(p || "").trim()).filter(Boolean);
+
+  let allVenues   = [];
+  let allCats     = [];
   let currentCat   = "";
   let currentQuery = "";
 
-  function flatten(venues) {
-    const out = [];
-    for (const v of venues) {
-      const perks = Array.isArray(v.perks) ? v.perks : [];
-      for (let i = 0; i < perks.length; i++) {
-        const text = String(perks[i] || "").trim();
-        if (!text) continue;
-        out.push({
-          id:       `${v.id || v.slug || v.name}-${i}`,
-          perk:     text,
-          venue:    v.name,
-          area:     v.area,
-          city:     v.city,
-          category: v.category,
-          image:    v.image_url,
-          featured: !!v.is_featured,
-        });
-      }
-    }
-    return out;
-  }
-
   function applyFilters() {
     const q = currentQuery.trim().toLowerCase();
-    return allOffers.filter(o => {
-      if (currentCat && o.category !== currentCat) return false;
+    return allVenues.filter(v => {
+      if (currentCat && v.category !== currentCat) return false;
       if (q) {
-        const hay = `${o.perk} ${o.venue} ${o.area} ${o.category}`.toLowerCase();
+        const hay = `${v.name} ${v.area} ${v.city} ${v.category} ${perksOf(v).join(" ")} ${v.description || ""}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
   }
 
+  function sortVenues(rows) {
+    return [...rows].sort((a, b) =>
+      (b.is_featured ? 1 : 0) - (a.is_featured ? 1 : 0) ||
+      (b.display_order ?? 0) - (a.display_order ?? 0) ||
+      String(a.name).localeCompare(String(b.name))
+    );
+  }
+
   function renderCats(cats) {
     const wrap = $("#offers-cats");
     if (!wrap) return;
-    const pillBase = "jc-cat-pill px-5 py-2 rounded-full font-label text-[10px] font-extrabold uppercase tracking-[0.18rem] whitespace-nowrap transition-colors";
-    const active   = "bg-primary text-on-primary";
-    const idle     = "bg-surface-container-low text-on-surface-variant border border-outline-variant/15 hover:bg-surface-container";
-    const items = [{ slug: "", label: "All" }, ...cats.map(c => ({ slug: c, label: titleCase(c) }))];
+    const base   = "jc-cat-pill px-5 py-2 rounded-full font-label text-[10px] font-extrabold uppercase tracking-[0.18rem] whitespace-nowrap transition-colors";
+    const active = "bg-primary text-on-primary";
+    const idle   = "bg-surface-container-low text-on-surface-variant border border-outline-variant/15 hover:bg-surface-container";
+    const items  = [{ slug: "", label: "All" }, ...cats.map(c => ({ slug: c, label: titleCase(c) }))];
     wrap.innerHTML = items.map(it => {
-      const klass = it.slug === currentCat ? `${pillBase} ${active}` : `${pillBase} ${idle}`;
+      const klass = it.slug === currentCat ? `${base} ${active}` : `${base} ${idle}`;
       return `<button class="${klass}" data-cat="${escHtml(it.slug)}">${escHtml(it.label)}</button>`;
     }).join("");
     $$(".jc-cat-pill", wrap).forEach(btn => btn.addEventListener("click", () => {
@@ -90,40 +80,48 @@
     }));
   }
 
-  function cardHtml(o) {
-    const img = o.image || "assets/logo.png";
-    const cat = titleCase(o.category);
-    const icon = iconFor(o.perk, o.category);
+  function cardHtml(v) {
+    const perks    = perksOf(v);
+    const headline = perks[0] || "Member access";
+    const more     = Math.max(0, perks.length - 1);
+    const moreText = more > 0 ? `+ ${more} more benefit${more > 1 ? "s" : ""}` : "Member venue";
+    const cat      = titleCase(v.category);
+    const img      = v.image_url || "assets/logo.png";
+    const href     = v.slug ? `venue.html?slug=${encodeURIComponent(v.slug)}` : "venue.html";
+    const loc      = [v.area, v.city].filter(Boolean).join(" · ");
+    const ring     = v.is_featured ? " ring-1 ring-tertiary-fixed/40" : "";
     return `
-      <article class="group bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow border border-outline-variant/10 hover:-translate-y-1 transition-transform duration-300">
+      <a href="${href}" class="jc-offer-card group bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow border border-outline-variant/10 hover:-translate-y-1 transition-transform duration-300 flex flex-col${ring}">
         <div class="relative aspect-[16/10] overflow-hidden">
-          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${escHtml(img)}" alt="${escHtml(o.venue)}" loading="lazy"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${escHtml(img)}" alt="${escHtml(v.name)}" loading="lazy"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/75 via-primary/10 to-transparent"></div>
           <div class="absolute top-4 left-4 flex gap-2">
-            ${cat ? `<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">${escHtml(cat)}</span>` : ""}
-            ${o.featured ? `<span class="bg-primary text-on-primary font-label text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Featured</span>` : ""}
+            ${cat ? `<span class="bg-bone text-primary jc-caption px-3 py-1">${escHtml(cat)}</span>` : ""}
+            ${v.is_featured ? `<span class="bg-tertiary-fixed text-on-tertiary-fixed jc-caption px-3 py-1">Featured</span>` : ""}
+          </div>
+          <div class="absolute bottom-4 left-5 right-5 text-bone">
+            <h3 class="font-display tracking-tight leading-tight" style="font-size: clamp(1.5rem, 2.4vw, 1.8rem);">${escHtml(v.name)}</h3>
+            <p class="jc-caption text-bone/75 mt-1">${escHtml(loc)}</p>
           </div>
         </div>
-        <div class="p-6 flex flex-col gap-4">
+        <div class="p-6 flex flex-col grow">
+          <p class="jc-caption text-secondary mb-3">Headline Offer</p>
           <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-primary text-2xl shrink-0 mt-0.5">${icon}</span>
-            <h3 class="font-headline text-xl text-primary leading-tight">${escHtml(o.perk)}</h3>
+            <span class="material-symbols-outlined text-tertiary-fixed-dim shrink-0 mt-0.5">${iconFor(headline, v.category)}</span>
+            <p class="font-display-sm text-primary text-lg leading-snug">${escHtml(headline)}</p>
           </div>
-          <div class="mt-2 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
-            <div class="min-w-0">
-              <p class="font-medium text-sm text-on-surface truncate">${escHtml(o.venue)}</p>
-              <p class="font-label text-[10px] uppercase tracking-widest text-secondary mt-0.5 truncate">${escHtml(o.area || "")}${o.city ? ` · ${escHtml(o.city)}` : ""}</p>
-            </div>
-            <span class="material-symbols-outlined text-primary shrink-0 group-hover:translate-x-1 transition-transform">arrow_outward</span>
+          <div class="mt-auto pt-5 flex items-center justify-between">
+            <span class="jc-caption text-primary/50">${escHtml(moreText)}</span>
+            <span class="font-label text-[10px] uppercase tracking-[0.2em] font-bold text-primary inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">View venue <span class="material-symbols-outlined !text-sm">arrow_outward</span></span>
           </div>
         </div>
-      </article>`;
+      </a>`;
   }
 
   function emptyHtml(reason, detail) {
     const map = {
-      "no-match":   { icon: "search_off",          title: "No offers match.",     body: "Try a different category or clear the search." },
-      "no-data":    { icon: "confirmation_number", title: "No offers yet.",       body: "Check back soon — partners are joining each week." },
+      "no-match":   { icon: "search_off",          title: "No venues match.",        body: "Try a different category or clear the search." },
+      "no-data":    { icon: "confirmation_number", title: "No offers yet.",          body: "Check back soon — partners are joining each week." },
       "no-config":  { icon: "settings",            title: "Backend not configured.", body: "js/config.js is missing the Supabase URL or key." },
       "fetch-fail": { icon: "cloud_off",           title: "Couldn't load offers.",   body: detail || "Check your connection and reload." },
     };
@@ -141,16 +139,16 @@
     if (!el) return;
     if (!total) { el.textContent = ""; return; }
     el.textContent = shown === total
-      ? `${total} offer${total === 1 ? "" : "s"} active.`
-      : `Showing ${shown} of ${total} offer${total === 1 ? "" : "s"}.`;
+      ? `${total} venue${total === 1 ? "" : "s"} · the full list.`
+      : `Showing ${shown} of ${total} venue${total === 1 ? "" : "s"}.`;
   }
 
   function rerender() {
     const grid = $("#offers-grid");
     if (!grid) return;
-    const filtered = applyFilters();
-    setCount(filtered.length, allOffers.length);
-    if (!allOffers.length) { grid.innerHTML = emptyHtml("no-data"); return; }
+    const filtered = sortVenues(applyFilters());
+    setCount(filtered.length, allVenues.length);
+    if (!allVenues.length) { grid.innerHTML = emptyHtml("no-data"); return; }
     if (!filtered.length)  { grid.innerHTML = emptyHtml("no-match"); return; }
     grid.innerHTML = filtered.map(cardHtml).join("");
   }
@@ -170,22 +168,22 @@
     const grid = $("#offers-grid");
     if (!window.SB) {
       console.warn("[JC offers] window.SB is null — Supabase client not initialized.");
-      if (grid) grid.innerHTML = emptyHtml("no-config");
-      return;
+      return; // leave the static fallback cards in place
     }
     try {
       const { data, error } = await window.SB
         .from("venues")
-        .select("id,slug,name,area,city,category,image_url,perks,is_featured,is_published,display_order")
+        .select("id,slug,name,area,city,category,description,image_url,perks,is_featured,is_published,display_order")
         .eq("is_published", true)
         .order("is_featured",   { ascending: false })
         .order("display_order", { ascending: false })
         .order("name",          { ascending: true })
         .limit(200);
       if (error) throw error;
+      if (!data || !data.length) { if (grid) grid.innerHTML = emptyHtml("no-data"); return; }
 
-      allOffers = flatten(data || []);
-      allCats   = [...new Set(allOffers.map(o => o.category).filter(Boolean))].sort();
+      allVenues = data;
+      allCats   = [...new Set(allVenues.map(v => v.category).filter(Boolean))].sort();
       renderCats(allCats);
       rerender();
     } catch (e) {

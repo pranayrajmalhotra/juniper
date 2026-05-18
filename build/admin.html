@@ -71,6 +71,7 @@
     <button class="tab-btn px-6 py-2 rounded-full font-label text-[11px] uppercase tracking-[0.16em] font-bold transition-colors" data-tab="add">Add Venue</button>
     <button class="tab-btn px-6 py-2 rounded-full font-label text-[11px] uppercase tracking-[0.16em] font-bold transition-colors" data-tab="logos">Logos</button>
     <button class="tab-btn px-6 py-2 rounded-full font-label text-[11px] uppercase tracking-[0.16em] font-bold transition-colors" data-tab="favourites">Favourites</button>
+    <button class="tab-btn px-6 py-2 rounded-full font-label text-[11px] uppercase tracking-[0.16em] font-bold transition-colors" data-tab="content">Content</button>
     <button class="tab-btn px-6 py-2 rounded-full font-label text-[11px] uppercase tracking-[0.16em] font-bold transition-colors" data-tab="drift-events">Drift · Events</button>
     <button class="tab-btn px-6 py-2 rounded-full font-label text-[11px] uppercase tracking-[0.16em] font-bold transition-colors" data-tab="drift-djs">Drift · DJs</button>
   </nav>
@@ -107,7 +108,7 @@
   <!-- ===================== ADD VENUE TAB ===================== -->
   <section id="tab-add" class="tab-panel hidden">
     <form id="venue-form" class="bg-surface-container-lowest rounded-xl editorial-shadow p-8 max-w-3xl space-y-5">
-      <h2 class="font-headline text-2xl text-primary mb-2">Add a venue</h2>
+      <h2 id="venue-form-title" class="font-headline text-2xl text-primary mb-2">Add a venue</h2>
       <p class="text-on-surface-variant text-sm">Fields marked with • are required.</p>
 
       <div class="grid md:grid-cols-2 gap-5">
@@ -205,7 +206,7 @@
 
       <!-- Add logo form -->
       <form id="logo-form" class="bg-surface-container-lowest rounded-xl editorial-shadow p-6 space-y-4 self-start">
-        <h2 class="font-headline text-xl text-primary mb-1">Add a logo</h2>
+        <h2 id="logo-form-title" class="font-headline text-xl text-primary mb-1">Add a logo</h2>
         <p class="text-on-surface-variant text-xs">Shows in the partner marquee on Home + Directory.</p>
 
         <div>
@@ -277,7 +278,7 @@
       </div>
 
       <form id="favourite-form" class="bg-surface-container-lowest rounded-xl editorial-shadow p-6 space-y-4 self-start">
-        <h2 class="font-headline text-xl text-primary mb-1">Add a favourite</h2>
+        <h2 id="favourite-form-title" class="font-headline text-xl text-primary mb-1">Add a favourite</h2>
         <p class="text-on-surface-variant text-xs">Shows in the "Quietly, enduringly, ours." list on Home.</p>
 
         <div>
@@ -335,7 +336,7 @@
       </div>
 
       <form id="drift-event-form" class="lg:col-span-2 bg-surface-container-lowest rounded-xl editorial-shadow p-6 space-y-4 self-start">
-        <h2 class="font-headline text-xl text-primary mb-1">Add a DRIFT night</h2>
+        <h2 id="drift-event-form-title" class="font-headline text-xl text-primary mb-1">Add a DRIFT night</h2>
         <p class="text-on-surface-variant text-xs">Upcoming events appear at the top of the Drift page; past nights move to the archive automatically once the date is in the past.</p>
 
         <div>
@@ -424,7 +425,7 @@
       </div>
 
       <form id="drift-dj-form" class="lg:col-span-2 bg-surface-container-lowest rounded-xl editorial-shadow p-6 space-y-4 self-start">
-        <h2 class="font-headline text-xl text-primary mb-1">Add a resident DJ</h2>
+        <h2 id="drift-dj-form-title" class="font-headline text-xl text-primary mb-1">Add a resident DJ</h2>
         <p class="text-on-surface-variant text-xs">These appear under "Drift residents, on rotation." with portrait, credentials and links.</p>
 
         <div class="grid grid-cols-2 gap-3">
@@ -490,6 +491,19 @@
       </form>
     </div>
   </section>
+
+  <!-- ===================== CONTENT TAB ===================== -->
+  <section id="tab-content" class="tab-panel hidden">
+    <div class="bg-surface-container-lowest rounded-xl editorial-shadow p-6 md:p-8">
+      <h2 class="font-headline text-2xl text-primary mb-1">Site content</h2>
+      <p class="text-on-surface-variant text-sm mb-6">Every editable section of copy across the public site. Edits save as you leave each field and go live on the next page load.</p>
+      <div class="flex items-center gap-3 mb-7">
+        <label for="content-page" class="font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant">Page</label>
+        <select id="content-page" class="bg-surface-container-low border border-outline-variant/30 rounded px-3 py-2 text-sm"></select>
+      </div>
+      <div id="content-list" class="space-y-9"></div>
+    </div>
+  </section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -517,6 +531,131 @@
   function fmtDate(s) { try { return new Date(s).toLocaleDateString(); } catch { return ""; } }
   function escHtml(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 
+  // ──────────────────────────────────────────────────────────
+  //  Add / Edit mode — shared controllers
+  // ──────────────────────────────────────────────────────────
+  function showTab(id) {
+    $$(".tab-btn").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === id ? "true" : "false"));
+    $$(".tab-panel").forEach(p => p.classList.toggle("hidden", p.id !== `tab-${id}`));
+  }
+
+  // An editor flips a form between "add" and "edit" modes. While editing it
+  // holds the row id so the submit handler knows to UPDATE instead of INSERT.
+  function makeEditor(titleEl, submitBtn, labels) {
+    let editId = null;
+    const resetBtn = submitBtn.form ? submitBtn.form.querySelector('button[type="reset"]') : null;
+    return {
+      get id() { return editId; },
+      isEditing() { return editId != null; },
+      begin(id) {
+        editId = id;
+        if (titleEl) { titleEl.textContent = labels.editTitle; titleEl.scrollIntoView({ behavior: "smooth", block: "center" }); }
+        submitBtn.textContent = labels.editBtn;
+        if (resetBtn) resetBtn.textContent = "Cancel";
+      },
+      end() {
+        editId = null;
+        if (titleEl) titleEl.textContent = labels.addTitle;
+        submitBtn.textContent = labels.addBtn;
+        if (resetBtn) resetBtn.textContent = "Reset";
+      },
+    };
+  }
+
+  const venueEditor = makeEditor($("#venue-form-title"), $("#v-submit"),
+    { addTitle: "Add a venue", editTitle: "Edit venue", addBtn: "Add venue", editBtn: "Save changes" });
+  const logoEditor = makeEditor($("#logo-form-title"), $("#l-submit"),
+    { addTitle: "Add a logo", editTitle: "Edit logo", addBtn: "Add logo", editBtn: "Save changes" });
+  const favEditor = makeEditor($("#favourite-form-title"), $("#f-submit"),
+    { addTitle: "Add a favourite", editTitle: "Edit favourite", addBtn: "Add favourite", editBtn: "Save changes" });
+  const driftEventEditor = makeEditor($("#drift-event-form-title"), $("#de-submit"),
+    { addTitle: "Add a DRIFT night", editTitle: "Edit DRIFT night", addBtn: "Add event", editBtn: "Save changes" });
+  const driftDjEditor = makeEditor($("#drift-dj-form-title"), $("#dj-submit"),
+    { addTitle: "Add a resident DJ", editTitle: "Edit resident DJ", addBtn: "Add DJ", editBtn: "Save changes" });
+
+  // The native reset button doubles as "Cancel editing" — leaving edit mode.
+  $("#venue-form").addEventListener("reset", () => { venueEditor.end(); delete $("#v-slug").dataset.touched; });
+  $("#logo-form").addEventListener("reset", () => logoEditor.end());
+  $("#favourite-form").addEventListener("reset", () => favEditor.end());
+  $("#drift-event-form").addEventListener("reset", () => { driftEventEditor.end(); $("#de-image-preview").classList.add("hidden"); });
+  $("#drift-dj-form").addEventListener("reset", () => { driftDjEditor.end(); $("#dj-image-preview").classList.add("hidden"); });
+
+  // ISO timestamp → value accepted by <input type="datetime-local"> (local tz).
+  function toDateInput(iso) {
+    if (!iso) return "";
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return "";
+    const p = n => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
+  }
+  function showImagePreview(previewId, src) {
+    const prev = $(previewId);
+    if (!prev) return;
+    if (src) { prev.classList.remove("hidden"); prev.querySelector("img").src = src; }
+    else prev.classList.add("hidden");
+  }
+
+  function fillVenueForm(v) {
+    $("#v-name").value = v.name || "";
+    $("#v-slug").value = v.slug || "";
+    $("#v-slug").dataset.touched = "1";
+    $("#v-category").value = v.category || "cocktail";
+    $("#v-area").value = v.area || "";
+    $("#v-city").value = v.city || "Delhi";
+    $("#v-order").value = v.display_order ?? 50;
+    $("#v-description").value = v.description || "";
+    $("#v-image").value = v.image_url || "";
+    $("#v-perks").value = (v.perks || []).join("\n");
+    $("#v-featured").checked = !!v.is_featured;
+    $("#v-published").checked = !!v.is_published;
+  }
+  function fillLogoForm(r) {
+    $("#l-label").value = r.label || "";
+    $("#l-variant").value = r.variant || "serif";
+    $("#l-mark").value = r.mark || "";
+    $("#l-subline").value = r.subline || "";
+    $("#l-order").value = r.display_order ?? 50;
+    $("#l-published").checked = !!r.is_published;
+  }
+  function fillFavouriteForm(r) {
+    $("#f-name").value = r.name || "";
+    $("#f-category").value = r.category || "";
+    $("#f-description").value = r.description || "";
+    $("#f-benefit").value = r.benefit || "";
+    $("#f-order").value = r.display_order ?? 20;
+    $("#f-published").checked = !!r.is_published;
+  }
+  function fillDriftEventForm(r) {
+    $("#de-title").value = r.title || "";
+    $("#de-subtitle").value = r.subtitle || "";
+    $("#de-date").value = toDateInput(r.event_date);
+    $("#de-order").value = r.display_order ?? 50;
+    $("#de-venue").value = r.venue_name || "";
+    $("#de-area").value = r.venue_area || "";
+    $("#de-city").value = r.city || "Delhi";
+    $("#de-description").value = r.description || "";
+    $("#de-lineup").value = (r.lineup || []).join("\n");
+    $("#de-ticket").value = r.ticket_url || "";
+    $("#de-image-file").value = "";
+    $("#de-image-url").value = r.cover_image_url || "";
+    showImagePreview("#de-image-preview", r.cover_image_url);
+  }
+  function fillDriftDjForm(r) {
+    $("#dj-name").value = r.name || "";
+    $("#dj-alias").value = r.alias || "";
+    $("#dj-tagline").value = r.tagline || "";
+    $("#dj-credentials").value = r.credentials || "";
+    $("#dj-bio").value = r.bio || "";
+    $("#dj-genres").value = (r.genres || []).join(", ");
+    $("#dj-ig").value = r.instagram_url || "";
+    $("#dj-sc").value = r.soundcloud_url || "";
+    $("#dj-order").value = r.display_order ?? 50;
+    $("#dj-published").checked = !!r.is_published;
+    $("#dj-image-file").value = "";
+    $("#dj-image-url").value = r.image_url || "";
+    showImagePreview("#dj-image-preview", r.image_url);
+  }
+
   // ---- Init ----
   (async () => {
     me = await JCAuth.requireAdmin("login.html");
@@ -526,17 +665,72 @@
     $("#shell").classList.remove("hidden");
     $("#adminEmail").textContent = me.email;
 
-    await Promise.all([loadStats(), loadMembers(), loadVenues(), loadLogos(), loadFavourites(), loadDriftEvents(), loadDriftDjs()]);
+    await Promise.all([loadStats(), loadMembers(), loadVenues(), loadLogos(), loadFavourites(), loadDriftEvents(), loadDriftDjs(), loadContent()]);
   })();
 
   $("#signOut").addEventListener("click", async () => { await JCAuth.signOut(); location.href = "index.html"; });
 
   // ---- Tabs ----
   $$(".tab-btn").forEach(btn => btn.addEventListener("click", () => {
-    $$(".tab-btn").forEach(b => b.setAttribute("aria-selected", b === btn ? "true" : "false"));
     const id = btn.dataset.tab;
-    $$(".tab-panel").forEach(p => p.classList.toggle("hidden", p.id !== `tab-${id}`));
+    // Opening the venue form from the tab bar should always be a fresh "add".
+    if (id === "add" && venueEditor.isEditing()) $("#venue-form").reset();
+    showTab(id);
   }));
+
+  // ---- Content (site_content) ----
+  const PAGE_LABELS = { home:"Home", directory:"Directory", offers:"Offers", venue:"Venue", events:"Events", drift:"Drift", support:"Support" };
+  let contentRows = [];
+
+  function renderContent(page) {
+    const list = $("#content-list");
+    const rows = contentRows.filter(r => r.page === page);
+    if (!rows.length) { list.innerHTML = `<p class="text-on-surface-variant text-sm">No editable content for this page.</p>`; return; }
+    const order = [];
+    const bySection = {};
+    for (const r of rows) {
+      if (!bySection[r.section]) { bySection[r.section] = []; order.push(r.section); }
+      bySection[r.section].push(r);
+    }
+    list.innerHTML = order.map(sec => {
+      const fields = bySection[sec].map(r => {
+        const v = escHtml(r.value || "");
+        const control = (r.kind === "longtext")
+          ? `<textarea data-id="${r.id}" rows="3" class="content-field w-full px-3 py-2 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50 text-sm">${v}</textarea>`
+          : `<input data-id="${r.id}" type="text" value="${v}" ${r.kind === "image" ? 'placeholder="Image URL — blank keeps the current image"' : ''} class="content-field w-full px-3 py-2 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50 text-sm"/>`;
+        return `<div>
+          <label class="block font-label text-[10px] uppercase tracking-[0.14em] font-bold text-on-surface-variant mb-1.5">${escHtml(r.label)}</label>
+          ${control}
+        </div>`;
+      }).join("");
+      return `<div>
+        <p class="font-label text-[11px] uppercase tracking-[0.18em] font-bold text-primary border-b border-outline-variant/20 pb-2 mb-4">${escHtml(sec)}</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">${fields}</div>
+      </div>`;
+    }).join("");
+  }
+
+  async function loadContent() {
+    const { data, error } = await JCCms.siteContent.listAll();
+    if (error) { toast(error.message, "err"); return; }
+    contentRows = data || [];
+    const sel = $("#content-page");
+    const pages = [...new Set(contentRows.map(r => r.page))];
+    sel.innerHTML = pages.map(p => `<option value="${p}">${escHtml(PAGE_LABELS[p] || p)}</option>`).join("");
+    if (pages.length) renderContent(pages[0]);
+  }
+
+  $("#content-page").addEventListener("change", e => renderContent(e.target.value));
+  $("#content-list").addEventListener("change", async e => {
+    const el = e.target.closest(".content-field");
+    if (!el) return;
+    const id = el.dataset.id;
+    const { error } = await JCCms.siteContent.update(id, { value: el.value });
+    if (error) { toast(error.message, "err"); return; }
+    const row = contentRows.find(r => r.id === id);
+    if (row) row.value = el.value;
+    toast("Content saved");
+  });
 
   // ---- Stats ----
   async function loadStats() {
@@ -624,6 +818,7 @@
           <p class="font-label text-[10px] uppercase tracking-[0.14em] text-secondary mt-1">${escHtml(v.area)} · ${escHtml(v.category)}</p>
           <p class="text-on-surface-variant text-xs mt-3 leading-relaxed flex-1">${escHtml((v.description || "").slice(0, 140))}${(v.description && v.description.length > 140) ? "…" : ""}</p>
           <div class="flex gap-2 mt-4 pt-4 border-t border-outline-variant/10">
+            <button data-id="${v.id}" class="v-edit flex-1 font-label text-[10px] uppercase tracking-[0.14em] font-bold text-secondary hover:text-primary transition-colors">Edit</button>
             <button data-id="${v.id}" class="v-toggle-feat flex-1 font-label text-[10px] uppercase tracking-[0.14em] font-bold text-secondary hover:text-primary transition-colors">${v.is_featured ? "Unfeature" : "Feature"}</button>
             <button data-id="${v.id}" class="v-toggle-pub  flex-1 font-label text-[10px] uppercase tracking-[0.14em] font-bold text-secondary hover:text-primary transition-colors">${v.is_published ? "Unpublish" : "Publish"}</button>
             <button data-id="${v.id}" data-name="${escHtml(v.name)}" class="v-delete font-label text-[10px] uppercase tracking-[0.14em] font-bold text-error hover:underline">Delete</button>
@@ -635,6 +830,13 @@
     $$(".v-toggle-feat", list).forEach(btn => btn.addEventListener("click", () => toggle(btn.dataset.id, "is_featured")));
     $$(".v-toggle-pub",  list).forEach(btn => btn.addEventListener("click", () => toggle(btn.dataset.id, "is_published")));
     $$(".v-delete",      list).forEach(btn => btn.addEventListener("click", () => del(btn.dataset.id, btn.dataset.name)));
+    $$(".v-edit",        list).forEach(btn => btn.addEventListener("click", () => {
+      const v = data.find(x => String(x.id) === btn.dataset.id);
+      if (!v) return;
+      showTab("add");
+      fillVenueForm(v);
+      venueEditor.begin(v.id);
+    }));
   }
 
   async function toggle(id, field) {
@@ -675,9 +877,12 @@
         is_published: $("#v-published").checked,
         display_order: parseInt($("#v-order").value, 10) || 50,
       };
-      const { error } = await JCVenues.create(venue);
+      const wasEditing = venueEditor.isEditing();
+      const { error } = wasEditing
+        ? await JCVenues.update(venueEditor.id, venue)
+        : await JCVenues.create(venue);
       if (error) throw error;
-      toast(`Added ${venue.name}`);
+      toast(wasEditing ? `Updated ${venue.name}` : `Added ${venue.name}`);
       form.reset();
       $("#v-published").checked = true;
       $("#v-order").value = "50";
@@ -689,7 +894,7 @@
     } catch (err) {
       toast(err.message || "Could not save", "err");
     } finally {
-      btn.disabled = false; btn.textContent = "Add venue";
+      btn.disabled = false; btn.textContent = venueEditor.isEditing() ? "Save changes" : "Add venue";
     }
   });
 
@@ -730,6 +935,7 @@
         <td class="px-4 py-3 text-center"><input data-id="${r.id}" type="number" value="${r.display_order}" class="l-order w-16 text-center bg-surface-container-low border border-outline-variant/30 rounded px-1 py-1 text-xs"/></td>
         <td class="px-4 py-3 text-center"><input data-id="${r.id}" type="checkbox" ${r.is_published ? "checked" : ""} class="l-pub rounded border-outline-variant/30"/></td>
         <td class="px-4 py-3 text-right">
+          <button data-id="${r.id}" class="l-edit font-label text-[10px] uppercase tracking-[0.14em] font-bold text-secondary hover:underline mr-3">Edit</button>
           <button data-id="${r.id}" data-name="${escHtml(r.label)}" class="l-delete font-label text-[10px] uppercase tracking-[0.14em] font-bold text-error hover:underline">Delete</button>
         </td>
       </tr>
@@ -748,6 +954,12 @@
       const { error } = await JCCms.logos.remove(btn.dataset.id);
       if (error) toast(error.message, "err"); else { toast("Deleted"); loadLogos(); }
     }));
+    $$(".l-edit", tbody).forEach(btn => btn.addEventListener("click", () => {
+      const row = data.find(x => String(x.id) === btn.dataset.id);
+      if (!row) return;
+      fillLogoForm(row);
+      logoEditor.begin(row.id);
+    }));
   }
 
   $("#logo-form")?.addEventListener("submit", async e => {
@@ -762,15 +974,18 @@
         display_order: parseInt($("#l-order").value, 10) || 50,
         is_published: $("#l-published").checked,
       };
-      const { error } = await JCCms.logos.create(row);
+      const wasEditing = logoEditor.isEditing();
+      const { error } = wasEditing
+        ? await JCCms.logos.update(logoEditor.id, row)
+        : await JCCms.logos.create(row);
       if (error) throw error;
-      toast(`Added ${row.label}`);
+      toast(wasEditing ? `Updated ${row.label}` : `Added ${row.label}`);
       $("#logo-form").reset(); $("#l-published").checked = true; $("#l-order").value = "50";
       loadLogos();
     } catch (err) {
       toast(err.message || "Could not save", "err");
     } finally {
-      btn.disabled = false; btn.textContent = "Add logo";
+      btn.disabled = false; btn.textContent = logoEditor.isEditing() ? "Save changes" : "Add logo";
     }
   });
 
@@ -798,6 +1013,7 @@
         <td class="px-4 py-3 text-center"><input data-id="${r.id}" type="number" value="${r.display_order}" class="f-order w-16 text-center bg-surface-container-low border border-outline-variant/30 rounded px-1 py-1 text-xs"/></td>
         <td class="px-4 py-3 text-center"><input data-id="${r.id}" type="checkbox" ${r.is_published ? "checked" : ""} class="f-pub rounded border-outline-variant/30"/></td>
         <td class="px-4 py-3 text-right">
+          <button data-id="${r.id}" class="f-edit font-label text-[10px] uppercase tracking-[0.14em] font-bold text-secondary hover:underline mr-3">Edit</button>
           <button data-id="${r.id}" data-name="${escHtml(r.name)}" class="f-delete font-label text-[10px] uppercase tracking-[0.14em] font-bold text-error hover:underline">Delete</button>
         </td>
       </tr>
@@ -816,6 +1032,12 @@
       const { error } = await JCCms.favourites.remove(btn.dataset.id);
       if (error) toast(error.message, "err"); else { toast("Deleted"); loadFavourites(); }
     }));
+    $$(".f-edit", tbody).forEach(btn => btn.addEventListener("click", () => {
+      const row = data.find(x => String(x.id) === btn.dataset.id);
+      if (!row) return;
+      fillFavouriteForm(row);
+      favEditor.begin(row.id);
+    }));
   }
 
   $("#favourite-form")?.addEventListener("submit", async e => {
@@ -830,15 +1052,18 @@
         display_order: parseInt($("#f-order").value, 10) || 20,
         is_published: $("#f-published").checked,
       };
-      const { error } = await JCCms.favourites.create(row);
+      const wasEditing = favEditor.isEditing();
+      const { error } = wasEditing
+        ? await JCCms.favourites.update(favEditor.id, row)
+        : await JCCms.favourites.create(row);
       if (error) throw error;
-      toast(`Added ${row.name}`);
+      toast(wasEditing ? `Updated ${row.name}` : `Added ${row.name}`);
       $("#favourite-form").reset(); $("#f-published").checked = true; $("#f-order").value = "20";
       loadFavourites();
     } catch (err) {
       toast(err.message || "Could not save", "err");
     } finally {
-      btn.disabled = false; btn.textContent = "Add favourite";
+      btn.disabled = false; btn.textContent = favEditor.isEditing() ? "Save changes" : "Add favourite";
     }
   });
 
@@ -923,6 +1148,7 @@
           <td class="px-4 py-3 text-xs">${escHtml(r.venue_name)}${r.venue_area ? `<span class="block text-[11px] text-on-surface-variant">${escHtml(r.venue_area)}${r.city ? `, ${escHtml(r.city)}` : ""}</span>` : ""}</td>
           <td class="px-4 py-3 text-center"><input data-id="${r.id}" type="checkbox" ${r.is_published ? "checked" : ""} class="de-pub rounded border-outline-variant/30"/></td>
           <td class="px-4 py-3 text-right">
+            <button data-id="${r.id}" class="de-edit font-label text-[10px] uppercase tracking-[0.14em] font-bold text-secondary hover:underline mr-3">Edit</button>
             <button data-id="${r.id}" data-name="${escHtml(r.title)}" class="de-delete font-label text-[10px] uppercase tracking-[0.14em] font-bold text-error hover:underline">Delete</button>
           </td>
         </tr>`;
@@ -936,6 +1162,12 @@
       if (!confirm(`Delete DRIFT event "${btn.dataset.name}"?`)) return;
       const { error } = await JCCms.driftEvents.remove(btn.dataset.id);
       if (error) toast(error.message, "err"); else { toast("Deleted"); loadDriftEvents(); }
+    }));
+    $$(".de-edit", tbody).forEach(btn => btn.addEventListener("click", () => {
+      const row = data.find(x => String(x.id) === btn.dataset.id);
+      if (!row) return;
+      fillDriftEventForm(row);
+      driftEventEditor.begin(row.id);
     }));
   }
 
@@ -961,9 +1193,12 @@
         display_order:   parseInt($("#de-order").value, 10) || 50,
         is_published:    $("#de-published").checked,
       };
-      const { error } = await JCCms.driftEvents.create(row);
+      const wasEditing = driftEventEditor.isEditing();
+      const { error } = wasEditing
+        ? await JCCms.driftEvents.update(driftEventEditor.id, row)
+        : await JCCms.driftEvents.create(row);
       if (error) throw error;
-      toast(`Added ${row.title}`);
+      toast(wasEditing ? `Updated ${row.title}` : `Added ${row.title}`);
       $("#drift-event-form").reset();
       $("#de-published").checked = true; $("#de-order").value = "50"; $("#de-city").value = "Delhi";
       $("#de-image-preview").classList.add("hidden");
@@ -971,7 +1206,7 @@
     } catch (err) {
       toast(err.message || "Could not save", "err");
     } finally {
-      btn.disabled = false; btn.textContent = "Add event";
+      btn.disabled = false; btn.textContent = driftEventEditor.isEditing() ? "Save changes" : "Add event";
     }
   });
 
@@ -1009,6 +1244,7 @@
           <td class="px-4 py-3 text-center"><input data-id="${r.id}" type="number" value="${r.display_order}" class="dj-order w-16 text-center bg-surface-container-low border border-outline-variant/30 rounded px-1 py-1 text-xs"/></td>
           <td class="px-4 py-3 text-center"><input data-id="${r.id}" type="checkbox" ${r.is_published ? "checked" : ""} class="dj-pub rounded border-outline-variant/30"/></td>
           <td class="px-4 py-3 text-right">
+            <button data-id="${r.id}" class="dj-edit font-label text-[10px] uppercase tracking-[0.14em] font-bold text-secondary hover:underline mr-3">Edit</button>
             <button data-id="${r.id}" data-name="${escHtml(r.name)}" class="dj-delete font-label text-[10px] uppercase tracking-[0.14em] font-bold text-error hover:underline">Delete</button>
           </td>
         </tr>`;
@@ -1026,6 +1262,12 @@
       if (!confirm(`Delete DJ "${btn.dataset.name}"?`)) return;
       const { error } = await JCCms.driftDjs.remove(btn.dataset.id);
       if (error) toast(error.message, "err"); else { toast("Deleted"); loadDriftDjs(); }
+    }));
+    $$(".dj-edit", tbody).forEach(btn => btn.addEventListener("click", () => {
+      const row = data.find(x => String(x.id) === btn.dataset.id);
+      if (!row) return;
+      fillDriftDjForm(row);
+      driftDjEditor.begin(row.id);
     }));
   }
 
@@ -1049,9 +1291,12 @@
         display_order:  parseInt($("#dj-order").value, 10) || 50,
         is_published:   $("#dj-published").checked,
       };
-      const { error } = await JCCms.driftDjs.create(row);
+      const wasEditing = driftDjEditor.isEditing();
+      const { error } = wasEditing
+        ? await JCCms.driftDjs.update(driftDjEditor.id, row)
+        : await JCCms.driftDjs.create(row);
       if (error) throw error;
-      toast(`Added ${row.name}`);
+      toast(wasEditing ? `Updated ${row.name}` : `Added ${row.name}`);
       $("#drift-dj-form").reset();
       $("#dj-published").checked = true; $("#dj-order").value = "50";
       $("#dj-image-preview").classList.add("hidden");
@@ -1059,7 +1304,7 @@
     } catch (err) {
       toast(err.message || "Could not save", "err");
     } finally {
-      btn.disabled = false; btn.textContent = "Add DJ";
+      btn.disabled = false; btn.textContent = driftDjEditor.isEditing() ? "Save changes" : "Add DJ";
     }
   });
 })();

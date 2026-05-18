@@ -42,6 +42,13 @@ const PAGES = [
     scripts: ["js/topnav.js", "js/offers.js"],
   },
   {
+    id: "venue", out: "venue.html",
+    title: "Partner Venue · Juniper Club",
+    description: "A Juniper Club partner venue — member benefits, location and how to redeem your offer.",
+    mainFrag: "venue.main.html",
+    scripts: ["js/topnav.js", "js/venue.js"],
+  },
+  {
     id: "profile", out: "profile.html",
     title: "Member Profile · Juniper Club",
     description: "Manage your Juniper Club membership — subscription, partner benefits, private events and concierge support.",

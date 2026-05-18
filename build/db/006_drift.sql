@@ -82,7 +82,7 @@ create table if not exists public.drift_events (
   description    text,
   lineup         text[] not null default '{}',       -- DJ names as displayed
   ticket_url     text,
-  is_past        boolean generated always as (event_date is not null and event_date < now()) stored,
+  is_past        boolean not null default false,      -- maintained by trg_drift_events_is_past
   is_published   boolean not null default true,
   display_order  integer not null default 0,
   created_at     timestamptz not null default now(),
@@ -122,6 +122,22 @@ create policy "drift_events_admin_update"
 create policy "drift_events_admin_delete"
   on public.drift_events for delete to authenticated
   using (public.is_admin());
+
+-- Keep is_past in sync. A STORED generated column can't be used here: its
+-- expression must be IMMUTABLE and now() is only STABLE. A before-insert/update
+-- trigger maintains the flag instead — created before the seed so seeded rows
+-- get the correct value.
+create or replace function public.drift_events_set_is_past() returns trigger as $$
+begin
+  new.is_past := (new.event_date is not null and new.event_date < now());
+  return new;
+end;
+$$ language plpgsql;
+
+drop trigger if exists trg_drift_events_is_past on public.drift_events;
+create trigger trg_drift_events_is_past
+  before insert or update on public.drift_events
+  for each row execute function public.drift_events_set_is_past();
 
 -- Seed a single upcoming + a single past event so the static fallback never wins
 insert into public.drift_events (title, subtitle, event_date, venue_name, venue_area, city, description, lineup, display_order)

@@ -45,79 +45,159 @@
 </header>
 <main class="pt-24 pb-24 overflow-x-clip">
 
-  <!-- ════ Hero ════ -->
-  <section class="px-6 md:px-12 max-w-[1400px] mx-auto pt-6 md:pt-10">
-    <div class="flex justify-between items-start jc-reveal">
-      <span class="jc-caption text-primary/60">No. 04 <span class="jc-caption-serif text-primary/80 ml-2">— Private Events</span></span>
-      <span class="jc-caption text-primary/60 hidden md:inline">Members only · By inquiry</span>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-x-12 mt-12 md:mt-16 items-end">
-      <div class="lg:col-span-8 jc-reveal" style="transition-delay: 80ms;">
-        <p class="jc-caption text-secondary mb-6">Member-Only · Private Events</p>
-        <h1 class="font-display text-primary tracking-tight leading-[0.92]" style="font-size: clamp(3rem, 8vw, 7.5rem);">
-          <span class="block">Host the room.</span>
-          <span class="italic block" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">Curate the night.</span>
-        </h1>
-        <p class="mt-8 max-w-xl text-on-surface-variant text-lg leading-relaxed font-light">
-          Members may take over partner venues for private gatherings — from twelve-cover tasting menus to <em class="font-display italic" style="font-variation-settings: 'opsz' 24, 'slnt' -10;">full-floor takeovers</em> — with a dedicated concierge planning every detail.
-        </p>
+  <!-- ════ Featured upcoming event ════ -->
+  <section class="px-6 md:px-12 max-w-[1400px] mx-auto mt-10">
+    <header class="flex items-end justify-between gap-6 mb-10 jc-reveal">
+      <div>
+        <p class="jc-caption text-secondary mb-3" data-cms="events.featured.eyebrow">No. 01 — Next on the calendar</p>
+        <h2 class="font-display text-primary leading-[0.95] tracking-tight" style="font-size: clamp(2rem, 4.5vw, 3.5rem);">
+          <span data-cms="events.featured.headline_1">The featured </span><span class="italic" data-cms="events.featured.headline_2" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">evening.</span>
+        </h2>
       </div>
-      <aside aria-hidden="true" class="lg:col-span-4 hidden lg:block jc-reveal" style="transition-delay: 160ms;">
-        <span class="jc-numeral text-primary/25 block leading-none" style="font-size: clamp(10rem, 16vw, 18rem);">IV</span>
-      </aside>
-    </div>
-    <hr class="jc-rule mt-12 md:mt-16"/>
-  </section>
-
-  <!-- ════ Tier cards ════ -->
-  <section class="px-6 md:px-12 max-w-[1400px] mx-auto mt-16 md:mt-24">
-    <header class="mb-12 jc-reveal">
-      <p class="jc-caption text-secondary mb-3">No. 01 — Three ways to gather</p>
-      <h2 class="font-display text-primary leading-[0.95] tracking-tight" style="font-size: clamp(2rem, 4.5vw, 3.5rem);">
-        From a small table <span class="italic" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">to the whole floor.</span>
-      </h2>
+      <span class="jc-caption text-primary/45 hidden md:inline" data-cms="events.featured.aside">Members may reserve</span>
     </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-      <article class="jc-card group border-t border-primary/15 pt-8 jc-reveal">
-        <p class="jc-caption text-primary/55 mb-4">i. Tasting</p>
-        <span class="material-symbols-outlined text-primary !text-3xl mb-6 block">restaurant</span>
-        <h3 class="font-display text-primary leading-tight tracking-tight text-3xl md:text-4xl mb-3">Tasting Tables</h3>
-        <p class="text-on-surface-variant text-base leading-relaxed font-light">Eight to twelve covers. The chef builds a menu around your evening; we handle the cellar pairing and dietary ledger.</p>
-        <p class="jc-caption-serif text-secondary mt-8">From standard membership</p>
-      </article>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch jc-reveal">
+      <!-- Image -->
+      <figure class="lg:col-span-7 relative overflow-hidden rounded-lg group aspect-[4/3] lg:aspect-auto lg:min-h-[460px]">
+        <img class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+             alt="The Midsummer Cellar Dinner at Perch" data-cms-src="events.featured.image" src="https://picsum.photos/seed/jc-ev-midsummer/1400/1000"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/45 via-transparent to-transparent"></div>
+        <span class="absolute top-5 left-5 bg-tertiary-fixed text-on-tertiary-fixed jc-caption px-3 py-1.5" data-cms="events.featured.badge">Featured Event</span>
+      </figure>
 
-      <article class="jc-card group border-t border-primary/15 pt-8 jc-reveal" style="transition-delay: 80ms;">
-        <p class="jc-caption text-primary/55 mb-4">ii. Takeover</p>
-        <span class="material-symbols-outlined text-primary !text-3xl mb-6 block">celebration</span>
-        <h3 class="font-display text-primary leading-tight tracking-tight text-3xl md:text-4xl mb-3">Floor Takeovers</h3>
-        <p class="text-on-surface-variant text-base leading-relaxed font-light">Reserve a full venue for thirty to a hundred guests. Bar program, sound and signage are tailored. We work with you and the venue from sketch to send-off.</p>
-        <p class="jc-caption-serif text-secondary mt-8">Gold tier &amp; above</p>
-      </article>
-
-      <article class="jc-card group border-t border-tertiary-fixed bg-primary text-on-primary p-8 -mt-px jc-reveal relative overflow-hidden" style="transition-delay: 160ms;">
-        <span aria-hidden="true" class="absolute -right-8 -bottom-12 jc-numeral text-tertiary-fixed/30" style="font-size: 16rem;">III</span>
-        <div class="relative z-10">
-          <p class="jc-caption text-tertiary-fixed mb-4">iii. Signature</p>
-          <span class="material-symbols-outlined text-tertiary-fixed !text-3xl mb-6 block">workspace_premium</span>
-          <h3 class="font-display leading-tight tracking-tight text-3xl md:text-4xl mb-3">Signature Series</h3>
-          <p class="text-on-primary/75 text-base leading-relaxed font-light">A curated calendar of off-menu evenings — chef collaborations, distillery dinners, a quarterly literary salon.</p>
-          <p class="jc-caption-serif text-tertiary-fixed mt-8">Platinum tier only</p>
+      <!-- Details -->
+      <div class="lg:col-span-5 flex flex-col">
+        <div class="flex items-baseline gap-4 mb-7">
+          <span class="font-display text-primary leading-none" style="font-size: clamp(3.25rem, 6vw, 4.75rem);" data-cms="events.featured.date_day">14</span>
+          <div>
+            <p class="jc-caption text-secondary" data-cms="events.featured.date_month">June 2026</p>
+            <p class="jc-caption-serif text-primary/70" data-cms="events.featured.date_time">Saturday · from 8 PM</p>
+          </div>
         </div>
-      </article>
+        <h3 class="font-display text-primary tracking-tight leading-[0.98]" style="font-size: clamp(1.85rem, 3.4vw, 2.9rem);">
+          <span data-cms="events.featured.title_1">The Midsummer </span><span class="italic" data-cms="events.featured.title_2" style="font-variation-settings: 'opsz' 96, 'slnt' -10;">Cellar Dinner</span>
+        </h3>
+        <p class="jc-caption text-primary/55 mt-3" data-cms="events.featured.venue">Perch Wine &amp; Coffee Bar · Vasant Vihar</p>
+        <p class="mt-6 text-on-surface-variant leading-relaxed font-light" data-cms="events.featured.description">
+          A seven-course collaboration between Perch's sommelier and a visiting chef — each course drawn up against a bottle pulled from the back of the cellar. One long table, one unhurried evening.
+        </p>
+        <dl class="mt-8 grid grid-cols-2 gap-y-5 gap-x-6 border-t border-primary/15 pt-6">
+          <div>
+            <dt class="jc-caption text-primary/50 mb-1.5" data-cms="events.featured.meta1_label">Seating</dt>
+            <dd class="font-display-sm text-primary text-lg leading-snug" data-cms="events.featured.meta1_value">Twenty-four covers</dd>
+          </div>
+          <div>
+            <dt class="jc-caption text-primary/50 mb-1.5" data-cms="events.featured.meta2_label">Open to</dt>
+            <dd class="font-display-sm text-primary text-lg leading-snug" data-cms="events.featured.meta2_value">All members</dd>
+          </div>
+        </dl>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="mailto:concierge@juniper.club?subject=Midsummer%20Cellar%20Dinner%20%E2%80%94%2014%20June&amp;body=I%27d%20like%20to%20reserve%20a%20place.%0AName%3A%20%0AGuests%3A%20" class="jc-btn"><span data-cms="events.featured.cta_primary">Reserve a place</span><span class="material-symbols-outlined !text-sm">arrow_outward</span></a>
+          <a href="venue.html?slug=perch" class="jc-btn jc-btn--ghost text-primary"><span data-cms="events.featured.cta_secondary">About the venue</span></a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ════ Ribbon ════ -->
-  <section class="mt-24 jc-reveal">
-    <div class="jc-ribbon">
-      <div class="jc-ribbon-track">
-        <span>Twelve covers</span><span class="jc-bullet">●</span>
-        <span>Full floor</span><span class="jc-bullet">●</span>
-        <span>A cellar, opened</span><span class="jc-bullet">●</span>
-        <span>The room, yours</span><span class="jc-bullet">●</span>
+  <!-- ════ Also on the calendar ════ -->
+  <section class="px-6 md:px-12 max-w-[1400px] mx-auto mt-20 md:mt-28">
+    <p class="jc-caption text-secondary mb-8 jc-reveal" data-cms="events.calendar.eyebrow">No. 02 — Also on the calendar</p>
+    <ul class="border-t border-primary/15">
+      <li class="jc-reveal">
+        <div class="grid grid-cols-12 gap-4 md:gap-8 items-center py-6 md:py-7 border-b border-primary/15">
+          <span class="col-span-2 md:col-span-1 font-display italic text-primary/35 text-2xl md:text-3xl" style="font-variation-settings: 'opsz' 36, 'slnt' -10;">i.</span>
+          <div class="col-span-10 md:col-span-3">
+            <p class="jc-caption text-primary/55 mb-1" data-cms="events.calendar.e1_date">28 June 2026</p>
+            <h3 class="font-display text-primary text-xl md:text-2xl leading-tight tracking-tight" data-cms="events.calendar.e1_title">Negroni Hour</h3>
+          </div>
+          <p class="hidden md:block md:col-span-5 text-on-surface-variant text-base font-light" data-cms="events.calendar.e1_desc">A bartender's table at Sidecar — eighteen negroni variations poured and talked through, one by one.</p>
+          <p class="col-span-12 md:col-span-3 md:text-right jc-caption-serif text-secondary" data-cms="events.calendar.e1_venue">Sidecar · Greater Kailash II</p>
+        </div>
+      </li>
+      <li class="jc-reveal" style="transition-delay: 80ms;">
+        <div class="grid grid-cols-12 gap-4 md:gap-8 items-center py-6 md:py-7 border-b border-primary/15">
+          <span class="col-span-2 md:col-span-1 font-display italic text-primary/35 text-2xl md:text-3xl" style="font-variation-settings: 'opsz' 36, 'slnt' -10;">ii.</span>
+          <div class="col-span-10 md:col-span-3">
+            <p class="jc-caption text-primary/55 mb-1" data-cms="events.calendar.e2_date">11 July 2026</p>
+            <h3 class="font-display text-primary text-xl md:text-2xl leading-tight tracking-tight" data-cms="events.calendar.e2_title">After Dark — A DRIFT Session</h3>
+          </div>
+          <p class="hidden md:block md:col-span-5 text-on-surface-variant text-base font-light" data-cms="events.calendar.e2_desc">A late listening session behind the unmarked door at PCO, programmed with the DRIFT residency.</p>
+          <p class="col-span-12 md:col-span-3 md:text-right jc-caption-serif text-secondary" data-cms="events.calendar.e2_venue">PCO · Vasant Vihar</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ════ Past evenings — gallery (1:1 tiles) ════ -->
+  <section class="px-6 md:px-12 max-w-[1400px] mx-auto mt-24 md:mt-32">
+    <header class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 jc-reveal">
+      <div>
+        <p class="jc-caption text-secondary mb-3" data-cms="events.past.eyebrow">No. 03 — Past evenings</p>
+        <h2 class="font-display text-primary leading-[0.95] tracking-tight" style="font-size: clamp(2rem, 4.5vw, 3.5rem);">
+          <span data-cms="events.past.headline_1">Lately, in good </span><span class="italic" data-cms="events.past.headline_2" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">company.</span>
+        </h2>
       </div>
+      <p class="text-on-surface-variant font-light max-w-sm md:text-right" data-cms="events.past.intro">A look back at the gatherings our members have shared across partner rooms this season.</p>
+    </header>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 jc-reveal">
+      <figure class="relative overflow-hidden rounded-lg group aspect-square">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="The Spring Tasting at Mason" data-cms-src="events.past.tile1_image" src="https://picsum.photos/seed/jc-ev-1/800/800"/>
+        <figcaption class="absolute inset-0 flex flex-col justify-end p-3 md:p-4 bg-gradient-to-t from-primary/85 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p class="jc-caption text-bone leading-tight" data-cms="events.past.tile1_title">The Spring Tasting</p>
+          <p class="jc-caption-serif text-bone/75 text-xs mt-0.5" data-cms="events.past.tile1_sub">March · Mason</p>
+        </figcaption>
+      </figure>
+      <figure class="relative overflow-hidden rounded-lg group aspect-square">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Founders' Dinner at Sidecar" data-cms-src="events.past.tile2_image" src="https://picsum.photos/seed/jc-ev-2/800/800"/>
+        <figcaption class="absolute inset-0 flex flex-col justify-end p-3 md:p-4 bg-gradient-to-t from-primary/85 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p class="jc-caption text-bone leading-tight" data-cms="events.past.tile2_title">Founders' Dinner</p>
+          <p class="jc-caption-serif text-bone/75 text-xs mt-0.5" data-cms="events.past.tile2_sub">February · Sidecar</p>
+        </figcaption>
+      </figure>
+      <figure class="relative overflow-hidden rounded-lg group aspect-square">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="A Night of Mezcal at Lord of the Drinks" data-cms-src="events.past.tile3_image" src="https://picsum.photos/seed/jc-ev-3/800/800"/>
+        <figcaption class="absolute inset-0 flex flex-col justify-end p-3 md:p-4 bg-gradient-to-t from-primary/85 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p class="jc-caption text-bone leading-tight" data-cms="events.past.tile3_title">A Night of Mezcal</p>
+          <p class="jc-caption-serif text-bone/75 text-xs mt-0.5" data-cms="events.past.tile3_sub">February · Lord of the Drinks</p>
+        </figcaption>
+      </figure>
+      <figure class="relative overflow-hidden rounded-lg group aspect-square">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="The Winter Salon at Townhall" data-cms-src="events.past.tile4_image" src="https://picsum.photos/seed/jc-ev-4/800/800"/>
+        <figcaption class="absolute inset-0 flex flex-col justify-end p-3 md:p-4 bg-gradient-to-t from-primary/85 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p class="jc-caption text-bone leading-tight" data-cms="events.past.tile4_title">The Winter Salon</p>
+          <p class="jc-caption-serif text-bone/75 text-xs mt-0.5" data-cms="events.past.tile4_sub">January · Townhall</p>
+        </figcaption>
+      </figure>
+      <figure class="relative overflow-hidden rounded-lg group aspect-square">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="The Gin Atelier at The Drunken Botanist" data-cms-src="events.past.tile5_image" src="https://picsum.photos/seed/jc-ev-5/800/800"/>
+        <figcaption class="absolute inset-0 flex flex-col justify-end p-3 md:p-4 bg-gradient-to-t from-primary/85 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p class="jc-caption text-bone leading-tight" data-cms="events.past.tile5_title">The Gin Atelier</p>
+          <p class="jc-caption-serif text-bone/75 text-xs mt-0.5" data-cms="events.past.tile5_sub">December · The Drunken Botanist</p>
+        </figcaption>
+      </figure>
+      <figure class="relative overflow-hidden rounded-lg group aspect-square">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="New Year's Eve at Hauz Khas Social" data-cms-src="events.past.tile6_image" src="https://picsum.photos/seed/jc-ev-6/800/800"/>
+        <figcaption class="absolute inset-0 flex flex-col justify-end p-3 md:p-4 bg-gradient-to-t from-primary/85 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p class="jc-caption text-bone leading-tight" data-cms="events.past.tile6_title">New Year's Eve</p>
+          <p class="jc-caption-serif text-bone/75 text-xs mt-0.5" data-cms="events.past.tile6_sub">December · Hauz Khas Social</p>
+        </figcaption>
+      </figure>
+      <figure class="relative overflow-hidden rounded-lg group aspect-square">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cellar Notes at Perch" data-cms-src="events.past.tile7_image" src="https://picsum.photos/seed/jc-ev-7/800/800"/>
+        <figcaption class="absolute inset-0 flex flex-col justify-end p-3 md:p-4 bg-gradient-to-t from-primary/85 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p class="jc-caption text-bone leading-tight" data-cms="events.past.tile7_title">Cellar Notes</p>
+          <p class="jc-caption-serif text-bone/75 text-xs mt-0.5" data-cms="events.past.tile7_sub">November · Perch</p>
+        </figcaption>
+      </figure>
+      <figure class="relative overflow-hidden rounded-lg group aspect-square">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="The Long Table at Tres" data-cms-src="events.past.tile8_image" src="https://picsum.photos/seed/jc-ev-8/800/800"/>
+        <figcaption class="absolute inset-0 flex flex-col justify-end p-3 md:p-4 bg-gradient-to-t from-primary/85 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p class="jc-caption text-bone leading-tight" data-cms="events.past.tile8_title">The Long Table</p>
+          <p class="jc-caption-serif text-bone/75 text-xs mt-0.5" data-cms="events.past.tile8_sub">November · Tres</p>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -126,14 +206,14 @@
     <div class="relative bg-primary-container text-on-primary-container px-8 md:px-20 py-16 md:py-24 overflow-hidden">
       <span aria-hidden="true" class="absolute -right-12 -top-12 jc-numeral text-tertiary-fixed/30 leading-none" style="font-size: clamp(14rem, 22vw, 28rem);">V</span>
       <div class="relative z-10 jc-reveal max-w-2xl">
-        <p class="jc-caption text-tertiary-fixed mb-5">No. 02 — Inquire</p>
+        <p class="jc-caption text-tertiary-fixed mb-5" data-cms="events.cta.eyebrow">No. 04 — Inquire</p>
         <h2 class="font-display text-white leading-[0.95] tracking-tight" style="font-size: clamp(2.25rem, 5.5vw, 4.5rem);">
-          Tell us what you <span class="italic" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">have in mind.</span>
+          <span data-cms="events.cta.headline_1">Tell us what you </span><span class="italic" data-cms="events.cta.headline_2" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">have in mind.</span>
         </h2>
-        <p class="mt-6 text-white/70 max-w-lg text-base font-light leading-relaxed">Drop a note with date, headcount, and the venue you have your heart set on (or ask us to suggest). We respond within one business day.</p>
+        <p class="mt-6 text-white/70 max-w-lg text-base font-light leading-relaxed" data-cms="events.cta.body">Drop a note with date, headcount, and the venue you have your heart set on (or ask us to suggest). We respond within one business day.</p>
         <div class="mt-10 flex flex-wrap gap-4">
-          <a href="mailto:concierge@juniper.club?subject=Private%20Event%20Inquiry&amp;body=Date%3A%20%0AHeadcount%3A%20%0AVenue%20preference%3A%20%0ANotes%3A%20" class="jc-btn jc-btn--bone"><span class="material-symbols-outlined !text-base">mail</span><span>Email the concierge</span></a>
-          <a href="tel:+911140000000" class="jc-btn jc-btn--ghost text-bone"><span class="material-symbols-outlined !text-base">call</span><span>Call us</span></a>
+          <a href="mailto:concierge@juniper.club?subject=Private%20Event%20Inquiry&amp;body=Date%3A%20%0AHeadcount%3A%20%0AVenue%20preference%3A%20%0ANotes%3A%20" class="jc-btn jc-btn--bone"><span class="material-symbols-outlined !text-base">mail</span><span data-cms="events.cta.cta_primary">Email the concierge</span></a>
+          <a href="tel:+911140000000" class="jc-btn jc-btn--ghost text-bone"><span class="material-symbols-outlined !text-base">call</span><span data-cms="events.cta.cta_secondary">Call us</span></a>
         </div>
       </div>
     </div>
@@ -141,19 +221,19 @@
 
   <!-- ════ Practical notes ════ -->
   <section class="mt-20 md:mt-24 px-6 md:px-12 max-w-[1400px] mx-auto">
-    <p class="jc-caption text-secondary mb-8 jc-reveal">No. 03 — Practical notes</p>
+    <p class="jc-caption text-secondary mb-8 jc-reveal" data-cms="events.notes.eyebrow">No. 05 — Practical notes</p>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
       <div class="border-t border-primary/20 pt-5 jc-reveal">
-        <p class="jc-caption text-primary mb-3">Typical lead time</p>
-        <p class="font-display-sm text-primary text-lg leading-snug">Three weeks for tasting tables. Six for floor takeovers.</p>
+        <p class="jc-caption text-primary mb-3" data-cms="events.notes.n1_label">Typical lead time</p>
+        <p class="font-display-sm text-primary text-lg leading-snug" data-cms="events.notes.n1_text">Three weeks for tasting tables. Six for floor takeovers.</p>
       </div>
       <div class="border-t border-primary/20 pt-5 jc-reveal" style="transition-delay: 80ms;">
-        <p class="jc-caption text-primary mb-3">Cancellation</p>
-        <p class="font-display-sm text-primary text-lg leading-snug">Free up to seventy-two hours before. Venue policies apply thereafter — we'll tell you.</p>
+        <p class="jc-caption text-primary mb-3" data-cms="events.notes.n2_label">Cancellation</p>
+        <p class="font-display-sm text-primary text-lg leading-snug" data-cms="events.notes.n2_text">Free up to seventy-two hours before. Venue policies apply thereafter — we'll tell you.</p>
       </div>
       <div class="border-t border-primary/20 pt-5 jc-reveal" style="transition-delay: 160ms;">
-        <p class="jc-caption text-primary mb-3">Guest list</p>
-        <p class="font-display-sm text-primary text-lg leading-snug">Members may include non-member guests up to the venue's discretion. ID at the door.</p>
+        <p class="jc-caption text-primary mb-3" data-cms="events.notes.n3_label">Guest list</p>
+        <p class="font-display-sm text-primary text-lg leading-snug" data-cms="events.notes.n3_text">Members may include non-member guests up to the venue's discretion. ID at the door.</p>
       </div>
     </div>
   </section>

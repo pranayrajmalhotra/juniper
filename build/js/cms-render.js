@@ -77,7 +77,41 @@
     });
   }
 
+  // ────────── site_content → [data-cms] bindings ───────────────────────
+  // Generic per-section copy. Elements opt in with one of:
+  //   data-cms="page.section.key"       → element.textContent
+  //   data-cms-html="page.section.key"  → element.innerHTML  (inline markup)
+  //   data-cms-src="page.section.key"   → <img> src
+  //   data-cms-href="page.section.key"  → <a> href
+  // A blank/missing value leaves the static markup untouched (graceful fallback).
+  async function hydrateSiteContent() {
+    const els = document.querySelectorAll("[data-cms],[data-cms-html],[data-cms-src],[data-cms-href]");
+    if (!els.length || !window.SB) return;
+    const { data, error } = await window.SB
+      .from("site_content")
+      .select("page,section,item_key,value");
+    if (error || !data?.length) return;
+
+    const map = new Map();
+    for (const r of data) map.set(`${r.page}.${r.section}.${r.item_key}`, r.value);
+
+    const lookup = (el, attr) => {
+      const k = el.getAttribute(attr);
+      const v = k ? map.get(k) : undefined;
+      return (v == null || v === "") ? undefined : v;
+    };
+
+    els.forEach((el) => {
+      let v;
+      if (el.hasAttribute("data-cms"))      { v = lookup(el, "data-cms");      if (v !== undefined) el.textContent = v; }
+      if (el.hasAttribute("data-cms-html")) { v = lookup(el, "data-cms-html"); if (v !== undefined) el.innerHTML  = v; }
+      if (el.hasAttribute("data-cms-src"))  { v = lookup(el, "data-cms-src");  if (v !== undefined) el.setAttribute("src", v); }
+      if (el.hasAttribute("data-cms-href")) { v = lookup(el, "data-cms-href"); if (v !== undefined) el.setAttribute("href", v); }
+    });
+  }
+
   function init() {
+    hydrateSiteContent().catch(() => {});
     hydrateLogos().catch(() => {});
     hydrateFavourites().catch(() => {});
   }

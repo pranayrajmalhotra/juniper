@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" data-page="venue">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Partner Venue · Juniper Club</title>
+<meta name="description" content="A Juniper Club partner venue — member benefits, location and how to redeem your offer."/>
+<link rel="icon" type="image/png" href="assets/logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,30..100,0..1;1,9..144,300..900,30..100,0..1&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/tailwind.css"/>
+
+</head>
+<body class="bg-surface text-on-surface font-body">
+<div class="jc-grain" aria-hidden="true"></div>
+<div class="jc-masthead" aria-hidden="true"><div class="jc-masthead-track"><span>Juniper Club <em>·</em> Volume XII <em>·</em> Members Only <em>·</em> Reservations after dusk <em>·</em> Established <span data-jc-year>2025</span></span></div></div>
+<!-- TopAppBar -->
+<header class="jc-topbar fixed left-0 right-0 z-50 bg-surface/85 backdrop-blur-xl flex justify-between items-center px-6 md:px-10 h-16 border-b border-primary/10" style="top: 28px;">
+<div class="flex items-center gap-5">
+<button class="md:hidden material-symbols-outlined text-primary hover:opacity-80 transition-opacity bg-transparent border-0 p-0 cursor-pointer" data-drawer-open aria-label="Open menu" aria-controls="jc-drawer" aria-expanded="false">menu</button>
+<a href="index.html" aria-label="Juniper Club home" class="flex items-center">
+<img src="assets/logo.png" alt="Juniper Club" class="h-10 w-10 rounded-full bg-primary/5"/>
+</a>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex gap-10 items-center" aria-label="Primary">
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="index.html">Home</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="directory.html">Directory</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="offers.html">Offers</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="events.html">Events</a>
+<a class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold transition-colors text-primary/55 hover:text-primary" href="drift.html">Drift</a>
+</nav>
+<div class="hidden md:flex items-center gap-5 pl-6 ml-2 border-l border-primary/15">
+<a id="nav-signin" class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold text-primary/55 hover:text-primary transition-colors" href="login.html">Sign in</a>
+<a id="nav-apply" class="jc-btn jc-btn--ghost text-primary !py-2 !px-4 !text-[9px]" href="signup.html"><span>Apply</span></a>
+<a id="nav-account" hidden class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold text-primary hover:text-primary/70 transition-colors" href="profile.html"><span id="nav-account-name">Account</span></a>
+<a id="nav-signout" hidden href="#" class="jc-navlink font-label uppercase tracking-[0.22em] text-[10px] font-semibold text-primary/55 hover:text-primary transition-colors">Sign out</a>
+</div>
+<a id="nav-avatar" href="profile.html" aria-label="View member profile" hidden class="w-10 h-10 rounded-full overflow-hidden bg-surface-container ring-1 ring-primary/15 hover:ring-primary/40 transition-all block">
+<img class="jc-topbar-avatar w-full h-full object-cover" alt="Member avatar" src="assets/logo.png"/>
+</a>
+</div>
+</header>
+<main class="pt-24 pb-24 overflow-x-clip">
+
+  <!-- ════ Dateline ════ -->
+  <section class="px-6 md:px-12 max-w-[1400px] mx-auto pt-6 md:pt-10">
+    <div class="flex justify-between items-start jc-reveal">
+      <a href="directory.html" class="jc-caption text-primary/60 inline-flex items-center gap-2 hover:text-primary transition-colors" aria-label="Back to the directory">
+        <span class="material-symbols-outlined !text-base">arrow_back</span>
+        <span data-cms="venue.dateline.back">The Directory</span>
+      </a>
+      <span class="jc-caption text-primary/60"><span data-cms="venue.dateline.label">Partner Venue</span> <span class="jc-caption-serif text-primary/80 ml-2" data-cms="venue.dateline.label_serif">— Member Privilege</span></span>
+    </div>
+  </section>
+
+  <!-- ════ Hero ════ -->
+  <section class="px-6 md:px-12 max-w-[1400px] mx-auto mt-10 jc-reveal">
+    <figure class="relative overflow-hidden jc-card jc-card-img h-[420px] md:h-[600px]">
+      <img id="v-hero-img" class="w-full h-full object-cover" alt="Sidecar"
+           src="https://picsum.photos/seed/jc-sidecar/1600/900"/>
+      <span id="v-hero-badge" class="absolute top-5 left-5 bg-bone text-primary jc-caption px-3 py-1.5">Member Venue</span>
+      <figcaption class="absolute bottom-5 left-5 text-bone jc-caption-serif text-sm bg-primary/40 backdrop-blur-sm px-3 py-1.5">
+        <em class="text-tertiary-fixed mr-2">✦</em><span id="v-hero-loc">Greater Kailash II, Delhi</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ════ Venue body ════ -->
+  <section class="mt-16 md:mt-24 px-6 md:px-12 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+
+    <div class="md:col-span-8 jc-reveal">
+      <p id="v-eyebrow" class="jc-caption text-secondary mb-5">Cocktail Bar · Greater Kailash II, Delhi</p>
+      <h1 id="v-name" class="font-display text-primary tracking-tight leading-[0.92]" style="font-size: clamp(2.75rem, 7vw, 6rem);">Sidecar</h1>
+
+      <hr class="jc-rule mt-12 mb-12"/>
+
+      <!-- Member benefits — venue.js fills #v-benefits from the venue's perks -->
+      <p class="jc-caption text-secondary mb-7" data-cms="venue.benefits.eyebrow">No. 01 — Member Benefits</p>
+      <div id="v-benefits" class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-9 mb-14">
+        <div class="flex gap-4">
+          <span class="material-symbols-outlined text-tertiary-fixed-dim mt-0.5">event_seat</span>
+          <div>
+            <p class="jc-caption text-primary/45 mb-1.5">Benefit i</p>
+            <p class="font-display-sm text-primary text-lg leading-snug">Priority booking</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <span class="material-symbols-outlined text-tertiary-fixed-dim mt-0.5">redeem</span>
+          <div>
+            <p class="jc-caption text-primary/45 mb-1.5">Benefit ii</p>
+            <p class="font-display-sm text-primary text-lg leading-snug">Complimentary signature negroni</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <span class="material-symbols-outlined text-tertiary-fixed-dim mt-0.5">percent</span>
+          <div>
+            <p class="jc-caption text-primary/45 mb-1.5">Benefit iii</p>
+            <p class="font-display-sm text-primary text-lg leading-snug">10% off the bill</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editorial copy -->
+      <div class="prose-jc">
+        <p id="v-description" class="text-lg md:text-xl text-on-surface-variant leading-relaxed font-light first-letter:text-7xl first-letter:font-display first-letter:italic first-letter:mr-3 first-letter:float-left first-letter:text-primary first-letter:leading-[0.85] first-letter:mt-1" style="text-wrap: pretty;">
+          A two-time Asia's 50 Best Bars laureate where head bartender Yangdup Lama coaxes single-origin Indian botanicals into globally fluent drinks. Tucked into M-block — easy to miss, impossible to forget.
+        </p>
+      </div>
+
+      <!-- Location -->
+      <section class="mt-20">
+        <p class="jc-caption text-secondary mb-3" data-cms="venue.location.eyebrow">No. 02 — Where to find it</p>
+        <h2 class="font-display text-primary tracking-tight leading-[0.95] mb-10" style="font-size: clamp(2rem, 4vw, 3.5rem);">
+          <span data-cms="venue.location.headline_1">Find your way </span><span class="italic" data-cms="venue.location.headline_2" style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1, 'slnt' -10;">in.</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          <div class="space-y-6">
+            <div class="flex gap-4 pt-6 border-t border-primary/15">
+              <span class="material-symbols-outlined text-primary mt-1">location_on</span>
+              <div>
+                <p class="jc-caption text-primary/55 mb-1" data-cms="venue.location.neighbourhood_label">Neighbourhood</p>
+                <p id="v-address" class="font-display-sm text-primary text-base leading-snug">Greater Kailash II<br/>Delhi</p>
+              </div>
+            </div>
+            <div class="flex gap-4 pt-6 border-t border-primary/15">
+              <span class="material-symbols-outlined text-primary mt-1">badge</span>
+              <div>
+                <p class="jc-caption text-primary/55 mb-1" data-cms="venue.location.access_label">Access</p>
+                <p class="font-display-sm text-primary text-base leading-snug" data-cms="venue.location.access_text">Present your digital member pass to staff on arrival.</p>
+              </div>
+            </div>
+            <div class="pt-6 border-t border-primary/15">
+              <a id="v-maps" href="https://www.google.com/maps/search/?api=1&amp;query=Sidecar%20Greater%20Kailash%20II%20Delhi" target="_blank" rel="noopener" class="jc-btn jc-btn--ghost text-primary"><span data-cms="venue.location.maps_cta">Open in Maps</span><span class="material-symbols-outlined !text-sm">north_east</span></a>
+            </div>
+          </div>
+          <figure class="jc-card-img aspect-[4/3] md:aspect-auto bg-primary-container text-on-primary-container flex flex-col items-center justify-center text-center p-8 relative overflow-hidden">
+            <span aria-hidden="true" class="material-symbols-outlined absolute -bottom-6 -right-4 text-tertiary-fixed/20 select-none" style="font-size: 12rem;">explore</span>
+            <span class="material-symbols-outlined text-tertiary-fixed mb-4" style="font-size: 2.75rem;">explore</span>
+            <p class="jc-caption text-on-primary-container/55 mb-3">Neighbourhood</p>
+            <p id="v-area-display" class="font-display italic leading-tight" style="font-size: clamp(1.5rem, 3vw, 2.25rem); font-variation-settings: 'opsz' 48, 'slnt' -10;">Greater Kailash II</p>
+            <p id="v-city-display" class="jc-caption text-on-primary-container/50 mt-3">Delhi</p>
+          </figure>
+        </div>
+      </section>
+    </div>
+
+    <!-- ════ OFFER SIDEBAR (sticky) ════ -->
+    <aside class="md:col-span-4 md:sticky md:self-start space-y-8 jc-reveal" style="top: calc(28px + 64px + 1.5rem); transition-delay: 80ms;">
+      <div class="relative bg-primary text-on-primary p-8 md:p-10 overflow-hidden">
+        <span id="v-mark" aria-hidden="true" class="absolute -right-6 -top-10 jc-numeral text-tertiary-fixed/30 leading-none" style="font-size: 14rem; -webkit-text-stroke-width: 1.5px;">S</span>
+        <div class="relative z-10">
+          <p class="jc-caption text-tertiary-fixed mb-3" data-cms="venue.sidebar.status_label">Redemption Status</p>
+          <h4 class="font-display italic text-3xl mb-8" style="font-variation-settings: 'opsz' 48, 'SOFT' 100, 'WONK' 1, 'slnt' -10;" data-cms="venue.sidebar.status_value">Active Offer</h4>
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-tertiary-fixed mt-0.5 !text-base">check_circle</span>
+              <span class="text-sm font-light text-on-primary/90" data-cms="venue.sidebar.point_1">Valid for 1 member + 3 guests</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-tertiary-fixed mt-0.5 !text-base">check_circle</span>
+              <span class="text-sm font-light text-on-primary/90" data-cms="venue.sidebar.point_2">One redemption per 24 hours</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-tertiary-fixed mt-0.5 !text-base">check_circle</span>
+              <span class="text-sm font-light text-on-primary/90" data-cms="venue.sidebar.point_3">Show digital pass on arrival</span>
+            </li>
+          </ul>
+          <button class="jc-btn jc-btn--bone w-full justify-center" onclick="alert('Show this screen to the venue host.\n\nMember: Julian Walters\nValid until: 31 Dec 2025\nOffer: Active');"><span class="material-symbols-outlined !text-base">qr_code</span><span data-cms="venue.sidebar.redeem_cta">Redeem Offer</span></button>
+          <p class="jc-caption text-on-primary/40 text-center mt-6 text-[9px]" data-cms="venue.sidebar.footnote">Present digital pass to staff upon arrival</p>
+        </div>
+      </div>
+
+      <div class="p-6 md:p-8 border border-primary/15">
+        <p class="jc-caption text-primary mb-4" data-cms="venue.terms.heading">Terms &amp; Conditions</p>
+        <ul class="space-y-3 text-[12px] text-on-surface-variant leading-relaxed font-light">
+          <li class="flex gap-2"><span class="text-tertiary-fixed-dim">·</span> <span data-cms="venue.terms.term_1">Advance booking recommended via the Juniper Club Concierge.</span></li>
+          <li class="flex gap-2"><span class="text-tertiary-fixed-dim">·</span> <span data-cms="venue.terms.term_2">Offer not valid with other seasonal promotions.</span></li>
+          <li class="flex gap-2"><span class="text-tertiary-fixed-dim">·</span> <span data-cms="venue.terms.term_3">Membership verification required via live digital ID.</span></li>
+          <li class="flex gap-2"><span class="text-tertiary-fixed-dim">·</span> <span data-cms="venue.terms.term_4">Smart-elegant dress code strictly enforced.</span></li>
+        </ul>
+      </div>
+    </aside>
+  </section>
+</main>
+<!-- Drawer overlay -->
+<div class="jc-drawer-overlay fixed inset-0 z-[55] bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+<!-- Drawer -->
+<aside id="jc-drawer" class="jc-drawer fixed left-0 top-0 h-full w-80 max-w-[85vw] bg-emerald-50 dark:bg-emerald-950 shadow-2xl z-[60] -translate-x-full transition-transform duration-300 ease-out">
+  <div class="flex flex-col h-full p-6">
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="Juniper Club" class="h-8 w-8 rounded-full bg-emerald-100"/>
+        <span class="font-serif italic font-bold text-emerald-900 dark:text-emerald-100 tracking-tighter text-lg">JUNIPER CLUB</span>
+      </div>
+      <button class="jc-drawer-close p-2 rounded-full hover:bg-emerald-100 dark:hover:bg-emerald-900 transition-colors" aria-label="Close menu">
+        <span class="material-symbols-outlined text-emerald-900 dark:text-emerald-100">close</span>
+      </button>
+    </div>
+    <nav class="space-y-2" aria-label="Drawer">
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="index.html">
+        <span class="material-symbols-outlined">style</span>
+        <span class="font-sans text-sm tracking-wide">Home</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="directory.html">
+        <span class="material-symbols-outlined">corporate_fare</span>
+        <span class="font-sans text-sm tracking-wide">Partner Portals</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="offers.html">
+        <span class="material-symbols-outlined">confirmation_number</span>
+        <span class="font-sans text-sm tracking-wide">Member Offers</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="profile.html">
+        <span class="material-symbols-outlined">card_membership</span>
+        <span class="font-sans text-sm tracking-wide">Member Account</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="events.html">
+        <span class="material-symbols-outlined">event_seat</span>
+        <span class="font-sans text-sm tracking-wide">Private Events</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="drift.html">
+        <span class="material-symbols-outlined">graphic_eq</span>
+        <span class="font-sans text-sm tracking-wide">Drift · After Dark</span>
+      </a>
+      <a class="flex items-center gap-4 p-4 rounded-xl text-emerald-700 dark:text-emerald-300 hover:bg-white/50 dark:hover:bg-emerald-800/50 transition-all" href="support.html">
+        <span class="material-symbols-outlined">help_outline</span>
+        <span class="font-sans text-sm tracking-wide">Support</span>
+      </a>
+    </nav>
+    <div class="mt-auto pt-6 text-[10px] uppercase tracking-[0.18em] text-emerald-800/40 dark:text-emerald-200/40 font-medium">
+      © Juniper Club
+    </div>
+  </div>
+</aside>
+<!-- BottomNavBar (floating pill, mobile-only) -->
+<nav class="jc-bottomnav md:hidden" aria-label="Bottom navigation">
+  <a href="index.html">
+    <span class="material-symbols-outlined">style</span>
+    <span>Home</span>
+  </a>
+  <a href="directory.html">
+    <span class="material-symbols-outlined">explore</span>
+    <span>Directory</span>
+  </a>
+  <a href="offers.html">
+    <span class="material-symbols-outlined">confirmation_number</span>
+    <span>Offers</span>
+  </a>
+  <a href="profile.html">
+    <span class="material-symbols-outlined">account_circle</span>
+    <span>Profile</span>
+  </a>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/topnav.js"></script>
+<script src="js/venue.js"></script>
+<script src="js/shell-drawer.js"></script>
+<script src="js/site-fx.js"></script>
+<script src="js/cms-render.js"></script>
+
+</body>
+</html>

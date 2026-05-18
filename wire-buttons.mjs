@@ -133,7 +133,7 @@ function injectAuthHandler(html) {
   return html.replace(/<\/body>/i, block + "\n</body>");
 }
 
-const PAGES = ["index.html", "directory.html", "offers.html", "profile.html", "events.html", "drift.html", "support.html"];
+const PAGES = ["index.html", "directory.html", "offers.html", "venue.html", "profile.html", "events.html", "drift.html", "support.html"];
 
 for (const f of PAGES) {
   const path = `${SRC}/${f}`;
@@ -143,8 +143,8 @@ for (const f of PAGES) {
   html = rewireAnchorsByText(html);
   html = rewireButtonsByText(html);
 
-  if (f === "offers.html") {
-    html = wireMapsLink(html, "Level 42, The Pinnacle Building, 12 Bishopsgate, London EC2N 4AJ");
+  if (f === "venue.html") {
+    // The maps link is a real <a> wired by js/venue.js; only the redeem CTA needs a handler.
     html = wireRedeem(html);
   }
   if (f === "profile.html") {

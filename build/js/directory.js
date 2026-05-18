@@ -7,6 +7,7 @@
     "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
   }[c]));
   const firstPerk = v => Array.isArray(v.perks) && v.perks.length ? v.perks[0] : "Member benefit";
+  const venueHref = v => (v && v.slug) ? `venue.html?slug=${encodeURIComponent(v.slug)}` : "venue.html";
 
   let allVenues = [];
   let currentCat = "";       // "" = All, otherwise a category slug
@@ -45,7 +46,7 @@
     const [hero, second, ...rest] = sorted;
 
     const heroHtml = hero ? `
-      <div class="md:col-span-8 group cursor-pointer">
+      <a href="${venueHref(hero)}" class="md:col-span-8 group block">
         <div class="relative aspect-[16/10] overflow-hidden rounded-lg mb-4">
           <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                alt="${escHtml(hero.name)}" src="${escHtml(hero.image_url || 'assets/logo.png')}"/>
@@ -57,12 +58,12 @@
             <p class="font-label text-xs uppercase tracking-widest text-secondary mb-4">${escHtml(hero.area)}, ${escHtml(hero.city)} · ${escHtml(hero.category)}</p>
             <p class="text-on-surface-variant text-sm max-w-md">${escHtml((hero.description || '').slice(0, 240))}</p>
           </div>
-          <span class="material-symbols-outlined text-primary text-3xl">arrow_outward</span>
+          <span class="material-symbols-outlined text-primary text-3xl group-hover:translate-x-1 transition-transform">arrow_outward</span>
         </div>
-      </div>` : "";
+      </a>` : "";
 
     const secondHtml = second ? `
-      <div class="md:col-span-4 group cursor-pointer flex flex-col">
+      <a href="${venueHref(second)}" class="md:col-span-4 group flex flex-col">
         <div class="relative flex-grow overflow-hidden rounded-lg mb-4 aspect-[4/5] md:aspect-auto">
           <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                alt="${escHtml(second.name)}" src="${escHtml(second.image_url || 'assets/logo.png')}"/>
@@ -76,10 +77,10 @@
           <p class="font-label text-[10px] uppercase tracking-widest text-on-tertiary-container font-bold mb-2">Member Perk</p>
           <p class="text-on-surface font-medium leading-relaxed">${escHtml(firstPerk(second))}</p>
         </div>
-      </div>` : "";
+      </a>` : "";
 
     const restHtml = rest.map(v => `
-      <div class="md:col-span-4 group cursor-pointer">
+      <a href="${venueHref(v)}" class="md:col-span-4 group block">
         <div class="relative aspect-square overflow-hidden rounded-lg mb-4">
           <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                alt="${escHtml(v.name)}" src="${escHtml(v.image_url || 'assets/logo.png')}"/>
@@ -90,7 +91,7 @@
           <span class="material-symbols-outlined text-sm">confirmation_number</span>
           <span class="font-label text-[10px] font-bold">${escHtml(firstPerk(v))}</span>
         </div>
-      </div>`).join("");
+      </a>`).join("");
 
     grid.innerHTML = heroHtml + secondHtml + restHtml;
   }

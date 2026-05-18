@@ -77,7 +77,19 @@ window.JCCms = (() => {
     return { data: { path, publicUrl: data.publicUrl }, error: null };
   }
 
+  // ---- site_content (generic per-section editable copy) ----
+  async function listSiteContentAll() {
+    return requireSB().from("site_content").select("*")
+      .order("page", { ascending: true })
+      .order("display_order", { ascending: true })
+      .order("section", { ascending: true });
+  }
+  async function updateSiteContent(id, patch) {
+    return requireSB().from("site_content").update(patch).eq("id", id).select().single();
+  }
+
   return {
+    siteContent: { listAll: listSiteContentAll, update: updateSiteContent },
     logos:       { listPublic: listLogosPublic, listAll: listLogosAll, create: createLogo, update: updateLogo, remove: removeLogo },
     favourites:  { listPublic: listFavouritesPublic, listAll: listFavouritesAll, create: createFavourite, update: updateFavourite, remove: removeFavourite },
     driftDjs:    { listPublic: listDjsPublic,    listAll: listDjsAll,    create: createDj,    update: updateDj,    remove: removeDj    },

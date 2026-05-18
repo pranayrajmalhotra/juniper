@@ -11,6 +11,13 @@
 <link rel="stylesheet" href="css/tailwind.css"/>
 </head>
 <body class="bg-surface text-on-surface font-body">
+<script>
+/* Capture the recovery-link hash BEFORE supabase-js loads.
+ * The SDK's createClient() with detectSessionInUrl:true (default) consumes
+ * the URL fragment synchronously, so any check after it runs would always
+ * see an empty hash. This flag is read by the page IIFE below. */
+window.__jcRecoveryFromUrl = /[#&]type=recovery(\b|&|$)/.test(location.hash);
+</script>
 
 <header class="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4">
   <a href="index.html" class="flex items-center gap-3">
@@ -106,14 +113,14 @@
   const subheadEl      = document.querySelector("main h2 + p");
   const eyebrowEl      = document.querySelector("main span.font-label");
 
-  // ── Detect a password-recovery redirect synchronously, BEFORE Supabase's
-  //    client finishes processing the URL hash and our auto-bounce kicks in.
-  //    Supabase appends "#type=recovery&access_token=…" to the redirect URL.
-  function isRecoveryRedirect() {
-    const hash = location.hash || "";
-    return /[#&]type=recovery(\b|&|$)/.test(hash);
-  }
-  let recoveryMode = isRecoveryRedirect();
+  // ── Detect a password-recovery redirect. Two sources, in this order:
+  //    1. window.__jcRecoveryFromUrl — captured by the inline <script> at the
+  //       very top of <body>, before supabase-js consumed the URL fragment.
+  //    2. location.hash — for cases where this page is opened with the hash
+  //       still present (e.g. dev tools, or the SDK didn't run).
+  //    3. PASSWORD_RECOVERY auth event — late fallback, see wireAuthEvent.
+  let recoveryMode = !!window.__jcRecoveryFromUrl ||
+                     /[#&]type=recovery(\b|&|$)/.test(location.hash || "");
 
   function enterRecoveryMode() {
     if (recoveryMode && recoveryPane && !recoveryPane.classList.contains("hidden")) return;
@@ -228,9 +235,11 @@
     if (recoveryMode) return;       // never bounce out of a recovery flow
     const u = await JCAuth.getUser?.();
     if (!u) return;
-    // It's possible the SDK created a recovery session before we read the hash
-    // (Safari can be quick). Double-check the event hasn't flipped us into
-    // recovery mode before bouncing.
+    // Give PASSWORD_RECOVERY a brief window to fire before we bounce. Without
+    // this, on a recovery redirect that we somehow missed up-front, the user
+    // can be signed-in (recovery session) and we'd redirect to admin/home
+    // before the SDK dispatches the event.
+    await new Promise(r => setTimeout(r, 300));
     if (recoveryMode) return;
     const profile = await JCAuth.getProfile();
     location.replace(profile?.is_admin ? "admin.html" : nextDest());
