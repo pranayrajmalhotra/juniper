@@ -77,6 +77,21 @@ window.JCCms = (() => {
     return { data: { path, publicUrl: data.publicUrl }, error: null };
   }
 
+  // ---- logos storage upload ----
+  async function uploadLogoImage(file, prefix = "uploads") {
+    const SB = requireSB();
+    const ext = (file.name.split(".").pop() || "png").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const path = `${prefix}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+    const { error: upErr } = await SB.storage.from("logos").upload(path, file, {
+      cacheControl: "3600",
+      upsert: false,
+      contentType: file.type || undefined,
+    });
+    if (upErr) return { data: null, error: upErr };
+    const { data } = SB.storage.from("logos").getPublicUrl(path);
+    return { data: { path, publicUrl: data.publicUrl }, error: null };
+  }
+
   // ---- site_content (generic per-section editable copy) ----
   async function listSiteContentAll() {
     return requireSB().from("site_content").select("*")
@@ -95,5 +110,6 @@ window.JCCms = (() => {
     driftDjs:    { listPublic: listDjsPublic,    listAll: listDjsAll,    create: createDj,    update: updateDj,    remove: removeDj    },
     driftEvents: { listPublic: listEventsPublic, listAll: listEventsAll, create: createEvent, update: updateEvent, remove: removeEvent },
     uploadDriftImage,
+    uploadLogoImage,
   };
 })();

@@ -9,29 +9,27 @@
       ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])
     );
 
-  // ────────── client_logos → marquee ───────────────────────────────────
+  // ────────── client_logos → static image row ──────────────────────────
   function renderLogo(row) {
-    const mark = row.mark ? `<span class="jc-mark mx-1">${escHtml(row.mark)}</span>` : "";
-    const sub  = row.variant === "minimal" && row.subline
-      ? `<span class="jc-sub">${escHtml(row.subline)}</span>`
-      : "";
-    return `<span class="jc-logo jc-logo--${escHtml(row.variant)}">${mark}${escHtml(row.label)}${sub}</span>`;
+    if (!row.image_url) return "";
+    return `<img class="jc-logo-img" src="${escHtml(row.image_url)}" alt="${escHtml(row.label || "")}" loading="lazy" decoding="async"/>`;
   }
 
   async function hydrateLogos() {
-    const tracks = document.querySelectorAll("[data-bind-logos]");
-    if (!tracks.length || !window.SB) return;
+    const rows = document.querySelectorAll("[data-bind-logos]");
+    if (!rows.length || !window.SB) return;
     const { data, error } = await window.SB
       .from("client_logos")
       .select("*")
       .eq("is_published", true)
       .order("display_order", { ascending: false });
-    if (error || !data?.length) return;             // keep static fallback
-    const html = data.map(renderLogo).join("");
-    tracks.forEach((track) => {
-      track.innerHTML = html;
-      // re-clone for seamless loop
-      window.JCFx?.fillTrack?.(track);
+    if (error) return;
+    const logos = (data || []).filter((r) => r.image_url);
+    if (!logos.length) return;                      // nothing published yet
+    const html = logos.map(renderLogo).join("");
+    rows.forEach((row) => {
+      row.innerHTML = html;
+      window.JCFx?.fillTrack?.(row);   // clone children for a seamless marquee loop
     });
   }
 

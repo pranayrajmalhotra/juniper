@@ -191,9 +191,6 @@
               <tr class="text-left">
                 <th class="px-4 py-3 font-label text-[10px] uppercase tracking-[0.14em] text-on-surface-variant">Preview</th>
                 <th class="px-4 py-3 font-label text-[10px] uppercase tracking-[0.14em] text-on-surface-variant">Label</th>
-                <th class="px-4 py-3 font-label text-[10px] uppercase tracking-[0.14em] text-on-surface-variant">Variant</th>
-                <th class="px-4 py-3 font-label text-[10px] uppercase tracking-[0.14em] text-on-surface-variant">Mark</th>
-                <th class="px-4 py-3 font-label text-[10px] uppercase tracking-[0.14em] text-on-surface-variant">Subline</th>
                 <th class="px-4 py-3 font-label text-[10px] uppercase tracking-[0.14em] text-on-surface-variant text-center">Order</th>
                 <th class="px-4 py-3 font-label text-[10px] uppercase tracking-[0.14em] text-on-surface-variant text-center">Live</th>
                 <th class="px-4 py-3 font-label text-[10px] uppercase tracking-[0.14em] text-on-surface-variant text-right">Actions</th>
@@ -207,40 +204,24 @@
       <!-- Add logo form -->
       <form id="logo-form" class="bg-surface-container-lowest rounded-xl editorial-shadow p-6 space-y-4 self-start">
         <h2 id="logo-form-title" class="font-headline text-xl text-primary mb-1">Add a logo</h2>
-        <p class="text-on-surface-variant text-xs">Shows in the partner marquee on Home + Directory.</p>
+        <p class="text-on-surface-variant text-xs">Partner logo images — shown in the strip on Home + Directory.</p>
 
         <div>
           <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-1.5">Label •</label>
           <input id="l-label" type="text" required placeholder="The Velvet Botanist" class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50"/>
+          <p class="text-outline-variant text-[11px] mt-1">Used as the image's alt text — not shown on the site.</p>
         </div>
 
         <div>
-          <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-1.5">Variant •</label>
-          <select id="l-variant" required class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50">
-            <option value="serif">Serif italic (✦ The Velvet Botanist)</option>
-            <option value="display">Display bold (Obsidian.)</option>
-            <option value="caps">Spaced caps (MARBLE &amp; MOSS)</option>
-            <option value="minimal">Minimal w/ subline (APEX — Lounge —)</option>
-            <option value="smallcaps">Small caps (Cacao Archive)</option>
-            <option value="heavy">Heavy condensed (ZENITH)</option>
-            <option value="bracket">Bracketed [ VELLUM ]</option>
-          </select>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-1.5">Mark</label>
-            <input id="l-mark" type="text" placeholder="✦ ◆ ❋ · &amp;" maxlength="4" class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50"/>
-          </div>
-          <div>
-            <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-1.5">Order</label>
-            <input id="l-order" type="number" value="50" class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50"/>
-          </div>
+          <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-1.5">Logo image • <span class="font-normal lowercase tracking-normal text-outline-variant">(upload or paste URL)</span></label>
+          <input id="l-image-file" type="file" accept="image/*" class="block w-full text-xs file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:bg-primary file:text-white file:font-label file:uppercase file:tracking-[0.16em] file:text-[10px] file:font-bold hover:file:opacity-90 cursor-pointer"/>
+          <input id="l-image-url" type="url" placeholder="https://…" class="w-full mt-2 px-3 py-2 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50"/>
+          <div id="l-image-preview" class="hidden mt-2 bg-surface-container rounded p-3 flex items-center justify-center"><img class="max-h-12 w-auto object-contain" alt="preview"/></div>
         </div>
 
         <div>
-          <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-1.5">Subline <span class="font-normal lowercase tracking-normal text-outline-variant">(for "Minimal" variant)</span></label>
-          <input id="l-subline" type="text" placeholder="— Lounge —" class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50"/>
+          <label class="block font-label text-[10px] uppercase tracking-[0.16em] font-bold text-on-surface-variant mb-1.5">Order</label>
+          <input id="l-order" type="number" value="50" class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/30 rounded focus:outline-none focus:border-primary/50"/>
         </div>
 
         <label class="inline-flex items-center gap-2 cursor-pointer">
@@ -575,7 +556,7 @@
 
   // The native reset button doubles as "Cancel editing" — leaving edit mode.
   $("#venue-form").addEventListener("reset", () => { venueEditor.end(); delete $("#v-slug").dataset.touched; });
-  $("#logo-form").addEventListener("reset", () => logoEditor.end());
+  $("#logo-form").addEventListener("reset", () => { logoEditor.end(); $("#l-image-preview").classList.add("hidden"); });
   $("#favourite-form").addEventListener("reset", () => favEditor.end());
   $("#drift-event-form").addEventListener("reset", () => { driftEventEditor.end(); $("#de-image-preview").classList.add("hidden"); });
   $("#drift-dj-form").addEventListener("reset", () => { driftDjEditor.end(); $("#dj-image-preview").classList.add("hidden"); });
@@ -611,9 +592,9 @@
   }
   function fillLogoForm(r) {
     $("#l-label").value = r.label || "";
-    $("#l-variant").value = r.variant || "serif";
-    $("#l-mark").value = r.mark || "";
-    $("#l-subline").value = r.subline || "";
+    $("#l-image-file").value = "";
+    $("#l-image-url").value = r.image_url || "";
+    showImagePreview("#l-image-preview", r.image_url);
     $("#l-order").value = r.display_order ?? 50;
     $("#l-published").checked = !!r.is_published;
   }
@@ -901,37 +882,29 @@
   // ════════════════════════════════════════════════════
   //  LOGOS
   // ════════════════════════════════════════════════════
-  const VARIANT_LABELS = {
-    serif: "Serif italic", display: "Display bold", caps: "Spaced caps",
-    minimal: "Minimal", smallcaps: "Small caps", heavy: "Heavy", bracket: "Bracket",
-  };
-
   function renderLogoPreview(row) {
-    const mark = row.mark ? `<span class="jc-mark mr-1">${escHtml(row.mark)}</span>` : "";
-    const sub  = row.variant === "minimal" && row.subline ? `<span class="jc-sub">${escHtml(row.subline)}</span>` : "";
-    return `<span class="jc-logo jc-logo--${escHtml(row.variant)}" style="opacity:1">${mark}${escHtml(row.label)}${sub}</span>`;
+    return row.image_url
+      ? `<img src="${escHtml(row.image_url)}" alt="${escHtml(row.label || "")}" class="max-h-9 w-auto object-contain"/>`
+      : `<span class="text-outline-variant text-xs italic">no image</span>`;
   }
 
   async function loadLogos() {
     const tbody = $("#logos-tbody");
     if (!tbody) return;
-    tbody.innerHTML = `<tr><td colspan="8" class="px-4 py-10 text-center text-on-surface-variant">Loading…</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="5" class="px-4 py-10 text-center text-on-surface-variant">Loading…</td></tr>`;
     const { data, error } = await JCCms.logos.listAll();
     if (error) {
-      tbody.innerHTML = `<tr><td colspan="8" class="px-4 py-10 text-center text-error">${escHtml(error.message)}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5" class="px-4 py-10 text-center text-error">${escHtml(error.message)}</td></tr>`;
       return;
     }
     if (!data?.length) {
-      tbody.innerHTML = `<tr><td colspan="8" class="px-4 py-10 text-center text-on-surface-variant">No logos yet.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5" class="px-4 py-10 text-center text-on-surface-variant">No logos yet.</td></tr>`;
       return;
     }
     tbody.innerHTML = data.map(r => `
       <tr class="border-t border-outline-variant/10 hover:bg-surface-container-low/40 transition-colors">
         <td class="px-4 py-3">${renderLogoPreview(r)}</td>
         <td class="px-4 py-3 font-medium">${escHtml(r.label)}</td>
-        <td class="px-4 py-3 text-xs text-on-surface-variant">${escHtml(VARIANT_LABELS[r.variant] || r.variant)}</td>
-        <td class="px-4 py-3 text-center text-lg">${r.mark ? escHtml(r.mark) : "—"}</td>
-        <td class="px-4 py-3 text-xs text-on-surface-variant italic">${r.subline ? escHtml(r.subline) : "—"}</td>
         <td class="px-4 py-3 text-center"><input data-id="${r.id}" type="number" value="${r.display_order}" class="l-order w-16 text-center bg-surface-container-low border border-outline-variant/30 rounded px-1 py-1 text-xs"/></td>
         <td class="px-4 py-3 text-center"><input data-id="${r.id}" type="checkbox" ${r.is_published ? "checked" : ""} class="l-pub rounded border-outline-variant/30"/></td>
         <td class="px-4 py-3 text-right">
@@ -966,11 +939,11 @@
     e.preventDefault();
     const btn = $("#l-submit"); btn.disabled = true; btn.textContent = "Saving…";
     try {
+      const image_url = await resolveImage($("#l-image-file"), $("#l-image-url"), "uploads", JCCms.uploadLogoImage);
+      if (!image_url) throw new Error("Please upload a logo image (or paste an image URL).");
       const row = {
         label:        $("#l-label").value.trim(),
-        variant:      $("#l-variant").value,
-        mark:         $("#l-mark").value.trim() || null,
-        subline:      $("#l-subline").value.trim() || null,
+        image_url,
         display_order: parseInt($("#l-order").value, 10) || 50,
         is_published: $("#l-published").checked,
       };
@@ -1090,16 +1063,20 @@
     });
   }
 
-  async function resolveImage(fileInput, urlInput, prefix) {
+  async function resolveImage(fileInput, urlInput, prefix, uploader) {
     const f = fileInput?.files?.[0];
     if (f) {
-      const { data, error } = await JCCms.uploadDriftImage(f, prefix);
+      const up = uploader || JCCms.uploadDriftImage;
+      const { data, error } = await up(f, prefix);
       if (error) throw error;
       return data.publicUrl;
     }
     const u = urlInput?.value?.trim();
     return u || null;
   }
+
+  // Logo image preview wiring (Logos tab)
+  bindImagePreview("#l-image-file", "#l-image-url", "#l-image-preview");
 
   function fmtEventDate(s) {
     if (!s) return "—";
